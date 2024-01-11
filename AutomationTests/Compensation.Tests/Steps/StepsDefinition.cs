@@ -10,5 +10,19 @@ namespace Compensation.Tests
     [Binding]
     public class StepsDefinition
     {
+        [Given(@"Hello")]
+        public void GivenHello()
+        {
+
+            //ToDo: Added my work
+            throw new PendingStepException();
+        }
+
+        [When(@"I want to \.\.\.")]
+        public void WhenIWantTo_()
+        {
+            throw new PendingStepException();
+        }
+
     }
 }
