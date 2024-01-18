@@ -12,41 +12,40 @@ namespace Malafi.Tests.Steps
     {
         private IWebDriver driver;//= new ChromeDriver();
         private LoginPage loginPage;
-        private ScenarioContext ScenarioContext;
-
+        private ScenarioContext scenarioContext;
+        private string username;
+        private string password;
         public LoginFeatureStepDefinitions(ScenarioContext context)
         {
-            ScenarioContext = context;
-            driver = ScenarioContext["WebDriver"] as IWebDriver;
+            scenarioContext = context;
+            driver = scenarioContext["WebDriver"] as IWebDriver;
 
         }
 
-        [Given(@"I have naveigated to the research login page")]
-        public void GivenIHaveNaveigatedToTheResearchLoginPage()
-        {
-            //driver.Navigate().GoToUrl("https://osqa.ksmc.med.sa/IPortal/Login");
-            //driver.Manage().Window.Maximize();
-        }
+      
 
         [Given(@"Entered '([^']*)'as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
             loginPage = new LoginPage(driver);
-            loginPage.UserName.SendKeys(userName);
-
+          ////  loginPage.UserName.SendKeys(userName);
+          
+this.username = userName;
         }
 
         [Given(@"Enterd '([^']*)' as password")]
         public void GivenEnterdAsPassword(string password)
         {
-            loginPage.PasswordValue.SendKeys(password);
+         //   loginPage.PasswordValue.SendKeys(password);
+
+            this.password = password;
         }
 
-        [When(@"I cilci on login button")]
+        [When(@"I cilck on login button")]
         public void WhenICilciOnLoginButton()
         {
-            var homePage = loginPage.Login();
-            ScenarioContext["HomePage"] = homePage;
+            var homePage = loginPage.Login(username,password);
+            scenarioContext["HomePage"] = homePage;
 
         }
 
@@ -54,8 +53,8 @@ namespace Malafi.Tests.Steps
         public void ThenIShouldBeAbleToViewMyHomePage()
         {
 
-            var homePage = ScenarioContext["HomePage"] as HomePage;
-            homePage.wait.Until(ExpectedConditions.ElementToBeClickable(homePage.FullName));//By.Id(homePage.FullName.GetAttribute("id"))));
+            var homePage = scenarioContext["HomePage"] as HomePage;
+            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.FullName));//By.Id(homePage.FullName.GetAttribute("id"))));
 
             Assert.AreEqual("Blue2", homePage.FullName.Text);
         }

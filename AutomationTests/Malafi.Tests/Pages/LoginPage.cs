@@ -2,11 +2,6 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Malafi.Tests.Pages
 {
@@ -17,7 +12,7 @@ namespace Malafi.Tests.Pages
 
         #region Fields
         private IWebDriver driver;
-        public WebDriverWait Wait;
+        private WebDriverWait Wait;
         #endregion
 
         #region Constructor
@@ -45,32 +40,18 @@ namespace Malafi.Tests.Pages
         #endregion
      
 
-        public HomePage Login()
-        {
+        public HomePage Login(string userName, string password )
+        { 
             this.Wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
+            this.UserName.SendKeys(userName);
+            this .PasswordTextBox.SendKeys(password);
             this.LoginButton.Click();
-
+            
             return new HomePage(driver);
         }
 
-        /*  public LoginPage(IWebDriver driver)
-          {
-              this.driver = driver;
-              wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+       
 
-              //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
-              PageFactory.InitElements(driver, this);
-          }*/
-
-        #region Page Navigation Methods
-        /*        public UserProfile Login()
-               {
-                   this.wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
-                   this.LoginButton.Click();
-
-                   return new UserProfile(driver);
-               }*/
-        #endregion
-
+       
     }
 }
