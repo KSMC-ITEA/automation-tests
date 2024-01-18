@@ -4,19 +4,18 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
 using System.Configuration;
 using TechTalk.SpecFlow;
-using System.Reflection;
 
-namespace Malafi.Tests.Hooks
+namespace Compensation.Tests
 {
-    //[Binding]
-    public sealed class MalafiHooks
+    [Binding]
+    public sealed class CompensationHooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
         private ScenarioContext scenarioContext;
 
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
-        public MalafiHooks(ScenarioContext context)
+        public CompensationHooks(ScenarioContext context)
         {
             scenarioContext = context;
         }
@@ -25,7 +24,7 @@ namespace Malafi.Tests.Hooks
         public void BeforeScenario()
         {
             IWebDriver driver; //= new ChromeDriver();
-            switch (Properties.Resources.Browser)
+            switch (ConfigurationManager.AppSettings["Browser"])
             {
                 case "Chrome":
                     driver = new ChromeDriver();
@@ -40,7 +39,7 @@ namespace Malafi.Tests.Hooks
                     driver = new ChromeDriver();
                     break;
             }
-            driver.Navigate().GoToUrl(Properties.Resources.StartURL);
+            driver.Navigate().GoToUrl("https://devtest.ksmc.med.sa/Research/Login.aspx");
 
             driver.Manage().Window.Maximize();
             Thread.Sleep(2000);
@@ -48,23 +47,6 @@ namespace Malafi.Tests.Hooks
         }
 
 
-        [BeforeScenario("@tag1")]
-        public void BeforeScenarioWithTag()
-        {
-            // Example of filtering hooks using tags. (in this case, this 'before scenario' hook will execute if the feature/scenario contains the tag '@tag1')
-            // See https://docs.specflow.org/projects/specflow/en/latest/Bindings/Hooks.html?highlight=hooks#tag-scoping
-
-            //TODO: implement logic that has to run before executing each scenario
-        }
-
-        [BeforeScenario(Order = 1)]
-        public void FirstBeforeScenario()
-        {
-            // Example of ordering the execution of hooks
-            // See https://docs.specflow.org/projects/specflow/en/latest/Bindings/Hooks.html?highlight=order#hook-execution-order
-
-            //TODO: implement logic that has to run before executing each scenario
-        }
 
         [AfterScenario]
         public void AfterScenario()
