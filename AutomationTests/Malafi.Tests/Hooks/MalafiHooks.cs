@@ -4,6 +4,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
 using System.Configuration;
 using TechTalk.SpecFlow;
+using System.Reflection;
 
 namespace Malafi.Tests.Hooks
 {
@@ -24,7 +25,7 @@ namespace Malafi.Tests.Hooks
         public void BeforeScenario()
         {
             IWebDriver driver; //= new ChromeDriver();
-            switch (ConfigurationManager.AppSettings["Browser"])
+            switch (Properties.Resources.Browser)
             {
                 case "Chrome":
                     driver = new ChromeDriver();
@@ -39,7 +40,7 @@ namespace Malafi.Tests.Hooks
                     driver = new ChromeDriver();
                     break;
             }
-            driver.Navigate().GoToUrl("https://devtest.ksmc.med.sa/Research/Login.aspx");
+            driver.Navigate().GoToUrl(Properties.Resources.StartURL);
 
             driver.Manage().Window.Maximize();
             Thread.Sleep(2000);
