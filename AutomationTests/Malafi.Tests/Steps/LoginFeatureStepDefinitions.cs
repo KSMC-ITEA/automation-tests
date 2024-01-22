@@ -13,31 +13,32 @@ namespace Malafi.Tests.Steps
         private IWebDriver driver;//= new ChromeDriver();
         private LoginPage loginPage;
         private ScenarioContext scenarioContext;
-        private string username;
-        private string password;
+        private string username = string.Empty;
+        private string password = string.Empty;
+
         public LoginFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
-            loginPage = scenarioContext["LoginPage"] as LoginPage;
+            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new ArgumentNullException("Web Driver");
+            loginPage = scenarioContext["LoginPage"] as LoginPage ?? throw new ArgumentNullException("Login Page");
 
         }
 
-      
+
 
         [Given(@"Entered '([^']*)'as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
-            loginPage = new LoginPage(driver);
-          ////  loginPage.UserName.SendKeys(userName);
-          
-this.username = userName;
+            //loginPage = new LoginPage(driver);
+            ////  loginPage.UserName.SendKeys(userName);
+
+            this.username = userName;
         }
 
         [Given(@"Enterd '([^']*)' as password")]
         public void GivenEnterdAsPassword(string password)
         {
-         //   loginPage.PasswordValue.SendKeys(password);
+            //   loginPage.PasswordValue.SendKeys(password);
 
             this.password = password;
         }
@@ -45,7 +46,7 @@ this.username = userName;
         [When(@"I cilck on login button")]
         public void WhenICilciOnLoginButton()
         {
-            var homePage = loginPage.Login(username,password);
+            var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
 
         }
@@ -55,6 +56,7 @@ this.username = userName;
         {
 
             var homePage = scenarioContext["HomePage"] as HomePage;
+            Assert.IsNotNull(homePage);
             homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.FullName));//By.Id(homePage.FullName.GetAttribute("id"))));
 
             Assert.AreEqual("Blue2", homePage.FullName.Text);
@@ -87,9 +89,10 @@ this.username = userName;
         public void ThenIShouldMoveToSelfservicesPage_()
         {
             var selfServices = scenarioContext["SelfServices"] as SelfServices;
+            Assert.IsNotNull(selfServices);
             selfServices.Wait.Until(ExpectedConditions.ElementToBeClickable(selfServices.Login)); ;
 
-            Assert.AreEqual("Login", selfServices.Login.Text);
+            Assert.AreEqual("Login", selfServices.Login.GetDomAttribute("value"));
 
         }
 

@@ -20,6 +20,7 @@ namespace Malafi.Tests.Pages
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //wait.Until(wd => (driver as IJavaScriptExecutor).ExecuteScript("return document.readyState").ToString() == "complete");
             PageFactory.InitElements(driver, this);
         }
 
@@ -53,9 +54,10 @@ namespace Malafi.Tests.Pages
         #region Methods - Page Navigation
         public HomePage Login(string userName, string password)
         {
-            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
             this.UserName.SendKeys(userName);
             this.PasswordTextBox.SendKeys(password);
+            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
+            Thread.Sleep(5000);
             this.LoginButton.Click();
 
             return new HomePage(driver);
