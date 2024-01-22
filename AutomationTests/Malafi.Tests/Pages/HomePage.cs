@@ -20,7 +20,7 @@ namespace Malafi.Tests.Pages
 
         }
         // نعرف خاصية نوعها ببليك لان ماينفع نستخدم عناصر الكلاس مباشره 
-        public object ErrorMessage =>errorMessage;
+        public object ErrorMessage => errorMessage;
         public WebDriverWait Wait => wait ?? throw new NullReferenceException();
 
         [FindsBy(How = How.CssSelector, Using = ".main-nav-profile > .ThemeGrid_MarginGutter")]

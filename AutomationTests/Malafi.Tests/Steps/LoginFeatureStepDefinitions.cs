@@ -1,4 +1,4 @@
-using Malafi.Tests.Pages;
+﻿using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumExtras.WaitHelpers;
@@ -19,6 +19,7 @@ namespace Malafi.Tests.Steps
         {
             scenarioContext = context;
             driver = scenarioContext["WebDriver"] as IWebDriver;
+            loginPage = scenarioContext["LoginPage"] as LoginPage;
 
         }
 
@@ -57,6 +58,41 @@ this.username = userName;
             homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.FullName));//By.Id(homePage.FullName.GetAttribute("id"))));
 
             Assert.AreEqual("Blue2", homePage.FullName.Text);
+
+
+
+
+
         }
+
+        [Then(@"I should not be able to view my home page")]
+        public void ThenIShouldNotBeAbleToViewMyHomePage()
+        {
+            loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
+            Assert.AreEqual("اسم المستخدم او كلمة المرور غير صحيحة برجاء ادخال البيانات الصحيحة", loginPage.Errormessage.Text);
+        }
+
+
+
+        [Given(@"click forget password putton\.")]
+        public void GivenClickForgetPasswordPutton_()
+        {
+            var selfServices = loginPage.Open();
+            scenarioContext["SelfServices"] = selfServices;
+
+
+        }
+
+        [Then(@"I should move to selfservices page\.")]
+        public void ThenIShouldMoveToSelfservicesPage_()
+        {
+            var selfServices = scenarioContext["SelfServices"] as SelfServices;
+            selfServices.Wait.Until(ExpectedConditions.ElementToBeClickable(selfServices.Login)); ;
+
+            Assert.AreEqual("Login", selfServices.Login.Text);
+
+        }
+
+
     }
 }

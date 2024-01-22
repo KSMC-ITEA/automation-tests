@@ -12,24 +12,26 @@ namespace Malafi.Tests.Pages
 
         #region Fields
         private IWebDriver driver;
-        private WebDriverWait Wait;
+        private WebDriverWait wait;
         #endregion
 
         #region Constructor
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
-            Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             PageFactory.InitElements(driver, this);
         }
+
+        #endregion
+
+        #region Properties
+        public WebDriverWait Wait => wait;
 
 
         [FindsBy(How = How.Id, Using = "b2-UsernameInput")]
         public IWebElement UserName { get; private set; }
 
-        #endregion
-
-        #region Properties
         [FindsBy(How = How.Id, Using = "b2-PasswordInput")]
         public IWebElement PasswordTextBox { get; private set; }
         [FindsBy(How = How.Id, Using = "b2-PasswordInput")]
@@ -37,21 +39,39 @@ namespace Malafi.Tests.Pages
 
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
         public IWebElement LoginButton { get; private set; }
+
+        [FindsBy(How = How.ClassName, Using = "feedback-message-error")]
+        public IWebElement Errormessage { get; private set; }
+
+        [FindsBy(How = How.ClassName, Using = "password-link")]
+        public IWebElement ForgetMyCredential { get; private set; }
         #endregion
-     
 
-        public HomePage Login(string userName, string password )
-        { 
-            this.Wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
+
+
+
+        #region Methods - Page Navigation
+        public HomePage Login(string userName, string password)
+        {
+            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
             this.UserName.SendKeys(userName);
-            this .PasswordTextBox.SendKeys(password);
+            this.PasswordTextBox.SendKeys(password);
             this.LoginButton.Click();
-            
+
             return new HomePage(driver);
+        } 
+        public SelfServices Open()
+        {
+            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.ForgetMyCredential));
+            this.ForgetMyCredential.Click();
+            return new SelfServices(driver);
+
+
         }
+        #endregion
 
-       
 
-       
+
+
     }
 }

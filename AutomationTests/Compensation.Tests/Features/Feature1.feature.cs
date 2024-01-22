@@ -114,6 +114,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("Hello", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+ testRunner.When("I want to ...", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

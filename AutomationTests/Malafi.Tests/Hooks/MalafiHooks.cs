@@ -5,10 +5,11 @@ using OpenQA.Selenium;
 using System.Configuration;
 using TechTalk.SpecFlow;
 using System.Reflection;
+using Malafi.Tests.Pages;
 
 namespace Malafi.Tests.Hooks
 {
-    //[Binding]
+    [Binding]
     public sealed class MalafiHooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
@@ -45,6 +46,7 @@ namespace Malafi.Tests.Hooks
             driver.Manage().Window.Maximize();
             Thread.Sleep(2000);
             scenarioContext["WebDriver"] = driver;
+            scenarioContext["LoginPage"] = new LoginPage(driver);
         }
 
 
