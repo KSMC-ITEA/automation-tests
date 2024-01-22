@@ -28,7 +28,7 @@ namespace Malafi.Tests.Steps
         [Given(@"Entered '([^']*)'as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
-            loginPage = new LoginPage(driver);
+           loginPage = new LoginPage(driver);
           ////  loginPage.UserName.SendKeys(userName);
           
 this.username = userName;
@@ -89,7 +89,7 @@ this.username = userName;
             var selfServices = scenarioContext["SelfServices"] as SelfServices;
             selfServices.Wait.Until(ExpectedConditions.ElementToBeClickable(selfServices.Login)); ;
 
-            Assert.AreEqual("Login", selfServices.Login.Text);
+            Assert.AreEqual("Login", selfServices.Login.GetDomAttribute("value"));
 
         }
 
