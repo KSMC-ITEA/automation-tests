@@ -8,5 +8,6 @@ namespace Compensation.Tests.Pages
 {
     internal class PageObjectModel
     {
+
     }
 }

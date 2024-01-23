@@ -25,7 +25,7 @@ namespace Malafi.Tests.Pages
         #endregion
 
         // نعرف خاصية نوعها ببليك لان ماينفع نستخدم عناصر الكلاس مباشره 
-        public object ErrorMessage =>errorMessage;
+        public object ErrorMessage => errorMessage;
         public WebDriverWait Wait => wait ?? throw new NullReferenceException();
 
         #region Properties
@@ -50,4 +50,4 @@ namespace Malafi.Tests.Pages
 
     }
 }
-    
+

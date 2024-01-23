@@ -30,7 +30,6 @@ namespace Malafi.Tests.Pages
         {
             DocumentTypeLink.Click();
             return new DocumentType(driver);
-
         }
 
 

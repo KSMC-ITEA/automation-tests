@@ -5,6 +5,7 @@ using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,61 +25,80 @@ namespace Malafi.Tests.Pages
             PageFactory.InitElements(driver, this);
         }
 
+        public WebDriverWait Wait => wait;
+
 
         [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_TitleAr']")]
-        public IWebElement Title_Ar { get; private set; }
+        public IWebElement TitleAr { get; private set; }
 
 
         [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_TitleEn']")]
-        public IWebElement Title_En { get; private set; }
+        public IWebElement TitleEn { get; private set; }
 
 
         [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_WebsiteLink']")]
-        public IWebElement Website_Link { get; private set; }
+        public IWebElement WebsiteLink { get; private set; }
 
 
         [FindsBy(How = How.CssSelector, Using = "btn-primary")]
-        public IWebElement Upload_Document_Type { get; private set; }
+        public IWebElement UploadDocumentType { get; private set; }
 
 
         [FindsBy(How = How.CssSelector, Using = "#b3-Input_OnBaseNumber")]
-        public IWebElement OnBase_Number { get; private set; }
+        public IWebElement OnBaseNumber { get; private set; }
 
         [FindsBy(How = How.CssSelector, Using = "input[type=file]")]
         public IWebElement FileUpload { get; private set; }
 
+        [FindsBy(How = How.XPath,Using = "//form[@id='b3-Form1']/div[2]/button[2]/span")]
+        public IWebElement ClickOnSaveButton1 { get; private set; }
+
+        [FindsBy(How = How.ClassName, Using = "feedback-message-text")]
+        public IWebElement SuccessMessage { get; private set; }
 
 
-        public void New_Document_Type(string Title_Ar1, string Title_En1, string Website_Link1, string OnBase_Number1, string uploadFile1)
+        public void New_Document_Type(string TitleAr1, string TitleEn1, string WebsiteLink1, string OnBaseNumber1, string uploadFile1)
         {
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(Title_Ar));
+            wait.Until(ExpectedConditions.ElementToBeClickable(TitleAr));
 
-            Title_Ar.SendKeys(Title_Ar1);
-
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(Title_En));
-
-            Title_En.SendKeys(Title_En1);
+            TitleAr.SendKeys(TitleAr1);
 
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(Website_Link));
+            wait.Until(ExpectedConditions.ElementToBeClickable(TitleEn));
 
-            Website_Link.SendKeys(Website_Link1);
+            TitleEn.SendKeys(TitleEn1);
+
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(WebsiteLink));
+
+            WebsiteLink.SendKeys(WebsiteLink1);
 
             //Upload_Document_Type.Click();
 
             var uploadFile = uploadFile1;
-            this.FileUpload.SendKeys(uploadFile);
+            this.FileUpload.SendKeys($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\FilesToUpload\\{uploadFile1}");
             //driver.FindElement(By.Id("file-submit")).Click();
 
-            wait.Until(ExpectedConditions.ElementToBeClickable(OnBase_Number));
+            wait.Until(ExpectedConditions.ElementToBeClickable(OnBaseNumber));
 
-            OnBase_Number.SendKeys(OnBase_Number1);
+            OnBaseNumber.SendKeys(OnBaseNumber1);
 
 
+
+        }
+    
+        //ضغط على زر الحفظ
+        
+        public void ClickOnSaveButton()
+        {
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(ClickOnSaveButton1)).Click();
 
         }
     }
 
 }
+//Data has been updated successfully
+
+//feedback-message-text
