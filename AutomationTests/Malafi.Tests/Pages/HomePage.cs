@@ -8,23 +8,31 @@ namespace Malafi.Tests.Pages
     public class HomePage
     {
 
-        private WebDriverWait wait; 
-        private object errorMessage;
+        #region Fields
+        private WebDriverWait wait;
+        #endregion
 
+
+        #region Constructor
         public HomePage(IWebDriver driver)
         {
-           
+
 
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             PageFactory.InitElements(driver, this);
 
         }
-        // نعرف خاصية نوعها ببليك لان ماينفع نستخدم عناصر الكلاس مباشره 
-        public object ErrorMessage => errorMessage;
-        public WebDriverWait Wait => wait ?? throw new NullReferenceException();
+        #endregion
 
+
+        #region Exception Handling 
+        public WebDriverWait Wait => wait ?? throw new NullReferenceException(); 
+        #endregion
+
+        #region Properties
         [FindsBy(How = How.CssSelector, Using = ".main-nav-profile > .ThemeGrid_MarginGutter")]
-        public IWebElement FullName { get; private set; }
+        public IWebElement FullName { get; private set; } 
+        #endregion
 
     }
 }

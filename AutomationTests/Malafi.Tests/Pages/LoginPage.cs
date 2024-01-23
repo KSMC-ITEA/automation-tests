@@ -6,7 +6,7 @@ using SeleniumExtras.WaitHelpers;
 namespace Malafi.Tests.Pages
 {
 
-    //هذه الصفحة تمثل كلاس لصفحة اللوقين راح نرجع نستخدمة 
+
     public class LoginPage
     {
 
@@ -46,12 +46,17 @@ namespace Malafi.Tests.Pages
 
         [FindsBy(How = How.ClassName, Using = "password-link")]
         public IWebElement ForgetMyCredential { get; private set; }
+
+
+        [FindsBy(How =How.CssSelector, Using= "a:nth-child(1)")]
+        public IWebElement ClickOnSlefServices { get; private set; }
         #endregion
 
 
 
 
         #region Methods - Page Navigation
+        #region Login with valid userName and password
         public HomePage Login(string userName, string password)
         {
             this.UserName.SendKeys(userName);
@@ -61,7 +66,9 @@ namespace Malafi.Tests.Pages
             this.LoginButton.Click();
 
             return new HomePage(driver);
-        } 
+        }
+        #endregion
+        #region When click on forget my password
         public SelfServices Open()
         {
             this.wait.Until(ExpectedConditions.ElementToBeClickable(this.ForgetMyCredential));
@@ -70,6 +77,20 @@ namespace Malafi.Tests.Pages
 
 
         }
+        #endregion
+
+        #region When click on SelfServices
+        public SelfServices Click()
+        {
+            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.ClickOnSlefServices));
+            this.ClickOnSlefServices.Click();
+            return new SelfServices(driver);
+
+
+        } 
+        #endregion
+
+
         #endregion
 
 

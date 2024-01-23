@@ -1,8 +1,7 @@
 ﻿using Malafi.Tests.Pages;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+
 using SeleniumExtras.WaitHelpers;
-using System;
+
 using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Steps
@@ -10,27 +9,32 @@ namespace Malafi.Tests.Steps
     [Binding]
     public class LoginFeatureStepDefinitions
     {
-        private IWebDriver driver;//= new ChromeDriver();
+
+        #region fields
         private LoginPage loginPage;
         private ScenarioContext scenarioContext;
         private string username = string.Empty;
         private string password = string.Empty;
+        #endregion
 
+        #region Constructor
         public LoginFeatureStepDefinitions(ScenarioContext context)
         {
+
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new ArgumentNullException("Web Driver");
+
             loginPage = scenarioContext["LoginPage"] as LoginPage ?? throw new ArgumentNullException("Login Page");
 
         }
 
+        #endregion
 
 
+        #region Given
         [Given(@"Entered '([^']*)'as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
-            //loginPage = new LoginPage(driver);
-            ////  loginPage.UserName.SendKeys(userName);
+
 
             this.username = userName;
         }
@@ -38,19 +42,43 @@ namespace Malafi.Tests.Steps
         [Given(@"Enterd '([^']*)' as password")]
         public void GivenEnterdAsPassword(string password)
         {
-            //   loginPage.PasswordValue.SendKeys(password);
+
 
             this.password = password;
         }
 
+
+        [Given(@"click selfservices putton\.")]
+        public void GivenClickSelfservicesPutton_()
+        {
+            var selfServices = loginPage.Click();
+            scenarioContext["SelfServices"] = selfServices;
+
+        }
+
+
+        [Given(@"click forget password putton\.")]
+        public void GivenClickForgetPasswordPutton_()
+        {
+            var selfServices = loginPage.Open();
+            scenarioContext["SelfServices"] = selfServices;
+
+
+        }
+        #endregion
+
+        #region When
         [When(@"I cilck on login button")]
+
         public void WhenICilciOnLoginButton()
         {
             var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
 
         }
+        #endregion
 
+        #region Then
         [Then(@"I should be able to view my home page")]
         public void ThenIShouldBeAbleToViewMyHomePage()
         {
@@ -76,14 +104,8 @@ namespace Malafi.Tests.Steps
 
 
 
-        [Given(@"click forget password putton\.")]
-        public void GivenClickForgetPasswordPutton_()
-        {
-            var selfServices = loginPage.Open();
-            scenarioContext["SelfServices"] = selfServices;
 
 
-        }
 
         [Then(@"I should move to selfservices page\.")]
         public void ThenIShouldMoveToSelfservicesPage_()
@@ -94,7 +116,10 @@ namespace Malafi.Tests.Steps
 
             Assert.AreEqual("Login", selfServices.Login.GetDomAttribute("value"));
 
-        }
+        } 
+        #endregion
+
+
 
 
     }
