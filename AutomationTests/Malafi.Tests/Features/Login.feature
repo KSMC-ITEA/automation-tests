@@ -2,7 +2,7 @@
 
 Login scenarios for the malfi project 
 
-@tag1
+@loginTest
 Scenario: Login using valid username and password should be succeeded
 
 
@@ -21,4 +21,9 @@ Scenario: Login using unvalid username or  unvalid password should be  not succe
 
 Scenario: click on forget my password should move me to SelfServices 
 	Given click forget password putton.
+	Then  I should move to selfservices page.
+
+	
+Scenario: click on selfservices should move me to SelfServices 
+	Given click selfservices putton.
 	Then  I should move to selfservices page.
