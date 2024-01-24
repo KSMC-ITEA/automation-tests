@@ -1,5 +1,5 @@
 ﻿using Malafi.Tests.Pages;
-
+using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
 using TechTalk.SpecFlow;
@@ -15,6 +15,7 @@ namespace Malafi.Tests.Steps
         private ScenarioContext scenarioContext;
         private string username = string.Empty;
         private string password = string.Empty;
+        private IWebDriver driver;
         #endregion
 
         #region Constructor
@@ -24,6 +25,9 @@ namespace Malafi.Tests.Steps
             scenarioContext = context;
 
             loginPage = scenarioContext["LoginPage"] as LoginPage ?? throw new ArgumentNullException("Login Page");
+
+            driver = (IWebDriver)scenarioContext["WebDriver"];
+       
 
         }
 
@@ -46,25 +50,13 @@ namespace Malafi.Tests.Steps
 
             this.password = password;
         }
-
-
-        [Given(@"click selfservices putton\.")]
-        public void GivenClickSelfservicesPutton_()
+        [Given(@"Click on '([^']*)' link")]
+        public void WhenClickOnLink(string linkText)
         {
-            var selfServices = loginPage.Click();
-            scenarioContext["SelfServices"] = selfServices;
-
+            loginPage.clickOnLinkText(linkText);
         }
 
 
-        [Given(@"click forget password putton\.")]
-        public void GivenClickForgetPasswordPutton_()
-        {
-            var selfServices = loginPage.Open();
-            scenarioContext["SelfServices"] = selfServices;
-
-
-        }
         #endregion
 
         #region When
@@ -104,20 +96,23 @@ namespace Malafi.Tests.Steps
 
 
 
-
-
-
-        [Then(@"I should move to selfservices page\.")]
-        public void ThenIShouldMoveToSelfservicesPage_()
+        [Then(@"I should be navigated to the '([^']*)'")]
+        public void ThenIShouldBeNavigatedToThe(string urlPage)
         {
-            var selfServices = scenarioContext["SelfServices"] as SelfServices;
-            Assert.IsNotNull(selfServices);
-            selfServices.Wait.Until(ExpectedConditions.ElementToBeClickable(selfServices.Login)); ;
+            loginPage.Wait.Until(ExpectedConditions.UrlContains(urlPage));
+            Assert.IsTrue(driver.Url.Contains(urlPage));
+        }
 
-            Assert.AreEqual("Login", selfServices.Login.GetDomAttribute("value"));
 
-        } 
+
         #endregion
+
+
+
+
+     
+
+      
 
 
 

@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
+using TechTalk.SpecFlow.Assist;
 
 namespace Malafi.Tests.Pages
 {
@@ -13,6 +14,7 @@ namespace Malafi.Tests.Pages
         #region Fields
         private IWebDriver driver;
         private WebDriverWait wait;
+        private Dictionary<string, IWebElement> loginPageLinks;
         #endregion
 
         #region Constructor
@@ -20,8 +22,14 @@ namespace Malafi.Tests.Pages
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            //wait.Until(wd => (driver as IJavaScriptExecutor).ExecuteScript("return document.readyState").ToString() == "complete");
+         
             PageFactory.InitElements(driver, this);
+            LoginPageLinks = new Dictionary<string, IWebElement>();
+            /// key of the dictionay key,valu 
+            LoginPageLinks.Add("Forgot your password?", ForgetMyCredentialLinks);
+            LoginPageLinks.Add("Self Services", SlefServicesLinks);
+
+
         }
 
         #endregion
@@ -43,13 +51,15 @@ namespace Malafi.Tests.Pages
 
         [FindsBy(How = How.ClassName, Using = "feedback-message-error")]
         public IWebElement Errormessage { get; private set; }
+        [FindsBy(How = How.LinkText, Using = "Forgot your password?")]
+        //     [FindsBy(How = How.ClassName, Using = "password-link")]
+        public IWebElement ForgetMyCredentialLinks { get; private set; }
 
-        [FindsBy(How = How.ClassName, Using = "password-link")]
-        public IWebElement ForgetMyCredential { get; private set; }
 
-
-        [FindsBy(How =How.CssSelector, Using= "a:nth-child(1)")]
-        public IWebElement ClickOnSlefServices { get; private set; }
+        //  [FindsBy(How =How.CssSelector, Using= "a:nth-child(1)")]
+        [FindsBy(How = How.LinkText, Using = "Self Services")]
+        public IWebElement SlefServicesLinks { get; private set; }
+        public Dictionary<string, IWebElement> LoginPageLinks { get => loginPageLinks; private set => loginPageLinks = value; }
         #endregion
 
 
@@ -68,27 +78,20 @@ namespace Malafi.Tests.Pages
             return new HomePage(driver);
         }
         #endregion
-        #region When click on forget my password
-        public SelfServices Open()
+        #region When click on link text
+        public void clickOnLinkText(string LinkText)
         {
-            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.ForgetMyCredential));
-            this.ForgetMyCredential.Click();
-            return new SelfServices(driver);
+            
+            //////  this.loginPageLinks.ait.Until(ExpectedConditions.ElementIsVisible(By.LinkText(linkText)));
 
+              this .LoginPageLinks[LinkText].Click();
+            
 
         }
         #endregion
 
-        #region When click on SelfServices
-        public SelfServices Click()
-        {
-            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.ClickOnSlefServices));
-            this.ClickOnSlefServices.Click();
-            return new SelfServices(driver);
 
 
-        } 
-        #endregion
 
 
         #endregion
