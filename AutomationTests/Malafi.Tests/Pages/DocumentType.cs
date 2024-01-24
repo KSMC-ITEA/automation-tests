@@ -33,13 +33,13 @@ namespace Malafi.Tests.Pages
         public WebDriverWait Wait => wait;
         
         [FindsBy(How = How.CssSelector, Using = ".btn > .ThemeGrid_MarginGutter")]
-        public IWebElement Add_Documents_Types { get; private set; }
+        public IWebElement AddDocumentsTypes { get; private set; }
 
-        public DocumentsTypeDetails Add_Documents()
+        public DocumentsTypeDetails AddDocuments()
         {
             var DocumentsTypeDetails = new DocumentsTypeDetails(driver);
 
-            Wait.Until(ExpectedConditions.ElementToBeClickable(Add_Documents_Types)).Click();
+            Wait.Until(ExpectedConditions.ElementToBeClickable(AddDocumentsTypes)).Click();
 
             return new DocumentsTypeDetails(driver);
 

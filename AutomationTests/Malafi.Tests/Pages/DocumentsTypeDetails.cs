@@ -28,7 +28,7 @@ namespace Malafi.Tests.Pages
         public WebDriverWait Wait => wait;
 
 
-        [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_TitleAr']")]
+        [FindsBy(How = How.Id, Using = "b3-Input_TitleAr")]
         public IWebElement TitleAr { get; private set; }
 
 
@@ -56,8 +56,11 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.ClassName, Using = "feedback-message-text")]
         public IWebElement SuccessMessage { get; private set; }
 
+        [FindsBy(How = How.XPath, Using = "//div[@id='feedbackMessageContainer']/div/div")]
+        public IWebElement ErrorMessage { get; private set; }
 
-        public void New_Document_Type(string TitleAr1, string TitleEn1, string WebsiteLink1, string OnBaseNumber1, string uploadFile1)
+
+        public void New_Document_Type(string TitleAr1, string TitleEn1, string WebsiteLink1, string OnBaseNumber1, string UploadFile1)
         {
 
             wait.Until(ExpectedConditions.ElementToBeClickable(TitleAr));
@@ -76,8 +79,8 @@ namespace Malafi.Tests.Pages
 
             //Upload_Document_Type.Click();
 
-            var uploadFile = uploadFile1;
-            this.FileUpload.SendKeys($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\FilesToUpload\\{uploadFile1}");
+            var uploadFile = UploadFile1;
+            this.FileUpload.SendKeys($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\FilesToUpload\\{UploadFile1}");
             //driver.FindElement(By.Id("file-submit")).Click();
 
             wait.Until(ExpectedConditions.ElementToBeClickable(OnBaseNumber));

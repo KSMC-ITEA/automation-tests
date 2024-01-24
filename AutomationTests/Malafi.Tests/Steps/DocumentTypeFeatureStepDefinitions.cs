@@ -30,9 +30,9 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
-            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.Add_Documents_Types));
+            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
 
-            scenarioContext["DocumentTypeDetails"] = documentTypesPage.Add_Documents();
+            scenarioContext["DocumentTypeDetails"] = documentTypesPage.AddDocuments();
 
        //     Thread.Sleep(5000);
         }

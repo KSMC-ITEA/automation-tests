@@ -30,13 +30,13 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
-            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.Add_Documents_Types));
+            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
         }
 
         [Then(@"I should be navigated to Document Types Page")]
         public void ThenIShouldBeNavigatedToDocumentTypesPage()
         {
-            Assert.AreEqual("Add Document Type", documentTypesPage.Add_Documents_Types.Text);
+            Assert.AreEqual("Add Document Type", documentTypesPage.AddDocumentsTypes.Text);
         }
     }
 }
