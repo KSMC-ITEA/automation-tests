@@ -1,7 +1,7 @@
 ﻿using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Steps
@@ -104,15 +104,27 @@ namespace Malafi.Tests.Steps
         }
 
 
+        [Given(@"I change the language\.")]
+        public void GivenIChangeTheLanguage_()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"the recived error message regex should be releted to the selected language\.")]
+        public void ThenTheRecivedErrorMessageRegexShouldBeReletedToTheSelectedLanguage_()
+        {
+            throw new PendingStepException();
+        }
+
 
         #endregion
 
 
 
 
-     
 
-      
+
+
 
 
 

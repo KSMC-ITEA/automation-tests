@@ -15,6 +15,7 @@ namespace Malafi.Tests.Pages
         private IWebDriver driver;
         private WebDriverWait wait;
         private Dictionary<string, IWebElement> loginPageLinks;
+        private Dictionary<string, IWebElement> language;
         #endregion
 
         #region Constructor
@@ -28,7 +29,8 @@ namespace Malafi.Tests.Pages
             /// key of the dictionay key,valu 
             LoginPageLinks.Add("Forgot your password?", ForgetMyCredentialLinks);
             LoginPageLinks.Add("Self Services", SlefServicesLinks);
-
+language = new Dictionary<string, IWebElement>();
+        
 
         }
 
@@ -36,7 +38,8 @@ namespace Malafi.Tests.Pages
 
         #region Properties
         public WebDriverWait Wait => wait;
-
+        [FindsBy(How = How.Id, Using = "b1 - LanguageButton")]
+        public IWebElement Language { get; private set; }
 
         [FindsBy(How = How.Id, Using = "b2-UsernameInput")]
         public IWebElement UserName { get; private set; }
@@ -51,12 +54,11 @@ namespace Malafi.Tests.Pages
 
         [FindsBy(How = How.ClassName, Using = "feedback-message-error")]
         public IWebElement Errormessage { get; private set; }
-        [FindsBy(How = How.LinkText, Using = "Forgot your password?")]
-        //     [FindsBy(How = How.ClassName, Using = "password-link")]
+        [FindsBy(How = How.LinkText, Using = "Forgot your password?")]     
         public IWebElement ForgetMyCredentialLinks { get; private set; }
 
 
-        //  [FindsBy(How =How.CssSelector, Using= "a:nth-child(1)")]
+    
         [FindsBy(How = How.LinkText, Using = "Self Services")]
         public IWebElement SlefServicesLinks { get; private set; }
         public Dictionary<string, IWebElement> LoginPageLinks { get => loginPageLinks; private set => loginPageLinks = value; }
@@ -66,14 +68,18 @@ namespace Malafi.Tests.Pages
 
 
         #region Methods - Page Navigation
-        #region Login with valid userName and password
-        public HomePage Login(string userName, string password)
+        #region Login with valid userName and passwor
+
+        public HomePage Login(string userName, string password )
         {
+
+         
             this.UserName.SendKeys(userName);
             this.PasswordTextBox.SendKeys(password);
             this.wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
             Thread.Sleep(5000);
             this.LoginButton.Click();
+
 
             return new HomePage(driver);
         }
@@ -88,8 +94,9 @@ namespace Malafi.Tests.Pages
             
 
         }
+    public void changeLanguage()
         #endregion
-
+        { }
 
 
 
