@@ -26,7 +26,7 @@ namespace Malafi.Tests.Steps
 
             loginPage = scenarioContext["LoginPage"] as LoginPage ?? throw new ArgumentNullException("Login Page");
 
-            driver = (IWebDriver)scenarioContext["WebDriver"];
+           driver = (IWebDriver)scenarioContext["WebDriver"];
 
 
         }
@@ -103,7 +103,16 @@ namespace Malafi.Tests.Steps
             loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
             bool isMatch = Regex.IsMatch(loginPage.Errormessage.Text, regexPattern);
             Assert.IsTrue(isMatch, "The error message doesn't match the selected language.");
+          
         }
+        [Then(@"I should recived the same feedback message in the usr story")]
+        public void ThenIShouldRecivedTheSameFeedbackMessageInTheUsrStory()
+        {
+            loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
+            Assert.AreEqual("اسم المستخدم او كلمة المرور غير صحيحة برجاء ادخال البيانات الصحيحة", loginPage.Errormessage.Text);
+        }
+
+
 
         #endregion
     }

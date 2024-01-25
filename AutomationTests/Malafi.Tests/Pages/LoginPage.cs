@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
-using TechTalk.SpecFlow.Assist;
+
 
 namespace Malafi.Tests.Pages
 {
@@ -15,7 +15,7 @@ namespace Malafi.Tests.Pages
         private IWebDriver driver;
         private WebDriverWait wait;
         private Dictionary<string, IWebElement> loginPageLinks;
-        //private Dictionary<string, IWebElement> language;
+
         #endregion
 
         #region Constructor

@@ -92,15 +92,17 @@ namespace Malafi.Tests.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login using valid username and password should be succeeded")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Check if the feedback message is same as the one that mintion by the  BA  in the " +
+            "user story")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Feature")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("loginTest")]
-        public void LoginUsingValidUsernameAndPasswordShouldBeSucceeded()
+        public void CheckIfTheFeedbackMessageIsSameAsTheOneThatMintionByTheBAInTheUserStory()
         {
             string[] tagsOfScenario = new string[] {
                     "loginTest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login using valid username and password should be succeeded", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check if the feedback message is same as the one that mintion by the  BA  in the " +
+                    "user story", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,16 +113,50 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+testRunner.Given("Entered \'blue\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
+testRunner.And("Enterd \'Ksmc@1234\' as password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 9
- testRunner.Given("Entered \'blue2\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
+testRunner.Then("I should recived the same feedback message in the usr story", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Login using valid username and password should be succeeded")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Feature")]
+        public void LoginUsingValidUsernameAndPasswordShouldBeSucceeded()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login using valid username and password should be succeeded", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 12
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 15
+ testRunner.Given("Entered \'blue2\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 16
  testRunner.And("Enterd \'Ksmc@1234\' as password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 17
  testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 18
  testRunner.Then("I should be able to view my home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -135,7 +171,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login using invalid username or  unvalid password should not be succeeded", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -145,16 +181,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 17
+#line 23
  testRunner.Given("Entered \'blue\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 18
+#line 24
  testRunner.And("Enterd \'Ksmc@1234\' as password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 25
  testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 26
  testRunner.Then("I should not be able to view my home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -168,7 +204,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("LinkText", linkText);
             argumentsOfScenario.Add("PageURL", pageURL);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to click on link", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 23
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -178,10 +214,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
+#line 31
  testRunner.Given(string.Format("Click on \'{0}\' link", linkText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 25
+#line 32
  testRunner.Then(string.Format("I should be navigated to the \'{0}\'", pageURL), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -196,7 +232,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:PageURL", "selfservices")]
         public void IWantToClickOnLink_SelfServices()
         {
-#line 23
+#line 30
 this.IWantToClickOnLink("Self Services", "selfservices", ((string[])(null)));
 #line hidden
         }
@@ -209,7 +245,7 @@ this.IWantToClickOnLink("Self Services", "selfservices", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:PageURL", "selfservices")]
         public void IWantToClickOnLink_ForgotYourPassword()
         {
-#line 23
+#line 30
 this.IWantToClickOnLink("Forgot your password?", "selfservices", ((string[])(null)));
 #line hidden
         }
@@ -221,7 +257,7 @@ this.IWantToClickOnLink("Forgot your password?", "selfservices", ((string[])(nul
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("Regex", regex);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("the regex code for the alert messge should be matched to the selected languag.", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 33
+#line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -231,19 +267,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 34
+#line 41
  testRunner.Given(string.Format("I change the language \'{0}\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 35
+#line 42
  testRunner.And("Entered \'bule\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 36
+#line 43
  testRunner.And("Enterd \'ksmc@1234\' as password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 44
  testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 38
+#line 45
  testRunner.Then(string.Format("the recived error message regex should be releted to the selected language \'{0}\'", regex), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -259,7 +295,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Regex", "^[\\u0621-\\u064A]+")]
         public void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag__Ar()
         {
-#line 33
+#line 40
 this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag_("ar", "^[\\u0621-\\u064A]+", ((string[])(null)));
 #line hidden
         }
@@ -273,7 +309,7 @@ this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag_("ar", "^[
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Regex", "^[a-zA-Z0-9$@$!%*?&#^-_. +]+$")]
         public void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag__En()
         {
-#line 33
+#line 40
 this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag_("en", "^[a-zA-Z0-9$@$!%*?&#^-_. +]+$", ((string[])(null)));
 #line hidden
         }
