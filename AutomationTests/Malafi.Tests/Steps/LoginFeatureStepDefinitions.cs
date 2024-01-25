@@ -15,7 +15,8 @@ namespace Malafi.Tests.Steps
         private ScenarioContext scenarioContext;
         private string username = string.Empty;
         private string password = string.Empty;
-        private IWebDriver driver;
+        private SelfServices  selfServices;
+  
         #endregion
 
         #region Constructor
@@ -26,7 +27,7 @@ namespace Malafi.Tests.Steps
 
             loginPage = scenarioContext["LoginPage"] as LoginPage ?? throw new ArgumentNullException("Login Page");
 
-           driver = (IWebDriver)scenarioContext["WebDriver"];
+
 
 
         }
@@ -55,7 +56,10 @@ namespace Malafi.Tests.Steps
         [Given(@"Click on '([^']*)' link")]
         public void GivenClickOnLink(string linkText)
         {
-            loginPage.ClickOnLinkText(linkText);
+
+            selfServices = loginPage.ClickOnLinkText(linkText);
+
+
         }
         #endregion
 
@@ -92,7 +96,9 @@ namespace Malafi.Tests.Steps
         public void ThenIShouldBeNavigatedToThe(string urlPage)
         {
             loginPage.Wait.Until(ExpectedConditions.UrlContains(urlPage));
-            Assert.IsTrue(driver.Url.Contains(urlPage));
+
+            // 
+            Assert.IsTrue(selfServices.SelfServiceUrl.Contains(urlPage));
         }
 
 
@@ -103,14 +109,9 @@ namespace Malafi.Tests.Steps
             loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
             bool isMatch = Regex.IsMatch(loginPage.Errormessage.Text, regexPattern);
             Assert.IsTrue(isMatch, "The error message doesn't match the selected language.");
-          
-        }
-        [Then(@"I should recived the same feedback message in the usr story")]
-        public void ThenIShouldRecivedTheSameFeedbackMessageInTheUsrStory()
-        {
-            loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
             Assert.AreEqual("اسم المستخدم او كلمة المرور غير صحيحة برجاء ادخال البيانات الصحيحة", loginPage.Errormessage.Text);
         }
+  
 
 
 

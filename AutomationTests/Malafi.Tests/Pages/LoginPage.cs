@@ -93,9 +93,11 @@ namespace Malafi.Tests.Pages
         /// When click on link text
         /// </summary>
         /// <param name="LinkText"></param>
-        public void ClickOnLinkText(string LinkText)
+        public SelfServices ClickOnLinkText(string LinkText)
         {
             this.LoginPageLinks[LinkText].Click();
+            return new SelfServices(driver);
+           
         }
         
 

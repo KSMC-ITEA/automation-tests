@@ -3,11 +3,7 @@
 Login scenarios for the malfi project 
 
 @loginTest
-Scenario: Check if the feedback message is same as the one that mintion by the  BA  in the user story
-Given Entered 'blue'as a username
-And Enterd 'Ksmc@1234' as password
-When I cilck on login button
-Then I should recived the same feedback message in the usr story
+
 
 Scenario: Login using valid username and password should be succeeded
 
