@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Malafi.Tests.Hooks
 {
-    //[Binding]
+    [Binding]
     public sealed class MalafiHooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
