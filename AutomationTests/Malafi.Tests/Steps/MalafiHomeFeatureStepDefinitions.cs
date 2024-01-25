@@ -15,7 +15,7 @@ namespace Malafi.Tests.Steps
     public class MalafiHomeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver? driver;
+        private IWebDriver driver;
         private DocumentType documentTypesPage;
 
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
@@ -24,7 +24,7 @@ namespace Malafi.Tests.Steps
             driver = scenarioContext["WebDriver"] as IWebDriver;
 
         }
-        [When(@"I clicked DocumentsTypes link")]
+        [When(@"Clicked DocumentsTypes link")]
         public void WhenIClickedDocumentsTypesLink()
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;

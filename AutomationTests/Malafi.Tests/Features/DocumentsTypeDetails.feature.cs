@@ -48,7 +48,7 @@ namespace Malafi.Tests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "DocumentsTypeDetails", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "DocumentsTypeDetails", "Enter data into the form and submit", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -93,39 +93,39 @@ namespace Malafi.Tests.Features
         
         public virtual void FeatureBackground()
         {
-#line 4
-#line hidden
-#line 5
- testRunner.Given("Entered \'blue2\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 6
- testRunner.And("Enterd \'Ksmc@1234\' as password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
- testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("Entered \'blue2\'as a username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("Click on Malafi link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enterd \'Ksmc@1234\' as password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("I clicked DocumentsTypes link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Given("I click on Add Document Type button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("Click on Malafi link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("Clicked DocumentsTypes link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("Click on Add Document Type button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("completed the form New Document Type")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add new document type should succeed")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DocumentsTypeDetails")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("tag1")]
-        public void CompletedTheFormNewDocumentType()
+        public void AddNewDocumentTypeShouldSucceed()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("completed the form New Document Type", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 14
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new document type should succeed", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -135,28 +135,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 6
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
-                            "OnBase Number1",
-                            "upload File1"});
+                            "OnBase Number",
+                            "upload File"});
                 table1.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
-                            "www",
+                            "1111",
                             "ladybug.png"});
-#line 15
-  testRunner.Given("I completed the form New Document Type", ((string)(null)), table1, "Given ");
+#line 17
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table1, "Given ");
 #line hidden
-#line 19
+#line 21
  testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 22
  testRunner.Then("A successful notification message should be appeared", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -164,16 +164,16 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Scenarios: Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DocumentsTypeDetails")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("tag1")]
-        public void ScenariosChecksTheFileTypePDFJPGPNGBMPTIFFAndSize10MB()
+        public void ChecksTheFileTypePDFJPGPNGBMPTIFFAndSize10MB()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Scenarios: Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 26
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -183,28 +183,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 6
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
-                            "OnBase Number1",
-                            "upload File1"});
+                            "OnBase Number",
+                            "upload File"});
                 table2.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
-                            "www",
-                            "test1.xlsx"});
-#line 28
-  testRunner.Given("I completed the form New Document Type", ((string)(null)), table2, "Given ");
-#line hidden
-#line 32
- testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                            "1111",
+                            "NotSupported.xlsx"});
+#line 29
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table2, "Given ");
 #line hidden
 #line 33
+ testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
  testRunner.Then("A ErrorMessage notification message should be appeared", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -218,7 +218,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("field", field);
             argumentsOfScenario.Add("text", text);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Language from validation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 44
+#line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -228,32 +228,32 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 6
 this.FeatureBackground();
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
-                            "OnBase Number1",
-                            "upload File1"});
+                            "OnBase Number",
+                            "upload File"});
                 table3.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
-                            "www",
+                            "1111",
                             "ladybug.png"});
-#line 45
-testRunner.Given("I completed the form New Document Type", ((string)(null)), table3, "Given ");
+#line 40
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table3, "Given ");
 #line hidden
-#line 49
+#line 44
  testRunner.When(string.Format("I enter \'{0}\' in \'{1}\'", text, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 50
+#line 45
  testRunner.And("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 51
- testRunner.Then("A successful notification message should be appeared", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 46
+ testRunner.Then("A ErrorMessage notification message should be appeared", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -264,11 +264,11 @@ testRunner.Given("I completed the form New Document Type", ((string)(null)), tab
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DocumentsTypeDetails")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Title Ar")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:field", "Title Ar")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:text", "تجربه50")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:text", "test50")]
         public void LanguageFromValidation_TitleAr()
         {
-#line 44
-this.LanguageFromValidation("Title Ar", "تجربه50", ((string[])(null)));
+#line 39
+this.LanguageFromValidation("Title Ar", "test50", ((string[])(null)));
 #line hidden
         }
         
@@ -277,11 +277,11 @@ this.LanguageFromValidation("Title Ar", "تجربه50", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DocumentsTypeDetails")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Title En")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:field", "Title En")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:text", "test50")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:text", "تجربه50")]
         public void LanguageFromValidation_TitleEn()
         {
-#line 44
-this.LanguageFromValidation("Title En", "test50", ((string[])(null)));
+#line 39
+this.LanguageFromValidation("Title En", "تجربه50", ((string[])(null)));
 #line hidden
         }
     }

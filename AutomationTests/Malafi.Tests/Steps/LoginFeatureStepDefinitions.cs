@@ -28,7 +28,6 @@ namespace Malafi.Tests.Steps
         public void GivenEnteredAsAUsername(string userName)
         {
             loginPage = new LoginPage(driver);
-            ////  loginPage.UserName.SendKeys(userName);
 
             this.username = userName;
         }
@@ -36,7 +35,6 @@ namespace Malafi.Tests.Steps
         [Given(@"Enterd '([^']*)' as password")]
         public void GivenEnterdAsPassword(string password)
         {
-            //   loginPage.PasswordValue.SendKeys(password);
 
             this.password = password;
         }
@@ -46,7 +44,7 @@ namespace Malafi.Tests.Steps
         {
             var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
-            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.LinkMalafi));//By.Id(homePage.FullName.GetAttribute("id"))));
+            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
         }
 
         [Then(@"I should be able to view my home page")]

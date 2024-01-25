@@ -18,26 +18,24 @@ namespace Malafi.Tests.Pages
     {
 
         private readonly IWebDriver driver;
-        private WebDriverWait wait;
+        private readonly WebDriverWait wait;
 
         public DocumentType(IWebDriver driver)
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
             PageFactory.InitElements(driver, this);
         }
 
 
         public WebDriverWait Wait => wait;
         
-        [FindsBy(How = How.CssSelector, Using = ".btn > .ThemeGrid_MarginGutter")]
+        [FindsBy(How = How.XPath, Using = "//div[@id='b3-b1-Actions']/div/button/span")]
         public IWebElement AddDocumentsTypes { get; private set; }
 
-        public DocumentsTypeDetails AddDocuments()
+        public DocumentsTypeDetails ClickOnAddDocumentsLink()
         {
-            var DocumentsTypeDetails = new DocumentsTypeDetails(driver);
 
             Wait.Until(ExpectedConditions.ElementToBeClickable(AddDocumentsTypes)).Click();
 

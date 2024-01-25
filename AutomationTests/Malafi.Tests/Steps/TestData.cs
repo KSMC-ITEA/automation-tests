@@ -11,8 +11,9 @@ namespace Malafi.Tests.Steps
         public string TitleAR { get; set; }
         public string TitleEN { get; set; }
         public string WebsiteLink { get; set; }
-        public string OnBaseNumber1 { get; set; }
-        public string uploadFile1 { get; set; }
+        public string OnBaseNumber { get; set; }
+        public string UploadFile { get; set; }
 
+        
     }
 }

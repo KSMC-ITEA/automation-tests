@@ -49,7 +49,7 @@
     <None Update="FilesToUpload\ladybug.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FilesToUpload\test1.xlsx">
+    <None Update="FilesToUpload\NotSupported.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -9,7 +9,7 @@ namespace Malafi.Tests.Pages
     {
         #region Fields
         private readonly IWebDriver driver;
-        public WebDriverWait wait;
+        public readonly WebDriverWait wait;
         private object errorMessage;
         #endregion
 
@@ -33,16 +33,16 @@ namespace Malafi.Tests.Pages
         public IWebElement FullName { get; private set; }
 
         [FindsBy(How = How.LinkText, Using = "Malafi")]
-        public IWebElement LinkMalafi { get; private set; }
+        public IWebElement MalafiLink { get; private set; }
 
         [FindsBy(How = How.CssSelector, Using = ".OSInline:nth-child(2) > div > span")]
-        public IWebElement Ar_languages { get; private set; }
+        public IWebElement LanguagesAR { get; private set; }
         #endregion
 
 
         public MalafiHome ClickOnMalafi()
         {
-            LinkMalafi.Click();
+            MalafiLink.Click();
 
             return new MalafiHome(driver);
         }

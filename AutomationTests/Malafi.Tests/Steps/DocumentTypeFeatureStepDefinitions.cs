@@ -13,9 +13,9 @@ namespace Malafi.Tests.Steps
     public class DocumentTypeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver? driver;
+        private IWebDriver driver;
         private DocumentType documentTypesPage;
-        private DocumentsTypeDetails DocumentsTypeDetailsPage;
+
         public DocumentTypeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
@@ -23,8 +23,8 @@ namespace Malafi.Tests.Steps
 
         }
 
-        [Given(@"I click on Add Document Type button")]
-        public void GivenIClickOnAddDocumentTypeButton()
+        [When(@"I click on Add Document Type button")]
+        public void WhenIClickOnAddDocumentTypeButton()
         {
 
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
@@ -32,10 +32,38 @@ namespace Malafi.Tests.Steps
             documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
             documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
 
-            scenarioContext["DocumentTypeDetails"] = documentTypesPage.AddDocuments();
+            scenarioContext["DocumentTypeDetails"] = documentTypesPage.ClickOnAddDocumentsLink();
 
        //     Thread.Sleep(5000);
         }
+
+
+        [When(@"Click on Add Document Type button")]
+        public void WhenClickOnAddDocumentTypeButton()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
+            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
+
+            scenarioContext["DocumentTypeDetails"] = documentTypesPage.ClickOnAddDocumentsLink();
+        }
+
+
+
+
+
+
+
+        [Then(@"I should be navigated to Add Document Types Page")]
+        public void ThenIShouldBeNavigatedToAddDocumentTypesPage()
+        {
+            var addDocumentTypePage = scenarioContext["DocumentTypeDetails"] as DocumentsTypeDetails;
+            Assert.IsNotNull(addDocumentTypePage);
+            addDocumentTypePage.Wait.Until(ExpectedConditions.ElementToBeClickable(addDocumentTypePage.ClickOnSaveButton1));
+            Assert.IsTrue(addDocumentTypePage.ClickOnSaveButton1.Displayed);
+        }
+
 
 
     }

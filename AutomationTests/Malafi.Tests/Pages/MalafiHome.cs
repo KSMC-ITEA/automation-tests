@@ -10,14 +10,12 @@ namespace Malafi.Tests.Pages
     public class MalafiHome
     {
         private readonly IWebDriver driver;
-        private WebDriverWait wait;
+        private readonly WebDriverWait wait;
 
         public MalafiHome(IWebDriver driver)
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
             PageFactory.InitElements(driver, this);
         }
 
