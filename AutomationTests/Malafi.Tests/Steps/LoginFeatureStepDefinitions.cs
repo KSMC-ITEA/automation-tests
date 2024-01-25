@@ -27,36 +27,36 @@ namespace Malafi.Tests.Steps
             loginPage = scenarioContext["LoginPage"] as LoginPage ?? throw new ArgumentNullException("Login Page");
 
             driver = (IWebDriver)scenarioContext["WebDriver"];
-       
+
 
         }
 
         #endregion
 
-
         #region Given
+
+        [Given(@"I change the language '([^']*)'")]
+        public void GivenIChangeTheLanguage(string language)
+        {
+            loginPage.ChangeLanguage(language);
+        }
+
         [Given(@"Entered '([^']*)'as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
-
-
             this.username = userName;
         }
 
         [Given(@"Enterd '([^']*)' as password")]
         public void GivenEnterdAsPassword(string password)
         {
-
-
             this.password = password;
         }
         [Given(@"Click on '([^']*)' link")]
-        public void WhenClickOnLink(string linkText)
+        public void GivenClickOnLink(string linkText)
         {
-            loginPage.clickOnLinkText(linkText);
+            loginPage.ClickOnLinkText(linkText);
         }
-
-
         #endregion
 
         #region When
@@ -66,7 +66,6 @@ namespace Malafi.Tests.Steps
         {
             var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
-
         }
         #endregion
 
@@ -74,17 +73,10 @@ namespace Malafi.Tests.Steps
         [Then(@"I should be able to view my home page")]
         public void ThenIShouldBeAbleToViewMyHomePage()
         {
-
             var homePage = scenarioContext["HomePage"] as HomePage;
             Assert.IsNotNull(homePage);
             homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.FullName));//By.Id(homePage.FullName.GetAttribute("id"))));
-
             Assert.AreEqual("Blue2", homePage.FullName.Text);
-
-
-
-
-
         }
 
         [Then(@"I should not be able to view my home page")]
@@ -104,30 +96,15 @@ namespace Malafi.Tests.Steps
         }
 
 
-        [Given(@"I change the language\.")]
-        public void GivenIChangeTheLanguage_()
-        {
-            throw new PendingStepException();
-        }
 
-        [Then(@"the recived error message regex should be releted to the selected language\.")]
-        public void ThenTheRecivedErrorMessageRegexShouldBeReletedToTheSelectedLanguage_()
+        [Then(@"the recived error message regex should be releted to the selected language '([^']*)'")]
+        public void ThenTheRecivedErrorMessageRegexShouldBeReletedToTheSelectedLanguage(string regexPattern)
         {
-            throw new PendingStepException();
+            loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
+            bool isMatch = Regex.IsMatch(loginPage.Errormessage.Text, regexPattern);
+            Assert.IsTrue(isMatch, "The error message doesn't match the selected language.");
         }
-
 
         #endregion
-
-
-
-
-
-
-
-
-
-
-
     }
 }
