@@ -9,7 +9,7 @@ Scenario: Login using valid username and password should be succeeded
 	Given Entered 'blue2'as a username
 	And Enterd 'Ksmc@1234' as password
 	When I cilck on login button
-	Then I should be able to view my home page 
+	Then I should be able to view my home page
 
 
 
@@ -25,20 +25,21 @@ Scenario Outline: I want to click on link
 	Then I should be navigated to the '<PageURL>'
 
 Examples:
-	| LinkText        | PageURL    |
-	| Self Services  | selfservices|
-	| Forgot your password? | selfservices|
+	| LinkText              | PageURL      |
+	| Self Services         | selfservices |
+	| Forgot your password? | selfservices |
 
 
 Scenario Outline: the regex code for the alert messge should be matched to the selected languag.
-Given I change the language.
-And Enterd 'bule'as a username.
-And Enterd 'ksmc@1234' as  password
-Then the recived error message regex should be releted to the selected language.
+	Given I change the language '<language>'
+	And Entered 'bule'as a username
+	And Enterd 'ksmc@1234' as password
+	When I cilck on login button
+	Then the recived error message regex should be releted to the selected language '<Regex>'
 
-Examples: 
+Examples:
 
-| language| The regex code  |
-| Arabic  | /^[\u0621-\u064A]+$/|
-| English | ^[a-zA-Z0-9$@$!%*?&#^-_. +]+$ |
+	| language | Regex                         |
+	| ar       | ^[\\u0621-\\u064A]+           |
+	| en       | ^[a-zA-Z0-9$@$!%*?&#^-_. +]+$ |
 
