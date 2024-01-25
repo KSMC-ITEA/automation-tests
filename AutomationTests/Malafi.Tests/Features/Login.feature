@@ -13,17 +13,32 @@ Scenario: Login using valid username and password should be succeeded
 
 
 
-Scenario: Login using unvalid username or  unvalid password should be  not succeeded
+Scenario: Login using invalid username or  unvalid password should not be succeeded
 	Given Entered 'blue'as a username
 	And Enterd 'Ksmc@1234' as password
 	When I cilck on login button
 	Then I should not be able to view my home page
 
-Scenario: click on forget my password should move me to SelfServices 
-	Given click forget password putton.
-	Then  I should move to selfservices page.
 
-	
-Scenario: click on selfservices should move me to SelfServices 
-	Given click selfservices putton.
-	Then  I should move to selfservices page.
+Scenario Outline: I want to click on link
+	Given Click on '<LinkText>' link
+	Then I should be navigated to the '<PageURL>'
+
+Examples:
+	| LinkText        | PageURL    |
+	| Self Services  | selfservices|
+	| Forgot your password? | selfservices|
+
+
+Scenario Outline: the regex code for the alert messge should be matched to the selected languag.
+Given I change the language.
+And Enterd 'bule'as a username.
+And Enterd 'ksmc@1234' as  password
+Then the recived error message regex should be releted to the selected language.
+
+Examples: 
+
+| language| The regex code  |
+| Arabic  | /^[\u0621-\u064A]+$/|
+| English | ^[a-zA-Z0-9$@$!%*?&#^-_. +]+$ |
+
