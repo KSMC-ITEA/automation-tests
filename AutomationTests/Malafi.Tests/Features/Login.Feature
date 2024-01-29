@@ -33,12 +33,12 @@ Examples:
 	| Forgot your password? | selfservices |
 
 
-Scenario Outline: the regex code for the alert messge should be matched to the selected languag.
+Scenario Outline: the regex code for the alert messge should be matched to the selected language.
 	Given I change the language '<language>'
 	And Entered 'bule'as a username
 	And Enterd 'ksmc@1234' as password
 	When I cilck on login button
-	Then The recived error message regex should be releted to the selected language '<Regex>'
+	Then The received error message regex should be releted to the selected language '<Regex>'
 
 Examples:
 

@@ -214,13 +214,13 @@ this.IWantToClickOnLink("Forgot your password?", "selfservices", ((string[])(nul
 #line hidden
         }
         
-        public virtual void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag_(string language, string regex, string[] exampleTags)
+        public virtual void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguage_(string language, string regex, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("Regex", regex);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("the regex code for the alert messge should be matched to the selected languag.", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("the regex code for the alert messge should be matched to the selected language.", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 36
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -244,37 +244,38 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 41
- testRunner.Then(string.Format("The recived error message regex should be releted to the selected language \'{0}\'", regex), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("The received error message regex should be releted to the selected language \'{0}\'" +
+                            "", regex), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("the regex code for the alert messge should be matched to the selected languag.: a" +
-            "r")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("the regex code for the alert messge should be matched to the selected language.: " +
+            "ar")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Feature")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "ar")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:language", "ar")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Regex", "^[\\u0621-\\u064A]+")]
-        public void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag__Ar()
+        public void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguage__Ar()
         {
 #line 36
-this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag_("ar", "^[\\u0621-\\u064A]+", ((string[])(null)));
+this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguage_("ar", "^[\\u0621-\\u064A]+", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("the regex code for the alert messge should be matched to the selected languag.: e" +
-            "n")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("the regex code for the alert messge should be matched to the selected language.: " +
+            "en")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Feature")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "en")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:language", "en")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Regex", "^[a-zA-Z0-9$@$!%*?&#^-_. +]+$")]
-        public void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag__En()
+        public void TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguage__En()
         {
 #line 36
-this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguag_("en", "^[a-zA-Z0-9$@$!%*?&#^-_. +]+$", ((string[])(null)));
+this.TheRegexCodeForTheAlertMessgeShouldBeMatchedToTheSelectedLanguage_("en", "^[a-zA-Z0-9$@$!%*?&#^-_. +]+$", ((string[])(null)));
 #line hidden
         }
     }

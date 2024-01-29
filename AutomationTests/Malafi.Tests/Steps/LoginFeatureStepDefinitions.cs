@@ -105,7 +105,7 @@ namespace Malafi.Tests.Steps
 
      
 
-        [Then(@"The recived error message regex should be releted to the selected language '([^']*)'")]
+        [Then(@"The received error message regex should be releted to the selected language '([^']*)'")]
         public void ThenTheRecivedErrorMessageRegexShouldBeReletedToTheSelectedLanguage(string regexPattern)
         {
             loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
