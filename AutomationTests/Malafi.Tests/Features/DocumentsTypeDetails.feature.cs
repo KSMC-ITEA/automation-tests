@@ -164,15 +164,15 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Checks the file type(PDF,JPG,PNG,BMP)")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DocumentsTypeDetails")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("tag1")]
-        public void ChecksTheFileTypePDFJPGPNGBMPTIFFAndSize10MB()
+        public void ChecksTheFileTypePDFJPGPNGBMP()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checks the file type(PDF,JPG,PNG,BMP)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

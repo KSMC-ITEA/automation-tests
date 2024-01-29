@@ -21,7 +21,6 @@ namespace Malafi.Tests.Steps
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
 
         }
         [When(@"Clicked DocumentsTypes link")]
@@ -31,6 +30,8 @@ namespace Malafi.Tests.Steps
             Assert.IsNotNull(malafiHome);
             documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
             documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
+
+            scenarioContext["DocumentTypesPage"] = documentTypesPage;
         }
 
         [Then(@"I should be navigated to Document Types Page")]

@@ -33,6 +33,12 @@ namespace Malafi.Tests.Pages
         
         [FindsBy(How = How.XPath, Using = "//div[@id='b3-b1-Actions']/div/button/span")]
         public IWebElement AddDocumentsTypes { get; private set; }
+        [FindsBy(How =How.CssSelector,Using = ".table-row:nth-child(2) .view-tooltip > .icon")]
+        public IWebElement ViewApprovalLevelsIcon { get; private set; }   
+
+
+
+
 
         public DocumentsTypeDetails ClickOnAddDocumentsLink()
         {
@@ -42,8 +48,25 @@ namespace Malafi.Tests.Pages
             return new DocumentsTypeDetails(driver);
 
 
+
         }
 
 
+
+
+        public IDApprovallevelList ClickOnViewApprovalLevelsIcon()
+        {
+            Wait.Until(ExpectedConditions.ElementToBeClickable(ViewApprovalLevelsIcon)).Click();
+   
+
+
+            return new IDApprovallevelList(driver);
+
+
+        }
+
+
+
     }
+
 }
