@@ -244,7 +244,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I cilck on login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 41
- testRunner.Then(string.Format("the recived error message regex should be releted to the selected language \'{0}\'", regex), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("The recived error message regex should be releted to the selected language \'{0}\'", regex), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

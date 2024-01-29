@@ -103,7 +103,9 @@ namespace Malafi.Tests.Steps
 
 
 
-        [Then(@"the recived error message regex should be releted to the selected language '([^']*)'")]
+     
+
+        [Then(@"The recived error message regex should be releted to the selected language '([^']*)'")]
         public void ThenTheRecivedErrorMessageRegexShouldBeReletedToTheSelectedLanguage(string regexPattern)
         {
             loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
@@ -111,7 +113,6 @@ namespace Malafi.Tests.Steps
             Assert.IsTrue(isMatch, "The error message doesn't match the selected language.");
             Assert.AreEqual("اسم المستخدم او كلمة المرور غير صحيحة برجاء ادخال البيانات الصحيحة", loginPage.Errormessage.Text);
         }
-  
 
 
 

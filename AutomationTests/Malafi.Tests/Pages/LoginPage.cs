@@ -29,7 +29,7 @@ namespace Malafi.Tests.Pages
             /// key of the dictionay key,valu 
             LoginPageLinks.Add("Forgot your password?", ForgetMyCredentialLinks);
             LoginPageLinks.Add("Self Services", SlefServicesLinks);
-            //language = new Dictionary<string, IWebElement>();
+          
 
 
         }
@@ -37,7 +37,7 @@ namespace Malafi.Tests.Pages
         #endregion
 
         #region Properties
-        public WebDriverWait Wait => wait;
+         public WebDriverWait Wait => wait;
         [FindsBy(How = How.Id, Using = "b1-LanguageButton")]
         public IWebElement Language { get; private set; }
 
