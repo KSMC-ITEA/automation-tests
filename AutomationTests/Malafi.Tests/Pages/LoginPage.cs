@@ -45,6 +45,7 @@ namespace Malafi.Tests.Pages
             this.Wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
             this.UserName.SendKeys(userName);
             this .PasswordTextBox.SendKeys(password);
+            Thread.Sleep(5000);
             this.LoginButton.Click();
             
             return new HomePage(driver);

@@ -22,21 +22,19 @@ namespace Malafi.Tests.Steps
 
         }
 
-      
+
 
         [Given(@"Entered '([^']*)'as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
             loginPage = new LoginPage(driver);
-          ////  loginPage.UserName.SendKeys(userName);
-          
-this.username = userName;
+
+            this.username = userName;
         }
 
         [Given(@"Enterd '([^']*)' as password")]
         public void GivenEnterdAsPassword(string password)
         {
-         //   loginPage.PasswordValue.SendKeys(password);
 
             this.password = password;
         }
@@ -44,9 +42,9 @@ this.username = userName;
         [When(@"I cilck on login button")]
         public void WhenICilciOnLoginButton()
         {
-            var homePage = loginPage.Login(username,password);
+            var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
-
+            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
         }
 
         [Then(@"I should be able to view my home page")]
@@ -54,9 +52,8 @@ this.username = userName;
         {
 
             var homePage = scenarioContext["HomePage"] as HomePage;
-            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.FullName));//By.Id(homePage.FullName.GetAttribute("id"))));
-
             Assert.AreEqual("Blue2", homePage.FullName.Text);
+
         }
     }
 }
