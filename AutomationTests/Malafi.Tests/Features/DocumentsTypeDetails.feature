@@ -3,7 +3,7 @@
 Enter data into the form and submit
 
 
-Background: Common steps till reach to Document Types listing page
+Background: Common steps till reach to Add Document Type page
 	Given Entered 'blue2'as a username
 	And Enterd 'Ksmc@1234' as password
 	When I cilck on login button

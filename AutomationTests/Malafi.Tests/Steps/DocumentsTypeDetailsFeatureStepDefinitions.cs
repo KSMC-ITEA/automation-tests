@@ -66,7 +66,7 @@ namespace Malafi.Tests.Steps
         }
 
 
-        [Then(@"A ErrorMessage notification message should be appeared")]
+        [Then(@"An error message notification message should be appeared")]
         public void ThenAErrorMessageNotificationMessageShouldBeAppeared()
         {
             documentTypeDetails.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypeDetails.FeedbackMessage));

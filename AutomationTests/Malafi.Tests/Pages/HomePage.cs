@@ -9,7 +9,7 @@ namespace Malafi.Tests.Pages
     {
         #region Fields
         private readonly IWebDriver driver;
-        public readonly WebDriverWait wait;
+        private readonly WebDriverWait wait;
         private object errorMessage;
         #endregion
 
