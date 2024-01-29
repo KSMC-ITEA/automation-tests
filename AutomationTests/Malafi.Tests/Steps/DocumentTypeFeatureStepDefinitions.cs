@@ -34,7 +34,6 @@ namespace Malafi.Tests.Steps
 
             scenarioContext["DocumentTypeDetails"] = documentTypesPage.ClickOnAddDocumentsLink();
 
-       //     Thread.Sleep(5000);
         }
 
 
