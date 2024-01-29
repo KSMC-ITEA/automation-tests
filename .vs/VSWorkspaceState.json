@@ -3,11 +3,8 @@
     "",
     "\\AutomationTests",
     "\\AutomationTests\\Malafi.Tests",
-    "\\AutomationTests\\Malafi.Tests\\Features"
+    "\\AutomationTests\\Malafi.Tests\\Pages"
   ],
-  "SelectedNode": "\\AutomationTests\\AutomationTests.sln",
-    ""
-  ],
-  "SelectedNode": "\\AutomationTests.sln",
+  "SelectedNode": "\\AutomationTests\\Malafi.Tests\\Pages\\SelfServices.cs",
   "PreviewInSolutionExplorer": false
 }
