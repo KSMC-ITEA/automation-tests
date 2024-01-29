@@ -3,6 +3,8 @@
 Login scenarios for the malfi project 
 
 @loginTest
+
+
 Scenario: Login using valid username and password should be succeeded
 
 
@@ -20,6 +22,7 @@ Scenario: Login using invalid username or  unvalid password should not be succee
 	Then I should not be able to view my home page
 
 
+
 Scenario Outline: I want to click on link
 	Given Click on '<LinkText>' link
 	Then I should be navigated to the '<PageURL>'
@@ -30,12 +33,12 @@ Examples:
 	| Forgot your password? | selfservices |
 
 
-Scenario Outline: the regex code for the alert messge should be matched to the selected languag.
+Scenario Outline: the regex code for the alert messge should be matched to the selected language.
 	Given I change the language '<language>'
 	And Entered 'bule'as a username
 	And Enterd 'ksmc@1234' as password
 	When I cilck on login button
-	Then the recived error message regex should be releted to the selected language '<Regex>'
+	Then The received error message regex should be releted to the selected language '<Regex>'
 
 Examples:
 
