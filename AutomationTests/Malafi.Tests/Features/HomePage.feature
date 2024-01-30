@@ -1,6 +1,7 @@
 ﻿Feature: HomePage
 
-Click on the Malaf link
+ Internal Portal Home Page Scenarios
+
 
 Background: Login to Internal Portal and click on Malafi Link
 Given Entered 'blue2'as a username

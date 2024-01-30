@@ -1,12 +1,6 @@
 ﻿using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Steps
@@ -21,7 +15,7 @@ namespace Malafi.Tests.Steps
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
+            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
 
         }
         [When(@"Clicked DocumentsTypes link")]

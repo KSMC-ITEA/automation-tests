@@ -19,7 +19,7 @@ namespace Malafi.Tests.Steps
         public DocumentTypeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
+            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
 
         }
 
@@ -34,7 +34,6 @@ namespace Malafi.Tests.Steps
 
             scenarioContext["DocumentTypeDetails"] = documentTypesPage.ClickOnAddDocumentsLink();
 
-       //     Thread.Sleep(5000);
         }
 
 
