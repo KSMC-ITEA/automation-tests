@@ -10,7 +10,7 @@ Given Entered 'blue2'as a username
 	And Clicked DocumentsTypes link
 	When I click on View approval levels button 
 	And I click on AddApprovalLevelClick button
-@tag1
+
 Scenario: Add new document LVI should succeed
 	Given I completed the form New Document LVI
 	When I click save button

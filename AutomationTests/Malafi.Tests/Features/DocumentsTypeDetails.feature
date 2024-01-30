@@ -12,7 +12,7 @@ Background: Common steps till reach to Add Document Type page
 	And Click on Add Document Type button
 
 
-@tag1
+
 Scenario: Add new document type should succeed
 	Given I completed the form New Document Type
 		| Title AR | Title EN | Website Link | OnBase Number | upload File |
@@ -23,7 +23,7 @@ Scenario: Add new document type should succeed
 
 
 
-@tag1
+
 Scenario: Checks the file type(PDF,JPG,PNG,BMP)
 
 	Given I completed the form New Document Type
@@ -31,8 +31,7 @@ Scenario: Checks the file type(PDF,JPG,PNG,BMP)
 		| تجربة    | Test     | x            | 1111          | NotSupported.xlsx |
 
 	When I click on save button
-	Then A ErrorMessage notification message should be appeared
-
+	Then An error message notification message should be appeared
 
 
 	
@@ -43,7 +42,7 @@ Scenario Outline: Language from validation
 
 	When I enter '<text>' in '<field>'
 	And I click on save button
-	Then A ErrorMessage notification message should be appeared
+	Then An error message notification message should be appeared
 Examples:
 	| field    | text    |
 	| Title Ar | test50  |

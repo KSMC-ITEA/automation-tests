@@ -5,8 +5,7 @@ using SeleniumExtras.WaitHelpers;
 
 namespace Malafi.Tests.Pages
 {
-
-
+    
 
     public class DocumentType
     {
@@ -31,9 +30,6 @@ namespace Malafi.Tests.Pages
         public IWebElement ViewApprovalLevelsIcon { get; private set; }   
 
 
-
-
-
         public DocumentsTypeDetails ClickOnAddDocumentsLink()
         {
 
@@ -41,24 +37,16 @@ namespace Malafi.Tests.Pages
 
             return new DocumentsTypeDetails(driver);
 
-
-
         }
-
-
 
 
         public IDApprovallevelList ClickOnViewApprovalLevelsIcon()
         {
             Wait.Until(ExpectedConditions.ElementToBeClickable(ViewApprovalLevelsIcon)).Click();
-   
-
 
             return new IDApprovallevelList(driver);
 
-
         }
-
 
 
     }

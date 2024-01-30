@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compensation.Tests", "Compe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Malafi.Tests", "Malafi.Tests\Malafi.Tests.csproj", "{C14EE7F9-59FC-42A1-9699-6EA25CEF332C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80022221-A11B-445D-83F9-3C72C83EAE15}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{283B73D4-DA1C-446F-82F5-028F214D4A06}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
