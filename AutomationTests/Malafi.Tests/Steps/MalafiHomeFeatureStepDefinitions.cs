@@ -15,21 +15,35 @@ namespace Malafi.Tests.Steps
     public class MalafiHomeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver? driver;
         private DocumentType documentTypesPage;
+        private MalafiHome malafiHomePage;
 
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
-
+            malafiHomePage = scenarioContext["MalafiHome"] as MalafiHome ?? throw new NullReferenceException("Malafi Home is null");
         }
+
+        [When(@"click on Request a Registration link")]
+        public void WhenClickOnRequestARegistrationLink()
+        {
+            var registrationFormPage = malafiHomePage.ClickOnRegistrationFormButton();
+            scenarioContext["RegistrationForm"] = registrationFormPage;
+        }
+
+        [Then(@"I should be navigated to Employee Registration Form")]
+        public void ThenIShouldBeNavigatedToEmployeeRegistrationForm()
+        {
+            var registrationFormPage = scenarioContext["RegistrationForm"] as Registration;
+            registrationFormPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registrationFormPage.SubmitButton));
+            Assert.AreEqual("Submit", registrationFormPage.SubmitButton.Text);
+        }
+
+
         [When(@"I clicked DocumentsTypes link")]
         public void WhenIClickedDocumentsTypesLink()
         {
-            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
-            Assert.IsNotNull(malafiHome);
-            documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
+            documentTypesPage = malafiHomePage.ClickOnDocumentTypeLink();
             documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.Add_Documents_Types));
         }
 

@@ -30,7 +30,7 @@ namespace Malafi.Tests.Steps
             Assert.IsNotNull(homePage);
             var malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
-            malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.DocumentTypeLink));
+            malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.RequestReistrationButton));
         }
 
         [Then(@"I should be navigated to Malafi Home Page")]

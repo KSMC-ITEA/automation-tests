@@ -24,6 +24,10 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_MarginGutter > .OSFillParent")]
         public IWebElement DocumentTypeLink { get; private set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_Width7 > span")]
+        public IWebElement RequestReistrationButton { get; private set; }
+
+
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -33,7 +37,11 @@ namespace Malafi.Tests.Pages
 
         }
 
-
+        public Registration ClickOnRegistrationFormButton()
+        {
+            RequestReistrationButton.Click();
+            return new Registration(driver);
+        }
     }
 
 
