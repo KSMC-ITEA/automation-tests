@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using System.Reflection;
 using System.Text;
 using TechTalk.SpecFlow.Tracing;
+using Malafi.Tests.Pages;
 
 namespace Malafi.Tests.Hooks
 {
@@ -49,6 +50,7 @@ namespace Malafi.Tests.Hooks
             driver.Manage().Window.Maximize();
             Thread.Sleep(2000);
             scenarioContext["WebDriver"] = driver;
+            scenarioContext["LoginPage"] = new LoginPage(driver);
         }
 
 
@@ -75,7 +77,7 @@ namespace Malafi.Tests.Hooks
         {
             //TODO: implement logic that has to run after executing each scenario
 
-            var driver = scenarioContext["WebDriver"] as IWebDriver;
+            var driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
             if (scenarioContext.TestError != null)
             {
                 TakeScreenshot(driver);

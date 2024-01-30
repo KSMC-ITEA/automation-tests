@@ -9,7 +9,6 @@ namespace Malafi.Tests.Steps
     public class MalafiHomeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
         private DocumentType documentTypesPage;
 
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
