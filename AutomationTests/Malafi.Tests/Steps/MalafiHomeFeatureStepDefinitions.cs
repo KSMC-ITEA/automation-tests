@@ -15,7 +15,7 @@ namespace Malafi.Tests.Steps
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
+            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
 
         }
         [When(@"Clicked DocumentsTypes link")]

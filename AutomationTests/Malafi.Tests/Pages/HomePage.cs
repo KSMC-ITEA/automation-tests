@@ -10,7 +10,6 @@ namespace Malafi.Tests.Pages
         #region Fields
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
-        private object errorMessage;
         #endregion
 
 
@@ -25,12 +24,11 @@ namespace Malafi.Tests.Pages
         #endregion
 
         // نعرف خاصية نوعها ببليك لان ماينفع نستخدم عناصر الكلاس مباشره 
-        public object ErrorMessage => errorMessage;
         public WebDriverWait Wait => wait ?? throw new NullReferenceException();
 
         #region Properties
         [FindsBy(How = How.CssSelector, Using = ".main-nav-profile > .ThemeGrid_MarginGutter")]
-        public IWebElement FullName { get; private set; }
+        public IWebElement FullName { get; private set; } 
 
         [FindsBy(How = How.LinkText, Using = "Malafi")]
         public IWebElement MalafiLink { get; private set; }

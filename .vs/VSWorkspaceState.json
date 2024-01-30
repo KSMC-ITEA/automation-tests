@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AutomationTests",
+    "\\AutomationTests\\Malafi.Tests",
+    "\\AutomationTests\\Malafi.Tests\\Pages"
   ],
-  "SelectedNode": "\\AutomationTests.sln",
+  "SelectedNode": "\\AutomationTests\\Malafi.Tests\\Pages\\SelfServices.cs",
   "PreviewInSolutionExplorer": false
 }
