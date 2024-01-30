@@ -5,6 +5,8 @@ using OpenQA.Selenium;
 using System.Configuration;
 using TechTalk.SpecFlow;
 using System.Reflection;
+using System.Text;
+using TechTalk.SpecFlow.Tracing;
 using Malafi.Tests.Pages;
 
 namespace Malafi.Tests.Hooks
@@ -14,12 +16,14 @@ namespace Malafi.Tests.Hooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
         private ScenarioContext scenarioContext;
+        private FeatureContext featureContext;
 
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
-        public MalafiHooks(ScenarioContext context)
+        public MalafiHooks(FeatureContext fContext, ScenarioContext context)
         {
             scenarioContext = context;
+            featureContext = fContext;
         }
 
         [BeforeScenario]
@@ -72,9 +76,55 @@ namespace Malafi.Tests.Hooks
         public void AfterScenario()
         {
             //TODO: implement logic that has to run after executing each scenario
-            var driver = scenarioContext["WebDriver"] as IWebDriver;
-            driver.Close();
-            driver.Dispose();
+
+            var driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
+            if (scenarioContext.TestError != null)
+            {
+                TakeScreenshot(driver);
+            }
+            if (driver != null)
+            {
+                driver.Close();
+                driver.Dispose();
+            }
+
+        }
+
+        private void TakeScreenshot(IWebDriver driver)
+        {
+            try
+            {
+                string fileNameBase = string.Format("error_{0}_{1}_{2}",
+                                                    featureContext.FeatureInfo.Title.ToIdentifier(),
+                                                    scenarioContext.ScenarioInfo.Title.ToIdentifier(),
+                                                    DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+
+                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), "testresults");
+                if (!Directory.Exists(artifactDirectory))
+                    Directory.CreateDirectory(artifactDirectory);
+
+                string pageSource = driver.PageSource;
+                string sourceFilePath = Path.Combine(artifactDirectory, fileNameBase + "_source.html");
+                File.WriteAllText(sourceFilePath, pageSource, Encoding.UTF8);
+                Console.WriteLine("Page source: {0}", new Uri(sourceFilePath));
+
+                ITakesScreenshot takesScreenshot = (driver as ITakesScreenshot) ?? throw new NullReferenceException("Driver as screenshot should not be null.") ;
+
+                if (takesScreenshot != null)
+                {
+                    var screenshot = takesScreenshot.GetScreenshot();
+
+                    string screenshotFilePath = Path.Combine(artifactDirectory, fileNameBase + "_screenshot.png");
+
+                    screenshot.SaveAsFile(screenshotFilePath);
+
+                    Console.WriteLine("Screenshot: {0}", new Uri(screenshotFilePath));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while taking screenshot: {0}", ex);
+            }
         }
     }
 }

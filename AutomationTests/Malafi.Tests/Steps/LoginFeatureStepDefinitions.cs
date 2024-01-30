@@ -70,6 +70,7 @@ namespace Malafi.Tests.Steps
         {
             var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
+            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
         }
         #endregion
 

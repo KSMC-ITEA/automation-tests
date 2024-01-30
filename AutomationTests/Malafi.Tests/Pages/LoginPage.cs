@@ -80,8 +80,7 @@ namespace Malafi.Tests.Pages
 
 
             this.UserName.SendKeys(userName);
-            this.PasswordTextBox.SendKeys(password);
-            this.wait.Until(ExpectedConditions.ElementToBeClickable(this.LoginButton));
+            this .PasswordTextBox.SendKeys(password);
             Thread.Sleep(5000);
             this.LoginButton.Click();
 

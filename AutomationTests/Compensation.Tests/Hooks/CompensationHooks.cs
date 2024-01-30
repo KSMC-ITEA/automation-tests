@@ -52,7 +52,7 @@ namespace Compensation.Tests
         public void AfterScenario()
         {
             //TODO: implement logic that has to run after executing each scenario
-            var driver = scenarioContext["WebDriver"] as IWebDriver;
+            var driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver") ;
             driver.Close();
             driver.Dispose();
         }
