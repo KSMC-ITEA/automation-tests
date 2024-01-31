@@ -24,7 +24,7 @@ Scenario: Add new document type should succeed
 
 
 
-Scenario: Checks the file type(PDF,JPG,PNG,BMP)
+Scenario: Checks the file type(PDF,JPG,PNG,BMP) and size (10MB)
 
 	Given I completed the form New Document Type
 		| Title AR | Title EN | Website Link | OnBase Number | upload File       |
