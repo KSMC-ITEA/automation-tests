@@ -24,14 +24,39 @@ Scenario: Add new document type should succeed
 
 
 
-Scenario: Checks the file type(PDF,JPG,PNG,BMP) and size (10MB)
-
+Scenario: Checks the file type(PDF,JPG,PNG,BMP)
 	Given I completed the form New Document Type
 		| Title AR | Title EN | Website Link | OnBase Number | upload File       |
 		| تجربة    | Test     | x            | 1111          | NotSupported.xlsx |
 
 	When I click on save button
 	Then An error message notification message should be appeared
+
+
+
+
+	Scenario: Checks the file size(bigger-10MB) 
+
+	Given I completed the form New Document Type
+		| Title AR | Title EN | Website Link | OnBase Number | upload File       |
+		| تجربة    | Test     | x            | 1111          | bigger-10MB.pdf   |
+
+	When I click on save button
+Then An error message notification message should be appeared
+
+
+	
+	Scenario: Checks the file size(1-10MB) 
+
+	Given I completed the form New Document Type
+		| Title AR | Title EN | Website Link | OnBase Number | upload File       |
+		| تجربة    | Test     | x            | 1111          | 1-10MB.pdf        |
+
+	When I click on save button
+	Then A successful notification message should be appeared
+
+
+
 
 
 	

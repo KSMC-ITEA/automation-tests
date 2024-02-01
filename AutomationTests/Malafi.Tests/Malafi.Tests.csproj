@@ -46,6 +46,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="FilesToUpload\1-10MB.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilesToUpload\bigger-10MB.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="FilesToUpload\ladybug.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
