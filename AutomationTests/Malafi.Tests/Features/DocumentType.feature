@@ -20,3 +20,5 @@ Scenario: Click on View approval levels button
 	When I click on View approval levels button
 	And I click on AddApprovalLevelClick button
 	Then I should be navigated toIDApproval level List Page
+
+

@@ -22,6 +22,10 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_MarginGutter > .OSFillParent")]
         public IWebElement DocumentTypeLink { get; private set; }
 
+        [FindsBy(How = How.LinkText, Using = "Registered Employees")]
+        public IWebElement RegisteredEmployeesLink { get; private set; }
+
+
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -30,6 +34,11 @@ namespace Malafi.Tests.Pages
             return new DocumentType(driver);
         }
 
+        public RegisteredEmployees ClickOnRegisteredEmployees()
+        {
+            Wait.Until(ExpectedConditions.ElementToBeClickable(RegisteredEmployeesLink)).Click();
+            return new RegisteredEmployees(driver);
+        }
 
     }
 
