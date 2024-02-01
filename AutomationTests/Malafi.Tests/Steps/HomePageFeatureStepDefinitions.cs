@@ -10,7 +10,7 @@ namespace Malafi.Tests.Steps
     {
         private ScenarioContext scenarioContext;
         private IWebDriver driver;
-
+        private MalafiHome malafiHome;
         public HomePageFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
@@ -22,7 +22,9 @@ namespace Malafi.Tests.Steps
         {
             var homePage = scenarioContext["HomePage"] as HomePage;
             Assert.IsNotNull(homePage);
-            var malafiHome = homePage.ClickOnMalafi();
+            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
+            Assert.IsNotNull(homePage);
+            malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
             malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.DocumentTypeLink));
         }
