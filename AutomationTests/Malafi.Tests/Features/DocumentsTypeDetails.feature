@@ -31,7 +31,7 @@ Scenario: Checks the file type(PDF,JPG,PNG,BMP,TIFF) and size (10MB)
 		| تجربة    | Test     | x            | 1111          | NotSupported.xlsx |
 
 	When I click on save button
-	Then A ErrorMessage notification message should be appeared
+	Then An error message notification message should be appeared
 
 
 
@@ -43,7 +43,7 @@ Scenario Outline: Language from validation
 
 	When I enter '<text>' in '<field>'
 	And I click on save button
-	Then A ErrorMessage notification message should be appeared
+	Then An error message notification message should be appeared
 Examples:
 	| field    | text    |
 	| Title Ar | test50  |
