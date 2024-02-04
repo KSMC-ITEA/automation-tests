@@ -1,6 +1,6 @@
 ﻿Feature: MalafiHome
 
-A short summary of the feature
+Move to a page DocumentsTypes
 
 Background: Login to Internal Portal and click on Malafi Link
 	Given Entered 'blue2'as a username
@@ -10,7 +10,7 @@ Background: Login to Internal Portal and click on Malafi Link
 
 @tag1
 Scenario: Click on Document Types link
-	When I clicked DocumentsTypes link
+	When Clicked DocumentsTypes link
 	Then I should be navigated to Document Types Page
 
 
@@ -18,3 +18,7 @@ Scenario: Click on Document Types link
 Scenario: Employee Registration Form
 	When click on Request a Registration link
 	Then I should be navigated to Employee Registration Form
+
+Scenario: Click on Document Group link
+	When Clicked Documents Group link
+	Then I should be navigated to Documents Group Page

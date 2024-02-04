@@ -1,12 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using Malafi.Tests.Steps;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Malafi.Tests.Pages
 {
@@ -14,71 +11,59 @@ namespace Malafi.Tests.Pages
     {
         private readonly IWebDriver driver;
 
-        public WebDriverWait wait;
+        public readonly WebDriverWait wait;
         public DocumentsTypeDetails(IWebDriver driver)
         {
             this.driver = driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
             PageFactory.InitElements(driver, this);
         }
 
+        public WebDriverWait Wait => wait;
+
 
         [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_TitleAr']")]
-        public IWebElement Title_Ar { get; private set; }
+        public IWebElement TitleAr { get; private set; }
 
 
         [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_TitleEn']")]
-        public IWebElement Title_En { get; private set; }
+        public IWebElement TitleEn { get; private set; }
 
 
         [FindsBy(How = How.XPath, Using = "//input[@id='b3-Input_WebsiteLink']")]
-        public IWebElement Website_Link { get; private set; }
+        public IWebElement WebsiteLink { get; private set; }
 
 
         [FindsBy(How = How.CssSelector, Using = "btn-primary")]
-        public IWebElement Upload_Document_Type { get; private set; }
+        public IWebElement UploadDocumentType { get; private set; }
 
 
         [FindsBy(How = How.CssSelector, Using = "#b3-Input_OnBaseNumber")]
-        public IWebElement OnBase_Number { get; private set; }
+        public IWebElement OnBaseNumber { get; private set; }
 
         [FindsBy(How = How.CssSelector, Using = "input[type=file]")]
         public IWebElement FileUpload { get; private set; }
 
+        [FindsBy(How = How.XPath,Using = "//form[@id='b3-Form1']/div[2]/button[2]/span")]
+        public IWebElement ClickOnSaveButton1 { get; private set; }
+
+        [FindsBy(How = How.ClassName, Using = "feedback-message-text")]
+        public IWebElement FeedbackMessage { get; private set; }
 
 
-        public void New_Document_Type(string Title_Ar1, string Title_En1, string Website_Link1, string OnBase_Number1, string uploadFile1)
+
+        public void AddNewDocumentType(TestData testData)
         {
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(Title_Ar));
-
-            Title_Ar.SendKeys(Title_Ar1);
-
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(Title_En));
-
-            Title_En.SendKeys(Title_En1);
-
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(Website_Link));
-
-            Website_Link.SendKeys(Website_Link1);
-
-            //Upload_Document_Type.Click();
-
-            var uploadFile = uploadFile1;
-            this.FileUpload.SendKeys(uploadFile);
-            //driver.FindElement(By.Id("file-submit")).Click();
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(OnBase_Number));
-
-            OnBase_Number.SendKeys(OnBase_Number1);
-
-
-
+            TitleAr.SendKeys(testData.TitleAR);
+            TitleEn.SendKeys(testData.TitleEN);
+            WebsiteLink.SendKeys(testData.WebsiteLink);
+            var uploadFile = testData.UploadFile;
+            this.FileUpload.SendKeys($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\FilesToUpload\\{uploadFile}");
+            OnBaseNumber.SendKeys(testData.OnBaseNumber);
+            wait.Until(ExpectedConditions.ElementToBeClickable(ClickOnSaveButton1)).Click();
         }
+        
     }
 
 }

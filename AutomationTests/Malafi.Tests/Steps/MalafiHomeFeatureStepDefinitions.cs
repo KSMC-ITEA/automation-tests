@@ -1,12 +1,6 @@
 ﻿using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Steps
@@ -16,6 +10,7 @@ namespace Malafi.Tests.Steps
     {
         private ScenarioContext scenarioContext;
         private DocumentType documentTypesPage;
+        private DocumentsGroup documentsGroupPage;
         private MalafiHome malafiHomePage;
 
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
@@ -38,19 +33,39 @@ namespace Malafi.Tests.Steps
             registrationFormPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registrationFormPage.SubmitButton));
             Assert.AreEqual("Submit", registrationFormPage.SubmitButton.Text);
         }
-
-
-        [When(@"I clicked DocumentsTypes link")]
+        [When(@"Clicked DocumentsTypes link")]
         public void WhenIClickedDocumentsTypesLink()
         {
-            documentTypesPage = malafiHomePage.ClickOnDocumentTypeLink();
-            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.Add_Documents_Types));
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
+            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
         }
 
         [Then(@"I should be navigated to Document Types Page")]
         public void ThenIShouldBeNavigatedToDocumentTypesPage()
         {
-            Assert.AreEqual("Add Document Type", documentTypesPage.Add_Documents_Types.Text);
+            Assert.AreEqual("Add Document Type", documentTypesPage.AddDocumentsTypes.Text);
         }
+
+
+        [When(@"Clicked Documents Group link")]
+        public void WhenClickedDocumentsGroupLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
+// this step give key dictionary for the page calss (key hashing)
+            scenarioContext["DocumentsGroupForm"] = documentsGroupPage;
+            documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));
+        }
+
+        [Then(@"I should be navigated to Documents Group Page")]
+        public void ThenIShouldBeNavigatedToDocumentsGroupPage()
+        {
+            Assert.AreEqual("Add Documents Group", documentsGroupPage.AddDocumentsGroupButton.Text);
+        }
+
+
     }
 }

@@ -9,8 +9,7 @@ namespace Malafi.Tests.Pages
     {
         #region Fields
         private readonly IWebDriver driver;
-        public WebDriverWait wait;
-        private object errorMessage;
+        private readonly WebDriverWait wait;
         #endregion
 
 
@@ -25,24 +24,23 @@ namespace Malafi.Tests.Pages
         #endregion
 
         // نعرف خاصية نوعها ببليك لان ماينفع نستخدم عناصر الكلاس مباشره 
-        public object ErrorMessage =>errorMessage;
         public WebDriverWait Wait => wait ?? throw new NullReferenceException();
 
         #region Properties
         [FindsBy(How = How.CssSelector, Using = ".main-nav-profile > .ThemeGrid_MarginGutter")]
-        public IWebElement FullName { get; private set; }
+        public IWebElement FullName { get; private set; } 
 
         [FindsBy(How = How.LinkText, Using = "Malafi")]
-        public IWebElement LinkMalafi { get; private set; }
+        public IWebElement MalafiLink { get; private set; }
 
         [FindsBy(How = How.CssSelector, Using = ".OSInline:nth-child(2) > div > span")]
-        public IWebElement Ar_languages { get; private set; }
+        public IWebElement LanguagesAR { get; private set; }
         #endregion
 
 
         public MalafiHome ClickOnMalafi()
         {
-            LinkMalafi.Click();
+            MalafiLink.Click();
 
             return new MalafiHome(driver);
         }
@@ -50,4 +48,4 @@ namespace Malafi.Tests.Pages
 
     }
 }
-    
+

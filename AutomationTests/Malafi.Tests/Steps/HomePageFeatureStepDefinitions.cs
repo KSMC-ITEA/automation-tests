@@ -1,11 +1,6 @@
 ﻿using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Steps
@@ -14,13 +9,12 @@ namespace Malafi.Tests.Steps
     public class HomePageFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver? driver;
-        private DocumentType documentTypesPage;
-
+        private IWebDriver driver;
+        private MalafiHome malafiHome;
         public HomePageFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver;
+            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
 
         }
         [When(@"Click on Malafi link")]
@@ -28,7 +22,9 @@ namespace Malafi.Tests.Steps
         {
             var homePage = scenarioContext["HomePage"] as HomePage;
             Assert.IsNotNull(homePage);
-            var malafiHome = homePage.ClickOnMalafi();
+            homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
+            Assert.IsNotNull(homePage);
+            malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
             malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.RequestReistrationButton));
         }
