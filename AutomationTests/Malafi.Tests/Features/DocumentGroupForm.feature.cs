@@ -221,8 +221,8 @@ this.FeatureBackground();
                             "Title AR",
                             "Title EN"});
                 table3.AddRow(new string[] {
-                            "Test",
-                            "ررراختبار"});
+                            "اختبار",
+                            "test"});
 #line 33
  testRunner.Given("I completed the form New Document Group", ((string)(null)), table3, "Given ");
 #line hidden
