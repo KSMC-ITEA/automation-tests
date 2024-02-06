@@ -61,11 +61,20 @@ namespace Malafi.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edge.
+        ///   Looks up a localized string similar to Chrome.
         /// </summary>
         internal static string Browser {
             get {
                 return ResourceManager.GetString("Browser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        internal static string LoginSleepTime {
+            get {
+                return ResourceManager.GetString("LoginSleepTime", resourceCulture);
             }
         }
         

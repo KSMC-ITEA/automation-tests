@@ -8,7 +8,18 @@ Given Entered 'blue2'as a username
 	When I cilck on login button
 	And Click on Malafi link
 
-@tag1
+
 Scenario: Click on Document Types link
 	When Clicked DocumentsTypes link
 	Then I should be navigated to Document Types Page
+
+
+	
+	Scenario: Open Page Employees Search 
+		When Clicked Employees Search link
+		Then I should be navigated to Employees Search Page
+
+
+
+
+

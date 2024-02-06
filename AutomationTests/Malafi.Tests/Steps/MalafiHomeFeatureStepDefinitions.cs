@@ -9,11 +9,14 @@ namespace Malafi.Tests.Steps
     public class MalafiHomeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
+        private IWebDriver driver;
         private DocumentType documentTypesPage;
+        private Pages.EmployeesSearch employeesSearch;
 
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
+            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
 
         }
         [When(@"Clicked DocumentsTypes link")]
@@ -23,8 +26,6 @@ namespace Malafi.Tests.Steps
             Assert.IsNotNull(malafiHome);
             documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
             documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
-
-            scenarioContext["DocumentTypesPage"] = documentTypesPage;
         }
 
         [Then(@"I should be navigated to Document Types Page")]
@@ -32,5 +33,23 @@ namespace Malafi.Tests.Steps
         {
             Assert.AreEqual("Add Document Type", documentTypesPage.AddDocumentsTypes.Text);
         }
+
+        [When(@"Clicked Employees Search link")]
+        public void WhenClickedRegisteredEmployeesLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            employeesSearch = malafiHome.ClickOnEmployeesSearch();
+            Thread.Sleep(1100);
+            employeesSearch.Wait.Until(ExpectedConditions.ElementToBeClickable(employeesSearch.EmployeesSearchVLD));
+        }
+
+        [Then(@"I should be navigated to Employees Search Page")]
+        public void ThenIShouldBeNavigatedToRegisteredEmployeesPage()
+        {
+            Assert.AreEqual("Name", employeesSearch.EmployeesSearchVLD.Text);
+
+        }
+
     }
 }
