@@ -25,6 +25,7 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
+            scenarioContext["DocumentTypesPage"] = documentTypesPage;
             documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
         }
 
@@ -39,8 +40,8 @@ namespace Malafi.Tests.Steps
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
-            employeesSearch = malafiHome.ClickOnEmployeesSearch();
             Thread.Sleep(1100);
+            employeesSearch = malafiHome.ClickOnEmployeesSearch();
             employeesSearch.Wait.Until(ExpectedConditions.ElementToBeClickable(employeesSearch.EmployeesSearchVLD));
         }
 
