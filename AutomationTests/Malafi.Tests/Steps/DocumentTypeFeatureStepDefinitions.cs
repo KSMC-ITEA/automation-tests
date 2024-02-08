@@ -13,14 +13,13 @@ namespace Malafi.Tests.Steps
     public class DocumentTypeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
         private DocumentType documentTypesPage;
+        private IDApprovallevelList iDApprovallevelList;
 
         public DocumentTypeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
-
+            documentTypesPage = scenarioContext["DocumentTypesPage"] as DocumentType ?? throw new NullReferenceException("Document Type Page is NULL.");
         }
 
         [When(@"I click on Add Document Type button")]
@@ -65,9 +64,40 @@ namespace Malafi.Tests.Steps
 
 
 
-    }
-}
+        [When(@"I click on View approval levels button")]
+        public void WhenIClickOnViewApprovalLevelsButton()
+        {
+            iDApprovallevelList = documentTypesPage.ClickOnViewApprovalLevelsIcon();
+            scenarioContext["IDApprovallevelList"] = iDApprovallevelList;
 
+            
+        }
+
+        [Then(@"I should be navigated toIDApproval level List Page")]
+        public void ThenIShouldBeNavigatedToIDApprovalLevelListPage()
+        {
+            var IDApprovallevelList = scenarioContext["IDApprovallevelList"] as IDApprovallevelList; 
+            Thread.Sleep(100);  
+            Assert.IsNotNull(IDApprovallevelList);
+            IDApprovallevelList.Wait.Until(ExpectedConditions.ElementToBeClickable(IDApprovallevelList.AddApprovalLevelClick));
+           
+            Assert.AreEqual("Add Approval level", IDApprovallevelList.AddApprovalLevelClick.Text);            
+
+           
+        }
+
+        [When(@"I click on AddApprovalLevelClick button")]
+        public void WhenIClickOnAddApprovalLevelClickButton()
+        {
+            Thread.Sleep(100);  
+            var NewDocTypeApprovalLVI = iDApprovallevelList.ClickOnAddApprovallevelLink();
+            scenarioContext["NewDocTypeApprovalLVI"] = NewDocTypeApprovalLVI;
+
+        }
+
+    }
+
+}
 
 
 
