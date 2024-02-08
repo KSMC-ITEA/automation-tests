@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Malafi.Tests.Features;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
@@ -22,6 +23,10 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_MarginGutter > .OSFillParent")]
         public IWebElement DocumentTypeLink { get; private set; }
 
+
+        [FindsBy(How = How.LinkText, Using = "Documents Group")]
+        public IWebElement DocumentGroupLink { get; private set; }
+
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -29,7 +34,11 @@ namespace Malafi.Tests.Pages
             DocumentTypeLink.Click();
             return new DocumentType(driver);
         }
-
+        public DocumentsGroup ClickOnDocumentGroupLink()
+        {
+            DocumentGroupLink.Click();
+            return new DocumentsGroup(driver);
+        }
 
     }
 

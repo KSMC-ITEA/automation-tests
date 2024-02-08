@@ -136,20 +136,20 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
                             "OnBase Number",
                             "upload File"});
-                table1.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
                             "1111",
                             "ladybug.png"});
 #line 17
- testRunner.Given("I completed the form New Document Type", ((string)(null)), table1, "Given ");
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table4, "Given ");
 #line hidden
 #line 21
  testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -182,13 +182,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
                             "OnBase Number",
                             "upload File"});
-                table2.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
