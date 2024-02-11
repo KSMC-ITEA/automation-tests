@@ -10,7 +10,7 @@ namespace Malafi.Tests.Steps
     {
         private ScenarioContext scenarioContext;
         private IWebDriver driver;
-
+        private MalafiHome malafiHome;
         public HomePageFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;

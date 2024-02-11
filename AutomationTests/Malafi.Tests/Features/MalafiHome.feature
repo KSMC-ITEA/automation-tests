@@ -23,3 +23,7 @@ Scenario: Click on Document Types link
 
 
 
+
+Scenario: Click on Document Group link
+	When Clicked Documents Group link
+	Then I should be navigated to Documents Group Page

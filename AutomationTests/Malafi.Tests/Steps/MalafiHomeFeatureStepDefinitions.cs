@@ -13,6 +13,7 @@ namespace Malafi.Tests.Steps
         private DocumentType documentTypesPage;
         private Pages.EmployeesSearch employeesSearch;
 
+        private DocumentsGroup documentsGroupPage;
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
@@ -51,6 +52,26 @@ namespace Malafi.Tests.Steps
             Assert.AreEqual("Name", employeesSearch.EmployeesSearchVLD.Text);
 
         }
+
+
+
+        [When(@"Clicked Documents Group link")]
+        public void WhenClickedDocumentsGroupLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
+// this step give key dictionary for the page calss (key hashing)
+            scenarioContext["DocumentsGroupForm"] = documentsGroupPage;
+            documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));
+        }
+
+        [Then(@"I should be navigated to Documents Group Page")]
+        public void ThenIShouldBeNavigatedToDocumentsGroupPage()
+        {
+            Assert.AreEqual("Add Documents Group", documentsGroupPage.AddDocumentsGroupButton.Text);
+        }
+
 
     }
 }

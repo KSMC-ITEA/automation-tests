@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Malafi.Tests.Features;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
@@ -26,6 +27,10 @@ namespace Malafi.Tests.Pages
         public IWebElement EmployeesSearchLink { get; private set; }
 
 
+
+        [FindsBy(How = How.LinkText, Using = "Documents Group")]
+        public IWebElement DocumentGroupLink { get; private set; }
+
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -38,6 +43,11 @@ namespace Malafi.Tests.Pages
         {
             Wait.Until(ExpectedConditions.ElementToBeClickable(EmployeesSearchLink)).Click();
             return new EmployeesSearch(driver);
+        }
+        public DocumentsGroup ClickOnDocumentGroupLink()
+        {
+            DocumentGroupLink.Click();
+            return new DocumentsGroup(driver);
         }
 
     }
