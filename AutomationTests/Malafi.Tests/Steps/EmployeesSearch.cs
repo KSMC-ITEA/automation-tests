@@ -87,7 +87,5 @@ namespace Malafi.Tests.Steps
             //National ID
             Assert.AreEqual(firstRow.FindElement(By.XPath("//td[3]")).Text, selectedRow.Cells("17")?.FirstOrDefault()?.GetText());
         }
-
-
     }
 }
