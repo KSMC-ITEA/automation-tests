@@ -23,8 +23,7 @@ namespace Malafi.Tests.Steps
             var homePage = scenarioContext["HomePage"] as HomePage;
             Assert.IsNotNull(homePage);
             homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
-            Assert.IsNotNull(homePage);
-            malafiHome = homePage.ClickOnMalafi();
+            var malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
             malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.DocumentTypeLink));
         }
