@@ -20,13 +20,15 @@ namespace Malafi.Tests.Pages
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_MarginGutter > .OSFillParent")]
+        [FindsBy(How = How.LinkText, Using = "Documents Types")]
         public IWebElement DocumentTypeLink { get; private set; }
 
 
         [FindsBy(How = How.LinkText, Using = "Documents Group")]
         public IWebElement DocumentGroupLink { get; private set; }
 
+        [FindsBy(How=How.LinkText,Using = "Registered Employees")]
+        public IWebElement RegisteredEmployeesLink {  get; private set; }
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -40,11 +42,18 @@ namespace Malafi.Tests.Pages
             return new DocumentsGroup(driver);
         }
 
+
+        public RegisteredEmployees ClickOnRegisterdEmployeesLink()
+        {
+            RegisteredEmployeesLink.Click();
+            return new RegisteredEmployees(driver);
+
+    }
+
     }
 
 
-
-
-
-
 }
+
+
+

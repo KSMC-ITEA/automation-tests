@@ -14,7 +14,7 @@ namespace Malafi.Tests.Pages
         #region Fields
         private IWebDriver driver;
         private WebDriverWait wait;
-        private Dictionary<string, IWebElement> loginPageLinks;
+       private Dictionary<string, IWebElement> loginPageLinks;
 
         #endregion
 
@@ -34,10 +34,14 @@ namespace Malafi.Tests.Pages
 
         }
 
+
+     
+
+
         #endregion
 
         #region Properties
-         public WebDriverWait Wait => wait;
+        public WebDriverWait Wait => wait;
         [FindsBy(How = How.Id, Using = "b1-LanguageButton")]
         public IWebElement Language { get; private set; }
 

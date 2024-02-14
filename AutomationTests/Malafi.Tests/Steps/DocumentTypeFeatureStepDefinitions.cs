@@ -13,13 +13,13 @@ namespace Malafi.Tests.Steps
     public class DocumentTypeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
+
         private DocumentType documentTypesPage;
 
         public DocumentTypeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
+           
 
         }
 

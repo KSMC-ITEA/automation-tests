@@ -10,7 +10,9 @@ namespace Malafi.Tests.Steps
     public class DocumentsGroupStepDefinitions
  {   
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
+ /// <summary>
+       private IWebDriver driver;
+ /// </summary>
         private DocumentsGroup documentsGroupPage;
 
 
@@ -24,9 +26,7 @@ namespace Malafi.Tests.Steps
             driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
         }
 
-        public DocumentsGroupStepDefinitions()
-        {
-        }
+
 
         [When(@"I click on Add Document group button")]
         public void WhenIClickOnAddDocumentGroupButton()
@@ -36,7 +36,7 @@ namespace Malafi.Tests.Steps
             Assert.IsNotNull(malafiHome);
             documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
             documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));
-            scenarioContext["DocumentGroupForm"] = documentsGroupPage.ClickOnAddDocumentsGroupLink();
+            scenarioContext["DocumentsGroupForm"] = documentsGroupPage.ClickOnAddDocumentsGroupLink();
 
         }
 
@@ -45,11 +45,11 @@ namespace Malafi.Tests.Steps
         [Then(@"I should be navigated to Add Documents group Page")]
         public void ThenIShouldBeNavigatedToAddDocumentsGroupPage()
         {
-            var documentGroupForm = scenarioContext["DocumentGroupPage"] as DocumentsGroupForm;
-            Assert.IsNotNull(documentGroupForm);
-
-            documentGroupForm.Wait.Until(ExpectedConditions.ElementToBeClickable(documentGroupForm.ClickOnSaveButton));
-            Assert.IsTrue(documentGroupForm.ClickOnSaveButton.Displayed);
+            var documentsGroupForm = scenarioContext["DocumentsGroupForm"]as DocumentsGroupForm;
+            Assert.IsNotNull(documentsGroupForm);
+            documentsGroupForm.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupForm.ClickOnSaveButton));
+ 
+            Assert.IsTrue(documentsGroupForm.ClickOnSaveButton.Displayed);
 
         }
 
