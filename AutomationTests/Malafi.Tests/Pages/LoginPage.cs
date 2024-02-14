@@ -85,7 +85,7 @@ namespace Malafi.Tests.Pages
 
             this.UserName.SendKeys(userName);
             this .PasswordTextBox.SendKeys(password);
-            Thread.Sleep(10000);
+            Thread.Sleep(15000);
             this.LoginButton.Click();
 
 
