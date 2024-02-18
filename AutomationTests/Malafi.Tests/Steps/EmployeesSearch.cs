@@ -15,7 +15,7 @@ namespace Malafi.Tests.Steps
     {
         private ScenarioContext scenarioContext;
         private IWebDriver driver;
-        private RegisteredEmployeesReview registeredEmployeesReview;
+        private RegisteredEmployees registeredEmployeesReview;
         private Pages.EmployeesSearch employeesSearch;
 
         public EmployeesSearch(ScenarioContext context)
@@ -30,11 +30,12 @@ namespace Malafi.Tests.Steps
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
+
             malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.EmployeesSearchLink));
             Thread.Sleep(100);
             employeesSearch = malafiHome.ClickOnEmployeesSearch();
             employeesSearch.Wait.Until(ExpectedConditions.ElementToBeClickable(employeesSearch.Excel)).Click();
-            scenarioContext["RegisteredEmployeesReview"] = registeredEmployeesReview;
+            scenarioContext["RegisteredEmployees"] = registeredEmployeesReview;
             Thread.Sleep(6000);
         }
      
@@ -42,7 +43,7 @@ namespace Malafi.Tests.Steps
         [When(@"I click on  Employee Name Changing the name")]
         public void WhenIClickOnEmployeeNameChangingTheName()
         {
-            registeredEmployeesReview = scenarioContext["RegisteredEmployeesReview"] as RegisteredEmployeesReview;
+            registeredEmployeesReview = scenarioContext["RegisteredEmployees"] as RegisteredEmployees;
             Assert.IsNotNull(registeredEmployeesReview);
 
             registeredEmployeesReview.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployeesReview.EmployeeName)).Click();
@@ -79,6 +80,7 @@ namespace Malafi.Tests.Steps
                         break;
                     }
             }
+
             Assert.IsNotNull(selectedRow);
             //Employee Name
             Assert.AreEqual(firstRow.FindElement(By.XPath("//td[1]")).Text, selectedRow.Cells("1")?.FirstOrDefault()?.GetText());
