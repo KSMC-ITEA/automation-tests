@@ -1,6 +1,7 @@
 
 
 
+using Malafi.Tests.Models;
 using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -147,47 +148,23 @@ namespace Malafi.Tests.Steps
             Assert.AreEqual("Has Expiry", documentTypesPage.CheckHasExpiry.Text);
 
             Assert.AreEqual("Action", documentTypesPage.CheckAction.Text);
+            var footerInfo = new TableFooterInformation(documentTypesPage.TableFooter.Text);
 
+            System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> rows;
+            List<DocumentTypeItem> list = GetOrderedList(footerInfo, out rows);
 
+            CheckSortedItems(footerInfo, rows, list);
 
-          
-            var rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id=\"b3-b1-MainContent\"]/div/table/tbody/tr[1]"));
-            List<DocumentTypeItem> list = new List<DocumentTypeItem>();
-            string footerText = documentTypesPage.TableFooter.Text;
-            var matches = Regex.Match(footerText, "(?<pageStart>\\d+)\\s*to\\s*(?<pageEnd>\\d+)\\s*of\\s*(?<totalItems>\\d+)\\s*items");
-            Assert.IsNotNull(matches);
-            Assert.IsTrue(matches.Success);
-            int pageStart = int.Parse(matches.Groups["pageStart"].Value);
-            int pageEnd = int.Parse(matches.Groups["pageEnd"].Value);
-            int totalItems = int.Parse(matches.Groups["totalItems"].Value);
- 
-            int numberOfPages = (int)Math.Ceiling(totalItems / (pageEnd - pageStart + 1.0m));
-            for (int page = 0; page < numberOfPages; page++)
-            {
-                for (int i = 0; i < rows.Count; i++)
-                {
-                    DocumentTypeItem data = new DocumentTypeItem();
- 
-                    data.Title = rows[i].FindElement(By.XPath($"//*[@id=\"b3-b1-MainContent\"]/div/table/tbody/tr[{i + 1}]/td[1]")).Text;
-                    list.Add(data);
-                }
-                if (!documentTypesPage.NextPage.Enabled)
-                {
-                    break;
-                }
-                documentTypesPage.NextPage.Click();
-                Thread.Sleep(300);
-                rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id='b3-b1-MainContent']/div/table/tbody/tr"));
-            }
- 
- 
-            list = list.OrderBy(p => p.Title).ToList();
-            for (int page = numberOfPages - 1; page >= 0; page--)
+        }
+
+        private void CheckSortedItems(TableFooterInformation footerInfo, System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> rows, List<DocumentTypeItem> list)
+        {
+            for (int page = footerInfo.NumberOfPages - 1; page >= 0; page--)
             {
                 for (int i = rows.Count - 1; i >= 0; i--)
                 {
                     var title = rows[i].FindElement(By.XPath($"//*[@id='b3-b1-MainContent']/div/table/tbody/tr[{i + 1}]/td[1]")).Text;
-                    int idx = Math.Abs(page * (pageEnd - pageStart + 1) - i);
+                    int idx = Math.Abs(page * (footerInfo.PageEnd - footerInfo.PageStart + 1) - i);
                     Assert.AreEqual(list[idx].Title, title);
                 }
                 if (!documentTypesPage.PreviousPage.Enabled)
@@ -199,11 +176,34 @@ namespace Malafi.Tests.Steps
                 rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id='b3-b1-MainContent']/div/table/tbody/tr"));
             }
 
-
-
-
         }
 
+        private List<DocumentTypeItem> GetOrderedList(TableFooterInformation footerInfo, out System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> rows)
+        {
+            rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id=\"b3-b1-MainContent\"]/div/table/tbody/tr[1]"));
+            List<DocumentTypeItem> list = new List<DocumentTypeItem>();
+            for (int page = 0; page < footerInfo.NumberOfPages; page++)
+            {
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    DocumentTypeItem data = new DocumentTypeItem();
+
+                    data.Title = rows[i].FindElement(By.XPath($"//*[@id=\"b3-b1-MainContent\"]/div/table/tbody/tr[{i + 1}]/td[1]")).Text;
+                    list.Add(data);
+                }
+                if (!documentTypesPage.NextPage.Enabled)
+                {
+                    break;
+                }
+                documentTypesPage.NextPage.Click();
+                Thread.Sleep(300);
+                rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id='b3-b1-MainContent']/div/table/tbody/tr"));
+            }
+
+
+            list = list.OrderBy(p => p.Title).ToList();
+            return list;
+        }
     }
 
 }
