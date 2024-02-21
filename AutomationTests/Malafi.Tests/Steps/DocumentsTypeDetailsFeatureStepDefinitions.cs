@@ -1,3 +1,4 @@
+using Malafi.Tests.Models;
 using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;

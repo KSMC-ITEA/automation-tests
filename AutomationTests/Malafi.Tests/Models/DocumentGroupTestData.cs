@@ -1,8 +1,6 @@
-﻿
-
-namespace Malafi.Tests.Steps
+﻿namespace Malafi.Tests.Models
 {
-public class DocumentGroupTestData
+    public class DocumentGroupTestData
 
     {
         public string TitleAR { get; set; }

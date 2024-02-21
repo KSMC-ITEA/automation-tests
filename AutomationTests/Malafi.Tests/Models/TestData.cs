@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Malafi.Tests.Steps
+namespace Malafi.Tests.Models
 {
     public class TestData
     {
@@ -14,6 +14,6 @@ namespace Malafi.Tests.Steps
         public string OnBaseNumber { get; set; }
         public string UploadFile { get; set; }
 
-        
+
     }
 }

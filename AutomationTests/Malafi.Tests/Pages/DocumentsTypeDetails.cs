@@ -1,4 +1,4 @@
-﻿using Malafi.Tests.Steps;
+﻿using Malafi.Tests.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;

@@ -52,7 +52,13 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='b3-b1-MainContent']/div/table/tbody/tr[1]/td[4]/div/div[3]")]
            public IWebElement ApprovedReviewButton { get; private set; }
 
+        [FindsBy(How=How.XPath, Using = "//*[@id='b3-Input_SearchKeyword']")]
+        public IWebElement SearchField { get; private set; }
+
         public Dictionary<string, IWebElement> NewStatus { get => status; private set => status = value; }
+
+        [FindsBy(How=How.XPath,Using = "//*[@id='b3-b1-MainContent']/div/table/tbody")]
+        public IWebElement EmployeeTable { get; private set; }
         public ReviewEmployeeRequest ClickOnEmployeeRequest()
 
         {

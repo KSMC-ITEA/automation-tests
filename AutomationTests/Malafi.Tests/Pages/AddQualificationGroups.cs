@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Pages
 {
@@ -37,6 +38,14 @@ namespace Malafi.Tests.Pages
         public IWebElement DocumentsGroupTable {  get; private set; }
         [FindsBy(How =How.XPath,Using = "//*[@id='b3-b9-MainContent']/div/table")]
         public IWebElement AssignedDocumentGroups { get; private set; }
+
+        [FindsBy(How = How.XPath,Using = "//*[@id='b3-b10-PaginationRecords']")]
+        public IWebElement TableFooter { get; private set; }
+        [FindsBy(How = How.XPath,Using = "//*[@id='b3-b10-PaginationContainer']/button[2]")]
+        public IWebElement NextPage { get; private set; }
+
+
+
     
     /*    public  int giveNumberOfRows()
         {

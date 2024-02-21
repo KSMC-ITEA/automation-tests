@@ -1,3 +1,4 @@
+using Malafi.Tests.Models;
 using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -15,10 +16,16 @@ namespace Malafi.Tests.Steps
 
         private ReviewEmployeeRequest reviewEmployeeRequestPage;
         private AddQualificationGroups addQualificationGroupsPage;
+        private string search;
+        private int rowNumber;
+        private RegisteredEmployees registeredEmployeesPage;
+        List<EmployeesDataModel> employees;
+
         public RegisteredEmployeesStepDefinitions(ScenarioContext context)
 
         {
             scenarioContext = context;
+            employees = new List<EmployeesDataModel>();
         }
 
         [When(@"I Click on '([^']*)' link")]
@@ -87,9 +94,44 @@ namespace Malafi.Tests.Steps
 
 
 
+        [Given(@"I write data on the search filed'([^']*)'")]
+        public void GivenIWriteDataOnTheSearchFiled(string search)
+        {
+            this.search = search;
+            registeredEmployeesPage = scenarioContext["RegisteredEmployees"] as RegisteredEmployees;
+            Assert.IsNotNull(registeredEmployeesPage);
+            registeredEmployeesPage.SearchField.SendKeys(search);
 
 
+        }
 
+        [When(@"I prepare the employee data")]
+        public void WhenIPrepareTheEmployeeData()
+        {
+
+
+            var employeesTableRows = registeredEmployeesPage.EmployeeTable.FindElements(By.XPath("//*[@id='b3-b1-MainContent']/div/table/tbody/tr"));
+            // 
+            for (int i = 0; i < employeesTableRows.Count; i++)
+            {
+                //    //Key = Title EN
+                //    //Value = whole row
+                var employeeData = new EmployeesDataModel();
+                employeeData.EmployeeName = registeredEmployeesPage.EmployeeTable.FindElement(By.XPath($"//*[@id='b3-b1-MainContent']/div/table/tbody/tr[{i + 1}]/td[1]/span")).Text;
+                employeeData.EmployeeID = registeredEmployeesPage.EmployeeTable.FindElement(By.XPath($"//*[@id='b3-b1-MainContent']/div/table/tbody/tr[{i + 1}]/td[2]/span")).Text;
+                employees.Add(employeeData);
+
+
+            }
+        }
+
+        [Then(@"data in the grid should be filterd with row contain the search key '([^']*)'")]
+        public void ThenDataInTheGridShouldBeFilterdWithRowContainTheSearchKey(string searchKey)
+        {
+            bool IsContain = employees.All(e => e.EmployeeName.Contains(searchKey) || e.EmployeeID.Contains(searchKey));
+            Assert.IsTrue(IsContain);
+
+        }
 
 
 
@@ -97,4 +139,7 @@ namespace Malafi.Tests.Steps
 
 
     }
+
+
 }
+

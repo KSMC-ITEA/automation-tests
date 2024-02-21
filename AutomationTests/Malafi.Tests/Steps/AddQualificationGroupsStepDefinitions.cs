@@ -5,6 +5,7 @@ using OpenQA.Selenium.DevTools.V118.Audits;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -25,6 +26,7 @@ namespace Malafi.Tests.Steps
         private string textEn;
         private string textAr;
         private int rowNumber;
+   
         Dictionary<string, QualificationGroupModel> rowsOf2ndTable;
 
 
@@ -40,8 +42,8 @@ namespace Malafi.Tests.Steps
         public void GivenIPrepareTheDocumentData()
         {
             addQualificationGroupsPage.Wait.Until(ExpectedConditions.ElementToBeClickable(addQualificationGroupsPage.AddingDocumentGroupButton));
-            var numberOfRows = addQualificationGroupsPage.DocumentsGroupTable.FindElements(By.XPath("//*[@id='b3-b7-MainContent']/div/table/tbody/tr")).Count;
-            rowNumber = Random.Shared.Next(1, numberOfRows);// 0 -> numberOfRows
+            var rows = addQualificationGroupsPage.DocumentsGroupTable.FindElements(By.XPath("//*[@id='b3-b7-MainContent']/div/table/tbody/tr"));
+            rowNumber = Random.Shared.Next(1, rows.Count);// 0 -> numberOfRows
             textEn = addQualificationGroupsPage.DocumentsGroupTable.FindElement(By.XPath($"//*[@id='b3-b7-MainContent']/div/table/tbody/tr[{rowNumber}]/td[2]/span")).Text;
             textAr = addQualificationGroupsPage.DocumentsGroupTable.FindElement(By.XPath($"//*[@id='b3-b7-MainContent']/div/table/tbody/tr[{rowNumber}]/td[1]/span")).Text;
         }
@@ -52,24 +54,44 @@ namespace Malafi.Tests.Steps
         {
             addQualificationGroupsPage.DocumentsGroupTable.FindElement(By.XPath($"//*[@id='b3-b7-MainContent']/div/table/tbody/tr[{rowNumber}]/td[3]/div/button/i")).Click();
             Thread.Sleep(300);
-            //\d+\s*to\s*(?<pageCount>\d+)\s*of\s*(?<totalItems>\d+)\s*items
-            //Regex.Match(FromScreenTableFooter, "\\d+\\s*to\\s*(?<pageCount>\\d+)\\s*of\\s*(?<totalItems>\\d+)\\s*items").Groups["totalItems"].Value;
-            //var numberOfPages = Math.Ceiling(totalItems / 10.0m);
-            //for (int j = 0; j < numberOfPages; j++)
-            //{
-            var assignedDocumentGroupsRows = addQualificationGroupsPage.AssignedDocumentGroups.FindElements(By.XPath("//*[@id='b3-b9-MainContent']/div/table/tbody/tr"));
-            for (int i = 0; i < assignedDocumentGroupsRows.Count; i++)
-            {
-                //    //Key = Title EN
-                //    //Value = whole row
-                var qualificationGroup = new QualificationGroupModel();
-                qualificationGroup.TitleEn = addQualificationGroupsPage.AssignedDocumentGroups.FindElement(By.XPath($"//*[@id='b3-b9-MainContent']/div/table/tbody/tr[{i + 1}]/td[1]/span")).Text;
-                qualificationGroup.TitleAr = addQualificationGroupsPage.AssignedDocumentGroups.FindElement(By.XPath($"//*[@id='b3-b9-MainContent']/div/table/tbody/tr[{i + 1}]/td[2]/span")).Text;
 
-                rowsOf2ndTable.Add(qualificationGroup.TitleEn, qualificationGroup);
+            // item ber page,total of items in all pages 
+            //@ all back slahes are sckiped 
+            var pattern = @"(?<pageStart>\d+)\s*to\s*(?<pageEnd>\d+)\s*of\s*(?<totalItems>\d+)\s*items";
+            var matches = Regex.Match(addQualificationGroupsPage.TableFooter.Text, pattern);
+            Assert.IsNotNull(matches);
+            Assert.IsTrue(matches.Success);
+            int pageStart = int.Parse(matches.Groups["pageStart"].Value);
+            int pageEnd = int.Parse(matches.Groups["pageEnd"].Value);
+            int totalItems = int.Parse(matches.Groups["totalItems"].Value);
+            // celing mean faction number mean the next number
+            int numberOfPages = (int)Math.Ceiling(totalItems / (pageEnd - pageStart + 1.0m));
+
+            ///// var numberOfPages = Math.Ceiling(totalItems / 10.0m);
+            for (int j = 0; j < numberOfPages; j++)
+            {
+                // document group in the scond table
+                var assignedDocumentGroupsRows = addQualificationGroupsPage.AssignedDocumentGroups.FindElements(By.XPath("//*[@id='b3-b9-MainContent']/div/table/tbody/tr"));
+                // 
+                for (int i = 0; i < assignedDocumentGroupsRows.Count; i++)
+                {
+                    //    //Key = Title EN
+                    //    //Value = whole row
+                    var qualificationGroup = new QualificationGroupModel();
+                    qualificationGroup.TitleEn = addQualificationGroupsPage.AssignedDocumentGroups.FindElement(By.XPath($"//*[@id='b3-b9-MainContent']/div/table/tbody/tr[{i + 1}]/td[1]/span")).Text;
+                    qualificationGroup.TitleAr = addQualificationGroupsPage.AssignedDocumentGroups.FindElement(By.XPath($"//*[@id='b3-b9-MainContent']/div/table/tbody/tr[{i + 1}]/td[2]/span")).Text;
+// we use dic to we test specfic value(retrive)
+                    rowsOf2ndTable.Add(qualificationGroup.TitleEn, qualificationGroup);
+                }
+                if (!addQualificationGroupsPage.NextPage.Enabled)
+                {
+                    break;
+                }
+
+                addQualificationGroupsPage.NextPage.Click();
+                Thread.Sleep(300);
+              
             }
-            //    //Click on the next page j+2
-            //}
 
         }
 
@@ -77,8 +99,9 @@ namespace Malafi.Tests.Steps
         public void ThenIShouldFindTheSelectdDocumentGroupMovedToEmployeeDocumentGroup()
         {
             addQualificationGroupsPage.Wait.Until(ExpectedConditions.ElementToBeClickable(addQualificationGroupsPage.AddingDocumentGroupButton));
-
+// check if name is added
             Assert.IsTrue(rowsOf2ndTable.ContainsKey(textEn));
+            //check if the name is correct
             Assert.AreEqual(textEn, rowsOf2ndTable[textEn].TitleEn);
             Assert.AreEqual(textAr, rowsOf2ndTable[textEn].TitleAr);
         }

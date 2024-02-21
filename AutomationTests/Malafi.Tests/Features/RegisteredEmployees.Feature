@@ -28,3 +28,7 @@ Scenario: assign  document group to the employee
  When I click on add to add the document grope to the employee
  Then I should find the selectd document group moved to employee document group 
 
+ Scenario: Clicked on search button should filter the data in the grid 
+ Given I write data on the search filed'11' 
+ When I prepare the employee data
+ Then  data in the grid should be filterd with row contain the search key '11' 
