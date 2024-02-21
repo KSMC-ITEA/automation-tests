@@ -118,11 +118,9 @@ namespace Malafi.Tests.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add new document group should succeed")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Add Documents group")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("tag1")]
         public void AddNewDocumentGroupShouldSucceed()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new document group should succeed", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 13
@@ -142,8 +140,8 @@ this.FeatureBackground();
                             "Title AR",
                             "Title EN"});
                 table1.AddRow(new string[] {
-                            "اختبار",
-                            "Test"});
+                            "فاطمة اختبار",
+                            "TestFatimah"});
 #line 14
  testRunner.Given("I completed the form New Document Group", ((string)(null)), table1, "Given ");
 #line hidden
@@ -221,8 +219,8 @@ this.FeatureBackground();
                             "Title AR",
                             "Title EN"});
                 table3.AddRow(new string[] {
-                            "Test",
-                            "ررراختبار"});
+                            "اختبار",
+                            "test"});
 #line 33
  testRunner.Given("I completed the form New Document Group", ((string)(null)), table3, "Given ");
 #line hidden

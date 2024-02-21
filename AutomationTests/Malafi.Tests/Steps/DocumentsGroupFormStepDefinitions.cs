@@ -78,7 +78,7 @@ namespace Malafi.Tests.Steps
         public void ThenAErrorMessageNotificationMessageShouldBeAppeare()
  {
             documentGroupForm.Wait.Until(ExpectedConditions.ElementToBeClickable(documentGroupForm.FeedbackMessage));
-            Assert.AreEqual("Can't Save document Types because some fields have errors", documentGroupForm.FeedbackMessage.Text);
+            Assert.AreEqual("Names that have already been used cannot be used.", documentGroupForm.FeedbackMessage.Text);
           
         }
 

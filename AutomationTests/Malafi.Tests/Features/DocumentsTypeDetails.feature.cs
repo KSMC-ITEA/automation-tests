@@ -195,7 +195,7 @@ this.FeatureBackground();
                             "1111",
                             "NotSupported.xlsx"});
 #line 28
- testRunner.Given("I completed the form New Document Type", ((string)(null)), table2, "Given ");
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table5, "Given ");
 #line hidden
 #line 32
  testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -228,20 +228,20 @@ this.FeatureBackground();
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
                             "OnBase Number",
                             "upload File"});
-                table3.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
                             "1111",
                             "bigger-10MB.pdf"});
 #line 40
- testRunner.Given("I completed the form New Document Type", ((string)(null)), table3, "Given ");
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table6, "Given ");
 #line hidden
 #line 44
  testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -274,20 +274,20 @@ testRunner.Then("An error message notification message should be appeared", ((st
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
                             "OnBase Number",
                             "upload File"});
-                table4.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
                             "1111",
                             "1-10MB.pdf"});
 #line 51
- testRunner.Given("I completed the form New Document Type", ((string)(null)), table4, "Given ");
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table7, "Given ");
 #line hidden
 #line 55
  testRunner.When("I click on save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -319,20 +319,20 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Title AR",
                             "Title EN",
                             "Website Link",
                             "OnBase Number",
                             "upload File"});
-                table5.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "تجربة",
                             "Test",
                             "x",
                             "1111",
                             "ladybug.png"});
 #line 64
- testRunner.Given("I completed the form New Document Type", ((string)(null)), table5, "Given ");
+ testRunner.Given("I completed the form New Document Type", ((string)(null)), table8, "Given ");
 #line hidden
 #line 68
  testRunner.When(string.Format("I enter \'{0}\' in \'{1}\'", text, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

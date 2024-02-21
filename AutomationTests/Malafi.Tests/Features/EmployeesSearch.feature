@@ -9,4 +9,4 @@ Background: Common steps till reach to Add Document Type page
 
 Scenario: Click on Excel  button
 	When I click on  Excel  button
-Then I should be navigated to  Excel  form
+	Then the excel file should be downloaded
