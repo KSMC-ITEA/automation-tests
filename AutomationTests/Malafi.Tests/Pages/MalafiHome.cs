@@ -54,7 +54,7 @@ namespace Malafi.Tests.Pages
 
         public RegisteredEmployees ClickOnRegisteredEmployees()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(900);
             Wait.Until(ExpectedConditions.ElementToBeClickable(RegisteredEmployeesLink)).Click();
             return new RegisteredEmployees(driver);
         }

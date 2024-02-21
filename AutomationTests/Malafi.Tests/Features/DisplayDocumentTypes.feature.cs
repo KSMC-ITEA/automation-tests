@@ -253,8 +253,7 @@ this.FeatureBackground();
  testRunner.Given("Click on sortable-icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 35
- testRunner.Then("I should see table Title and Is Required and Has Expiry and Action and sortable-i" +
-                        "con it works", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Verify that the table is validly sortable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

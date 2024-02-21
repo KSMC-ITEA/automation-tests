@@ -21,8 +21,8 @@ namespace Malafi.Tests.Steps
 
         }
 
-        [Given(@"I click on Approved")]
-        public void GivenIClickOnApproved()
+        [When(@"I click on Approved")]
+        public void WhenIClickOnApproved()
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
@@ -32,22 +32,22 @@ namespace Malafi.Tests.Steps
             registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.Approved)).Click();
         }
 
-        [Given(@"I click on view documents")]
-        public void GivenIClickOnViewDocuments()
+        [When(@"I click on view documents")]
+        public void WhenIClickOnViewDocuments()
         {
             registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.ViewDoc)).Click();
 
         }
 
-        [Given(@"I click any file")]
-        public void GivenIClickAnyFile()
+        [When(@"I click any file")]
+        public void WhenIClickAnyFile()
         {
             Thread.Sleep(1000);
             registeredEmployees.TitleWrapper.Click();
         }
 
-        [Given(@"Click on view documents")]
-        public void GivenClickOnViewDocuments()
+        [When(@"Click on view documents")]
+        public void WhenClickOnViewDocuments()
         {
             Thread.Sleep(1000);
 

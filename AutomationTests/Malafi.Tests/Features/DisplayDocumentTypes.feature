@@ -32,4 +32,4 @@ Scenario: Check sortable-icon.
 
 Scenario: Check table
 	Given Click on sortable-icon
-	Then I should see table Title and Is Required and Has Expiry and Action and sortable-icon it works
+	Then Verify that the table is validly sortable

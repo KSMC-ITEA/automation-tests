@@ -137,8 +137,8 @@ namespace Malafi.Tests.Steps
 
         }
 
-        [Then(@"I should see table Title and Is Required and Has Expiry and Action and sortable-icon it works")]
-        public void ThenIShouldSeeTableTitleAndIsRequiredAndHasExpiryAndActionAndSortable_IconItWorks()
+        [Then(@"Verify that the table is validly sortable")]
+        public void ThenVerifythatthetableisvalidlysortable()
         {
             Assert.AreEqual("Title", documentTypesPage.CheckTitle.Text);
 
