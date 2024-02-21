@@ -9,14 +9,14 @@ using TechTalk.SpecFlow;
 namespace Malafi.Tests.Steps
 {
     [Binding]
-    public class EmployeesSearch
+    public class EmployeeSearchStepDefinitions
     {
         private ScenarioContext scenarioContext;
         private IWebDriver driver;
         private RegisteredEmployeesReview registeredEmployeesReview;
         private Pages.EmployeesSearch employeesSearch;
 
-        public EmployeesSearch(ScenarioContext context)
+        public EmployeeSearchStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
             driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
