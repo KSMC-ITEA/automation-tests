@@ -1,5 +1,7 @@
-﻿using Malafi.Tests.Pages;
+﻿using DocumentFormat.OpenXml.Drawing;
+using Malafi.Tests.Pages;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using TechTalk.SpecFlow;
 
@@ -13,6 +15,7 @@ namespace Malafi.Tests.Steps
         private DocumentType documentTypesPage;
         private Pages.EmployeesSearch employeesSearch;
         private RegisteredEmployees registeredEmployees;
+        private Dashboards dashboards;
 
         private DocumentsGroup documentsGroupPage;
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
@@ -93,6 +96,26 @@ namespace Malafi.Tests.Steps
      
             Assert.AreEqual("Approved", registeredEmployees.Approved.Text);
 
+
+        }
+
+        [Given(@"I click on Dashboard")]
+        public void GivenIClickOnDashboard()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            dashboards = malafiHome.ClickOnExecutiveDashboard();
+
+        }
+
+        [Then(@"I shoed see Executive Dashboard")]
+        public void ThenIShoedSeeExecutiveDashboard()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            dashboards = malafiHome.ClickOnExecutiveDashboard();
+            Thread.Sleep(500);
+            Assert.AreEqual("6", dashboards.AlRegisteredEmployees.Text);
 
         }
 

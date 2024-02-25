@@ -33,6 +33,11 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.XPath, Using = "//span[contains(.,'Registered Employees')]")]
         public IWebElement RegisteredEmployeesLink { get; private set; }
 
+
+        [FindsBy(How = How.LinkText, Using = "Dashboard")]
+        public IWebElement DashboardLink { get; private set; }
+        
+
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -58,6 +63,15 @@ namespace Malafi.Tests.Pages
             Wait.Until(ExpectedConditions.ElementToBeClickable(RegisteredEmployeesLink)).Click();
             return new RegisteredEmployees(driver);
         }
+
+
+        public Dashboards ClickOnExecutiveDashboard()
+        {
+            Wait.Until(ExpectedConditions.ElementToBeClickable(DashboardLink)).Click();
+
+            return new Dashboards(driver);
+        }
+
 
     }
 

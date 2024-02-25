@@ -57,8 +57,15 @@ namespace Malafi.Tests.Pages
         public IWebElement DataExpressiondVLD { get; private set; }
 
 
+        [FindsBy(How = How.LinkText, Using = "Download previously uploaded File")]
+        public IWebElement DownloadPreviouslyUploadedFile { get; private set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#b1-MainContent > div:nth-child(1) > div > div > div.OSBlockWidget > div > div > div:nth-child(2) > div > div.section-expandable-title > div.section-expandable-icon")]
+        public IWebElement TitleWrapperDisplay  { get; private set; }
 
 
+        [FindsBy(How = How.CssSelector, Using = "#b1-MainContent > div:nth-child(1) > div > div > div.OSBlockWidget > div > div > div:nth-child(2) > div > div.section-expandable-content.is--expanded > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > div > button > img")]
+        public IWebElement ViewDocDisplay { get; private set; }
 
 
 
