@@ -70,7 +70,7 @@ namespace Malafi.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5.
+        ///   Looks up a localized string similar to 0.
         /// </summary>
         internal static string LoginSleepTime {
             get {

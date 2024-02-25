@@ -121,7 +121,7 @@
     <value>Chrome</value>
   </data>
   <data name="LoginSleepTime" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
     <comment>In Seconds</comment>
   </data>
   <data name="StartURL" xml:space="preserve">

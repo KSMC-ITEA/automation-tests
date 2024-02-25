@@ -1,4 +1,5 @@
-﻿using Malafi.Tests.Features;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Malafi.Tests.Features;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
@@ -26,10 +27,16 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.XPath, Using = "//div[@id='b2-PageLinks']/div[2]/a[5]/i")]
         public IWebElement EmployeesSearchLink { get; private set; }
 
-
-
         [FindsBy(How = How.LinkText, Using = "Documents Group")]
         public IWebElement DocumentGroupLink { get; private set; }
+
+        [FindsBy(How = How.XPath, Using = "//span[contains(.,'Registered Employees')]")]
+        public IWebElement RegisteredEmployeesLink { get; private set; }
+
+
+        [FindsBy(How = How.LinkText, Using = "Dashboard")]
+        public IWebElement DashboardLink { get; private set; }
+        
 
         public WebDriverWait Wait => wait;
 
@@ -49,6 +56,22 @@ namespace Malafi.Tests.Pages
             DocumentGroupLink.Click();
             return new DocumentsGroup(driver);
         }
+
+        public RegisteredEmployees ClickOnRegisteredEmployees()
+        {
+            Thread.Sleep(900);
+            Wait.Until(ExpectedConditions.ElementToBeClickable(RegisteredEmployeesLink)).Click();
+            return new RegisteredEmployees(driver);
+        }
+
+
+        public Dashboards ClickOnExecutiveDashboard()
+        {
+            Wait.Until(ExpectedConditions.ElementToBeClickable(DashboardLink)).Click();
+
+            return new Dashboards(driver);
+        }
+
 
     }
 
