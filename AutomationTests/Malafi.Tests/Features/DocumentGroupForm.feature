@@ -9,7 +9,7 @@ Background: Common steps till reach to Add Document group
 	
 
 
-@tag1
+
 Scenario: Add new document group should succeed
 	Given I completed the form New Document Group
 		| Title AR     | Title EN    |

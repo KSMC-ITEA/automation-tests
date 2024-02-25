@@ -1,4 +1,4 @@
-﻿Feature: EmployeesSearch
+﻿Feature: Display Executive Dashboard
 
 A short summary of the feature
 Background: Common steps till reach to Add Document Type page
@@ -6,7 +6,10 @@ Background: Common steps till reach to Add Document Type page
 	And Enterd 'Ksmc@1234' as password
 	When I cilck on login button
 	And Click on Malafi link
+ 
+ 
 
-Scenario: Click on Excel  button
-	When I click on  Excel  button
-	Then the excel file should be downloaded
+
+	Scenario: Check Executive Dashboard
+	Given I click on Dashboard
+	Then Check Display Dashboard 

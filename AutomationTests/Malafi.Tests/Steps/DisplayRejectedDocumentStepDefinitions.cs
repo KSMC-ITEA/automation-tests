@@ -35,6 +35,8 @@ namespace Malafi.Tests.Steps
         [When(@"I click on view documents")]
         public void WhenIClickOnViewDocuments()
         {
+            Thread.Sleep(100);
+
             registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.ViewDoc)).Click();
 
         }
@@ -75,5 +77,21 @@ namespace Malafi.Tests.Steps
 
             Assert.AreEqual("Approved", registeredEmployees.DataExpressiondVLD.Text);
         }
+
+        [Given(@"I click on DownloadPreviouslyUploadedFile")]
+        public void GivenIClickOnDownloadPreviouslyUploadedFile()
+        {
+            Thread.Sleep(1000);
+            registeredEmployees.TitleWrapperDisplay.Click();
+
+            Thread.Sleep(1000);
+
+            registeredEmployees.ViewDocDisplay.Click();
+
+
+            registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.DownloadPreviouslyUploadedFile)).Click();
+
+        }
+
     }
 }

@@ -31,3 +31,10 @@ Scenario: open View Document Approval LVI History
 Scenario: Click on Document Group link
 	When Clicked Documents Group link
 	Then I should be navigated to Documents Group Page
+
+
+
+	Scenario: Check Executive Dashboard
+	Given I click on Dashboard
+	Then I shoed see Executive Dashboard
+

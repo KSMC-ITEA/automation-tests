@@ -2,23 +2,21 @@
 using Malafi.Tests.Pages;
 using Malafi.Tests.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Xml.Linq;
+
 using TechTalk.SpecFlow;
 
 namespace Malafi.Tests.Steps
 {
     [Binding]
-    public class EmployeesSearch
+    public class EmployeeSearchStepDefinitions
     {
         private ScenarioContext scenarioContext;
         private IWebDriver driver;
         private RegisteredEmployees registeredEmployeesReview;
         private Pages.EmployeesSearch employeesSearch;
 
-        public EmployeesSearch(ScenarioContext context)
+        public EmployeeSearchStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
             driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
@@ -64,8 +62,8 @@ namespace Malafi.Tests.Steps
             Assert.IsFalse(registeredEmployeesReview.EmployeeName.Enabled);
         }
 
-        [Then(@"I should be navigated to  Excel  form")]
-        public void ThenIShouldBeNavigatedToExcelForm()
+        [Then(@"the excel file should be downloaded")]
+        public void Thentheexcelfileshouldbedownloaded()
         {
             var empDataFile = ExcelManipulation.GetDownloadedFile("EmployeesData");
             var workSheet = empDataFile.Worksheets.FirstOrDefault();
