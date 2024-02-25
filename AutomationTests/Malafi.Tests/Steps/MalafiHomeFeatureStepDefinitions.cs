@@ -1,5 +1,7 @@
-﻿using Malafi.Tests.Pages;
+﻿using DocumentFormat.OpenXml.Drawing;
+using Malafi.Tests.Pages;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using TechTalk.SpecFlow;
 
@@ -12,6 +14,8 @@ namespace Malafi.Tests.Steps
         private IWebDriver driver;
         private DocumentType documentTypesPage;
         private Pages.EmployeesSearch employeesSearch;
+        private RegisteredEmployees registeredEmployees;
+        private Dashboards dashboards;
 
         private DocumentsGroup documentsGroupPage;
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
@@ -36,7 +40,7 @@ namespace Malafi.Tests.Steps
         }
 
         [When(@"Clicked Employees Search link")]
-        public void WhenClickedRegisteredEmployeesLink()
+        public void WhenClickedEmployeesSearchlink()
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
@@ -46,7 +50,7 @@ namespace Malafi.Tests.Steps
         }
 
         [Then(@"I should be navigated to Employees Search Page")]
-        public void ThenIShouldBeNavigatedToRegisteredEmployeesPage()
+        public void ThenIShouldBeNavigatedToEmployeesSearchPage()
         {
             Assert.AreEqual("Name", employeesSearch.EmployeesSearchVLD.Text);
 
@@ -60,7 +64,6 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
-// this step give key dictionary for the page calss (key hashing)
             scenarioContext["DocumentsGroupForm"] = documentsGroupPage;
             documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));
         }
@@ -69,6 +72,50 @@ namespace Malafi.Tests.Steps
         public void ThenIShouldBeNavigatedToDocumentsGroupPage()
         {
             Assert.AreEqual("Add Documents Group", documentsGroupPage.AddDocumentsGroupButton.Text);
+        }
+
+        [When(@"Clicked Registered Employees link")]
+        public void WhenClickedRegisteredEmployeesLink()
+        {
+
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            scenarioContext["registeredEmployees"] = registeredEmployees;
+
+            registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
+
+        }
+
+        [Then(@"I should be navigated to Registered Employees Page")]
+        public void ThenIShouldBeNavigatedToRegisteredEmployeesPage()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
+     
+            Assert.AreEqual("Approved", registeredEmployees.Approved.Text);
+
+
+        }
+
+        [Given(@"I click on Dashboard")]
+        public void GivenIClickOnDashboard()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            dashboards = malafiHome.ClickOnExecutiveDashboard();
+
+        }
+
+        [Then(@"I shoed see Executive Dashboard")]
+        public void ThenIShoedSeeExecutiveDashboard()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            dashboards = malafiHome.ClickOnExecutiveDashboard();
+            Thread.Sleep(500);
+            Assert.AreEqual("6", dashboards.AlRegisteredEmployees.Text);
+
         }
 
 
