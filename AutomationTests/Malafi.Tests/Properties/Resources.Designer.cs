@@ -70,7 +70,16 @@ namespace Malafi.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://osqa.ksmc.med.sa/IPortal/.
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string LoginSleepTime {
+            get {
+                return ResourceManager.GetString("LoginSleepTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://osqa.ksmc.med.sa/IPortal/Login.
         /// </summary>
         internal static string StartURL {
             get {

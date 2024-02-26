@@ -70,7 +70,6 @@ namespace Malafi.Tests.Steps
         {
             var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
-
         }
         #endregion
 

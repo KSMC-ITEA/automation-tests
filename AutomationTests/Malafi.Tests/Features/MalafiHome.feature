@@ -8,10 +8,25 @@ Background: Login to Internal Portal and click on Malafi Link
 	When I cilck on login button
 	And Click on Malafi link
 
-@tag1
+
 Scenario: Click on Document Types link
 	When Clicked DocumentsTypes link
 	Then I should be navigated to Document Types Page
+
+
+	
+Scenario: Open Page Employees Search
+	When Clicked Employees Search link
+	Then I should be navigated to Employees Search Page
+
+
+
+Scenario: open View Document Approval LVI History
+	When Clicked Registered Employees link
+	Then I should be navigated to Registered Employees Page
+
+
+
 
 
 @tag1
@@ -27,3 +42,10 @@ Scenario: Edit Employee Registration Form
 Scenario: Click on Document Group link
 	When Clicked Documents Group link
 	Then I should be navigated to Documents Group Page
+
+
+
+	Scenario: Check Executive Dashboard
+	Given I click on Dashboard
+	Then I shoed see Executive Dashboard
+

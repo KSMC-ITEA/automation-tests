@@ -23,8 +23,9 @@ namespace Malafi.Tests.Steps
             var homePage = scenarioContext["HomePage"] as HomePage;
             Assert.IsNotNull(homePage);
             homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
-            Assert.IsNotNull(homePage);
-            malafiHome = homePage.ClickOnMalafi();
+
+
+            var malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
         }
 
@@ -36,7 +37,7 @@ namespace Malafi.Tests.Steps
             Assert.AreEqual("Documents Types", malafiHome.DocumentTypeLink.Text);
         }
 
-       
+
 
 
     }
