@@ -25,16 +25,16 @@ namespace Malafi.Tests.Pages
         public WebDriverWait Wait => wait;
 
 
-        [FindsBy(How = How.CssSelector, Using = ".content-middle > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1)")]
+        [FindsBy(How = How.CssSelector, Using = "#b3-b1-b2-Content > div:nth-child(1) > span.font-size-display")]
         public IWebElement AlRegisteredEmployees { get; private set; }
 
-        [FindsBy(How = How.CssSelector, Using = "div.margin10px:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > span:nth-child(1)")]
+        [FindsBy(How = How.CssSelector, Using = "#b3-b2-Column1 > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > span")]
         public IWebElement ApprovedEmployees { get; private set; }
 
-        [FindsBy(How = How.CssSelector, Using = "div.margin10px:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(2) > span:nth-child(1)")]
+        [FindsBy(How = How.CssSelector, Using = "#b3-b2-Column1 > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > span")]
         public IWebElement PendingEmployees { get; private set; }
 
-        [FindsBy(How = How.CssSelector, Using = "div.margin10px:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(2) > span:nth-child(1)")]
+        [FindsBy(How = How.CssSelector, Using = "#b3-b2-Column1 > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > span")]
         public IWebElement RejectedEmployees { get; private set; }
 
 

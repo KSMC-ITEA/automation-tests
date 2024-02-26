@@ -17,7 +17,7 @@ namespace Malafi.Tests.Models
             PageStart = int.Parse(matches.Groups["pageStart"].Value);
             PageEnd = int.Parse(matches.Groups["pageEnd"].Value);
             TotalItems = int.Parse(matches.Groups["totalItems"].Value);
-            NumberOfPages = (int)Math.Ceiling(TotalItems / (PageEnd - PageStart + 1.0m));
+            NumberOfPages = (int)Math.Ceiling(TotalItems / 20.0m);
         }
 
         public int PageStart { get; private set; }

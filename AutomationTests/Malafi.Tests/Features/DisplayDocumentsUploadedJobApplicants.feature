@@ -9,6 +9,6 @@ Background: Login to Internal Portal and click on Malafi Link
 
 
 Scenario: View Document Approval LVI History
-	Given I click on Approved
+	When I click on Approved
 	And I click on view documents
 	And I click on DownloadPreviouslyUploadedFile

@@ -92,7 +92,7 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
-     
+
             Assert.AreEqual("Approved", registeredEmployees.Approved.Text);
 
 
@@ -112,9 +112,11 @@ namespace Malafi.Tests.Steps
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
-            dashboards = malafiHome.ClickOnExecutiveDashboard();
-            Thread.Sleep(500);
-            Assert.AreEqual("6", dashboards.AlRegisteredEmployees.Text);
+            Thread.Sleep(300);
+            int approved = int.Parse(dashboards.ApprovedEmployees.Text);
+            int pending = int.Parse(dashboards.PendingEmployees.Text);
+            int rejected = int.Parse(dashboards.RejectedEmployees.Text);
+            Assert.AreEqual((approved + pending + rejected).ToString(), dashboards.AlRegisteredEmployees.Text);
 
         }
 
