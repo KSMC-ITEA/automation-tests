@@ -24,7 +24,7 @@ namespace Malafi.Tests.Pages
         public IWebElement DocumentTypeLink { get; private set; }
 
 
-        [FindsBy(How = How.LinkText, Using = "Documents Group")]
+        [FindsBy(How = How.CssSelector, Using = "#b2-PageLinks > div.hr-item-menu > a:nth-child(3)")]
         public IWebElement DocumentGroupLink { get; private set; }
 
         [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_Width7 > span")]

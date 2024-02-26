@@ -26,7 +26,6 @@ namespace Malafi.Tests.Steps
             Assert.IsNotNull(homePage);
             malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
-            malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.RequestReistrationButton));
         }
 
         [Then(@"I should be navigated to Malafi Home Page")]

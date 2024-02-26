@@ -70,7 +70,7 @@ namespace Malafi.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://osqa.ksmc.med.sa/IPortal/Login.
+        ///   Looks up a localized string similar to https://osqa.ksmc.med.sa/IPortal/.
         /// </summary>
         internal static string StartURL {
             get {

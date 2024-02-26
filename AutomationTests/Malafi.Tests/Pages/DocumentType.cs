@@ -28,6 +28,10 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.XPath, Using = "//div[@id='b3-b1-Actions']/div/button/span")]
         public IWebElement AddDocumentsTypes { get; private set; }
 
+
+
+
+
         public DocumentsTypeDetails ClickOnAddDocumentsLink()
         {
 

@@ -42,7 +42,7 @@ namespace Malafi.Tests.Steps
             loginPage.ChangeLanguage(language);
         }
 
-        [Given(@"Entered '([^']*)'as a username")]
+        [Given(@"Entered '([^']*)' as a username")]
         public void GivenEnteredAsAUsername(string userName)
         {
             this.username = userName;

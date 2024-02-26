@@ -19,6 +19,11 @@ Scenario: Employee Registration Form
 	When click on Request a Registration link
 	Then I should be navigated to Employee Registration Form
 
+@tag1
+Scenario: Edit Employee Registration Form
+	When click on Edit a Registration link
+	Then I should be navigated to Employee Edit Registration Form
+
 Scenario: Click on Document Group link
 	When Clicked Documents Group link
 	Then I should be navigated to Documents Group Page
