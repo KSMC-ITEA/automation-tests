@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Mobile",
                             "Job Number",
@@ -144,7 +144,7 @@ this.FeatureBackground();
                             "JobGroup",
                             "ContractType",
                             "RequestStatus"});
-                table7.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "mo.elsaid@ksmc.med.sa",
                             "0548526612",
                             "-012345",
@@ -156,7 +156,7 @@ this.FeatureBackground();
                             "MOH",
                             "Pending"});
 #line 13
-testRunner.Given("Entered the following informaion", ((string)(null)), table7, "Given ");
+testRunner.Given("Entered the following informaion", ((string)(null)), table9, "Given ");
 #line hidden
 #line 16
  testRunner.And("I filled in all the required feilds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -192,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Mobile",
                             "Job Number",
@@ -203,7 +203,7 @@ this.FeatureBackground();
                             "JobGroup",
                             "ContractType",
                             "RequestStatus"});
-                table8.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "",
                             "3548526612",
                             "-012345",
@@ -215,7 +215,7 @@ this.FeatureBackground();
                             "MOH",
                             "Pending"});
 #line 29
- testRunner.Given("Entered the following informaion", ((string)(null)), table8, "Given ");
+ testRunner.Given("Entered the following informaion", ((string)(null)), table10, "Given ");
 #line hidden
 #line 33
  testRunner.And("I filled in all the required feilds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
