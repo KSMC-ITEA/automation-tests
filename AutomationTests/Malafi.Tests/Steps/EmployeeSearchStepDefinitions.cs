@@ -67,12 +67,12 @@ namespace Malafi.Tests.Steps
         {
             var empDataFile = ExcelManipulation.GetDownloadedFile("EmployeesData");
             var workSheet = empDataFile.Worksheets.FirstOrDefault();
-            IXLRow selectedRow = null;
+            IXLRow? selectedRow = null;
             var firstRow = employeesSearch.EmployeesTable.FindElement(By.XPath("//tbody/tr[1]"));
             foreach (var row in workSheet.Rows())
             {
            
-                    if (row.Cells("1").FirstOrDefault().GetText() == firstRow.FindElement(By.XPath("//td[1]")).Text)
+                    if (row.Cells("1").FirstOrDefault()?.GetText() == firstRow.FindElement(By.XPath("//td[1]")).Text)
                     {
                         selectedRow = row; 
                         break;

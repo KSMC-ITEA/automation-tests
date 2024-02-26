@@ -151,7 +151,7 @@ namespace Malafi.Tests.Steps
             var footerInfo = new TableFooterInformation(documentTypesPage.TableFooter.Text);
 
             System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> rows;
-            List<DocumentTypeItem> list = GetOrderedList(footerInfo, out rows);
+            List<DocumentTypeItem> list = GetOrderedList(ref footerInfo, out rows);
 
             CheckSortedItems(footerInfo, rows, list);
 
@@ -164,7 +164,7 @@ namespace Malafi.Tests.Steps
                 for (int i = rows.Count - 1; i >= 0; i--)
                 {
                     var title = rows[i].FindElement(By.XPath($"//*[@id='b3-b1-MainContent']/div/table/tbody/tr[{i + 1}]/td[1]")).Text;
-                    int idx = Math.Abs(page * (footerInfo.PageEnd - footerInfo.PageStart + 1) - i);
+                    int idx = Math.Abs(page * 20 + i);
                     Assert.AreEqual(list[idx].Title, title);
                 }
                 if (!documentTypesPage.PreviousPage.Enabled)
@@ -173,14 +173,15 @@ namespace Malafi.Tests.Steps
                 }
                 documentTypesPage.PreviousPage.Click();
                 Thread.Sleep(300);
+                footerInfo = new TableFooterInformation(documentTypesPage.TableFooter.Text);
                 rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id='b3-b1-MainContent']/div/table/tbody/tr"));
             }
 
         }
 
-        private List<DocumentTypeItem> GetOrderedList(TableFooterInformation footerInfo, out System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> rows)
+        private List<DocumentTypeItem> GetOrderedList(ref TableFooterInformation footerInfo, out System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> rows)
         {
-            rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id=\"b3-b1-MainContent\"]/div/table/tbody/tr[1]"));
+            rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id=\"b3-b1-MainContent\"]/div/table/tbody/tr"));
             List<DocumentTypeItem> list = new List<DocumentTypeItem>();
             for (int page = 0; page < footerInfo.NumberOfPages; page++)
             {
@@ -198,6 +199,7 @@ namespace Malafi.Tests.Steps
                 documentTypesPage.NextPage.Click();
                 Thread.Sleep(300);
                 rows = documentTypesPage.TableDocumentTypeList.FindElements(By.XPath("//*[@id='b3-b1-MainContent']/div/table/tbody/tr"));
+                footerInfo = new TableFooterInformation(documentTypesPage.TableFooter.Text);
             }
 
 

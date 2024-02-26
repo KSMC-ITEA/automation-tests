@@ -12,8 +12,8 @@ Background: Common steps till reach to Add Document group
 
 Scenario: Add new document group should succeed
 	Given I completed the form New Document Group
-		| Title AR     | Title EN    |
-		| فاطمة اختبار | TestFatimah |
+		| Title AR      | Title EN     |
+		| 1فاطمة اختبار | TestFatimah1 |
 
 	When I click on  add document group save button
 	Then A successful message should be appeared

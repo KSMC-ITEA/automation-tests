@@ -78,7 +78,7 @@ namespace Malafi.Tests.Steps
             Assert.AreEqual("Approved", registeredEmployees.DataExpressiondVLD.Text);
         }
 
-        [Given(@"I click on DownloadPreviouslyUploadedFile")]
+        [When(@"I click on DownloadPreviouslyUploadedFile")]
         public void GivenIClickOnDownloadPreviouslyUploadedFile()
         {
             Thread.Sleep(1000);
