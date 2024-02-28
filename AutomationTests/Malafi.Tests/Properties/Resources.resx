@@ -125,6 +125,6 @@
     <comment>In Seconds</comment>
   </data>
   <data name="StartURL" xml:space="preserve">
-    <value>https://osqa.ksmc.med.sa/IPortal/Login</value>
+    <value>https://osqa.ksmc.med.sa/IPortal/</value>
   </data>
 </root>

@@ -18,11 +18,45 @@ namespace Malafi.Tests.Steps
         private Dashboards dashboards;
 
         private DocumentsGroup documentsGroupPage;
+        private MalafiHome malafiHomePage;
+
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-
+            malafiHomePage = scenarioContext["MalafiHome"] as MalafiHome ?? throw new NullReferenceException("Malafi Home is null");
         }
+
+        [When(@"click on Request a Registration link")]
+        public void WhenClickOnRequestARegistrationLink()
+        {
+            malafiHomePage.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHomePage.RequestReistrationButton));
+            var registrationFormPage = malafiHomePage.ClickOnRegistrationFormButton();
+            scenarioContext["RegistrationForm"] = registrationFormPage;
+        }
+
+        [Then(@"I should be navigated to Employee Registration Form")]
+        public void ThenIShouldBeNavigatedToEmployeeRegistrationForm()
+        {
+            var registrationFormPage = scenarioContext["RegistrationForm"] as Registration;
+            registrationFormPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registrationFormPage.SubmitButton));
+            Assert.AreEqual("Submit", registrationFormPage.SubmitButton.Text);
+        }
+        [When(@"click on Edit a Registration link")]
+        public void WhenClickOnEditARegistrationLink()
+        {
+            var registrationFormPage = malafiHomePage.ClickOnRegistrationFormButton();
+            scenarioContext["RegistrationForm"] = registrationFormPage;
+        }
+        [Then(@"I should be navigated to Employee Edit Registration Form")]
+        public void ThenIShouldBeNavigatedToEmployeeEditRegistrationForm()
+        {
+            var registrationFormPage = scenarioContext["RegistrationForm"] as Registration;
+            registrationFormPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registrationFormPage.SubmitButton));
+            Assert.AreEqual("Submit", registrationFormPage.SubmitButton.Text);
+        }
+
+
+
         [When(@"Clicked DocumentsTypes link")]
         public void WhenIClickedDocumentsTypesLink()
         {
@@ -63,6 +97,7 @@ namespace Malafi.Tests.Steps
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
+            malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.DocumentGroupLink));
             documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
             scenarioContext["DocumentsGroupForm"] = documentsGroupPage;
             documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));

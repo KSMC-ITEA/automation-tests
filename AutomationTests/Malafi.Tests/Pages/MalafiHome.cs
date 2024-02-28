@@ -27,8 +27,12 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.XPath, Using = "//div[@id='b2-PageLinks']/div[2]/a[5]/i")]
         public IWebElement EmployeesSearchLink { get; private set; }
 
-        [FindsBy(How = How.LinkText, Using = "Documents Group")]
+        [FindsBy(How = How.CssSelector, Using = "#b2-PageLinks > div.hr-item-menu > a:nth-child(3)")]
         public IWebElement DocumentGroupLink { get; private set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_Width7 > span")]
+        public IWebElement RequestReistrationButton { get; private set; }
+
 
         [FindsBy(How = How.XPath, Using = "//span[contains(.,'Registered Employees')]")]
         public IWebElement RegisteredEmployeesLink { get; private set; }
@@ -73,6 +77,11 @@ namespace Malafi.Tests.Pages
         }
 
 
+        public Registration ClickOnRegistrationFormButton()
+        {
+            RequestReistrationButton.Click();
+            return new Registration(driver);
+        }
     }
 
 
