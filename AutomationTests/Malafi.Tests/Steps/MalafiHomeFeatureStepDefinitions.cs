@@ -11,12 +11,11 @@ namespace Malafi.Tests.Steps
     public class MalafiHomeFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
         private DocumentType documentTypesPage;
-        private Pages.EmployeesSearch employeesSearch;
+        private EmployeesSearch employeesSearch;
         private RegisteredEmployees registeredEmployees;
         private Dashboards dashboards;
-
+        private MyFiles myfiles;
         private DocumentsGroup documentsGroupPage;
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
@@ -73,6 +72,31 @@ namespace Malafi.Tests.Steps
         {
             Assert.AreEqual("Add Documents Group", documentsGroupPage.AddDocumentsGroupButton.Text);
         }
+
+        [When(@"Clicked My files link")]
+        public void WhenClickedInboxLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            myfiles = malafiHome.ClickOnMyFiles();
+            scenarioContext["myfiles"] = myfiles;
+        }
+
+        [Then(@"I should be navigated to My files Page")]
+        public void ThenIShouldBeNavigatedToInboxPage()
+        {
+         Thread.Sleep(1000);
+            Assert.AreEqual("Document Types For Each Job Role", myfiles.MyFilesVLD.Text);
+
+        }
+
+
+
+
+
+
+
+
 
         [When(@"Clicked Registered Employees link")]
         public void WhenClickedRegisteredEmployeesLink()

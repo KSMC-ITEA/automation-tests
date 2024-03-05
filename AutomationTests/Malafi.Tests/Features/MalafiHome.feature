@@ -38,3 +38,8 @@ Scenario: Click on Document Group link
 	Given I click on Dashboard
 	Then I shoed see Executive Dashboard
 
+
+
+	Scenario: Click on MyFiles link
+	When Clicked My files link
+	Then I should be navigated to My files Page

@@ -15,3 +15,10 @@ Scenario: View Document Approval LVI History
 	 When Click on view documents 
 	When I click on view Approved timeline
 	Then I shoed see View Document Approval LVI History 
+
+
+	Scenario: Check Display Approved/Pending/Rejected
+		When Clicked Registered Employees link
+
+
+

@@ -36,7 +36,11 @@ namespace Malafi.Tests.Pages
 
         [FindsBy(How = How.LinkText, Using = "Dashboard")]
         public IWebElement DashboardLink { get; private set; }
-        
+
+
+        [FindsBy(How = How.LinkText, Using = "My Files")]
+        public IWebElement MyFilesLink { get; private set; }
+
 
         public WebDriverWait Wait => wait;
 
@@ -49,8 +53,19 @@ namespace Malafi.Tests.Pages
         public EmployeesSearch ClickOnEmployeesSearch()
         {
             Wait.Until(ExpectedConditions.ElementToBeClickable(EmployeesSearchLink)).Click();
+
             return new EmployeesSearch(driver);
         }
+
+        public MyFiles ClickOnMyFiles()
+        {
+            Thread.Sleep(900);
+
+            Wait.Until(ExpectedConditions.ElementToBeClickable(MyFilesLink)).Click();
+
+            return new MyFiles(driver);
+        }
+
         public DocumentsGroup ClickOnDocumentGroupLink()
         {
             DocumentGroupLink.Click();
