@@ -67,7 +67,14 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.CssSelector, Using = "#b1-MainContent > div:nth-child(1) > div > div > div.OSBlockWidget > div > div > div:nth-child(2) > div > div.section-expandable-content.is--expanded > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > div > button > img")]
         public IWebElement ViewDocDisplay { get; private set; }
 
+        [FindsBy(How = How.CssSelector, Using = "#b3-RadioButton2 > label > span")]
+        public IWebElement CheckPending { get; private set; }
 
+        [FindsBy(How = How.CssSelector, Using = "#b3-RadioButton1 > label > span")]
+        public IWebElement CheckApproved { get; private set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#b3-RadioButton3 > label > span")]
+        public IWebElement CheckRejected { get; private set; }
 
         public void FormRegisteredEmployeesValidation()
         {

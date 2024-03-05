@@ -1,4 +1,5 @@
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Vml;
 using Malafi.Tests.Pages;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
@@ -91,6 +92,19 @@ namespace Malafi.Tests.Steps
 
             registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.DownloadPreviouslyUploadedFile)).Click();
 
+        }
+
+
+        [Then(@"Check Approved/Pending/Rejected")]
+        public void ThenCheckDisplayApprovedPendingRejected()
+        {
+
+
+            Assert.AreEqual("Pending", registeredEmployees.CheckApproved.Text);
+
+            Assert.AreEqual("Approved", registeredEmployees.CheckPending.Text);
+
+            Assert.AreEqual("Rejected", registeredEmployees.CheckRejected.Text);
         }
 
     }
