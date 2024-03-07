@@ -36,6 +36,12 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.CssSelector, Using = "#transitionContainer > div > div > div > div > div > div.main-content > div.content-middle.contentMainLeft > div > div > div:nth-child(3) > div > table > tbody > tr:nth-child(1) > td:nth-child(7) > div > div > button.btn.approve-tooltip.ThemeGrid_MarginGutter")]
         public IWebElement ButtonApprove { get; private set; }
 
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > table > tbody > tr > td:nth-child(7) > div > div > button.btn.reject-tooltip.ThemeGrid_MarginGutter")]
+        public IWebElement Reject { get; private set; }
+
+        [FindsBy(How = How.CssSelector, Using = "body > div.portal-class > div > div > div > div > div:nth-child(3) > button:nth-child(1)")]
+        public IWebElement ButtonReject { get; private set; }
+
 
 
 
@@ -47,6 +53,13 @@ namespace Malafi.Tests.Pages
 
             Wait.Until(ExpectedConditions.ElementToBeClickable(ButtonApprove)).Click();
         }
+      public void ClickButtonReject() 
+        {
+            Thread.Sleep(1000);
 
+            Wait.Until(ExpectedConditions.ElementToBeClickable(Reject)).Click();
+
+     
+        }
     }
 }

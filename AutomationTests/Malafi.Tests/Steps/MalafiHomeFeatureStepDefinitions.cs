@@ -117,6 +117,23 @@ namespace Malafi.Tests.Steps
             inbox.ClickButtonApprove();
         }
 
+        [When(@"Click on  Reject the Documents")]
+        public void WhenClickOnRejectTheDocuments()
+        {
+            inbox.ClickButtonReject();
+        }
+
+        [Then(@"Add Rejection Reason")]
+        public void ThenAddRejectionReason()
+        {
+            Thread.Sleep(1000);
+
+            inbox.Wait.Until(ExpectedConditions.ElementToBeClickable(inbox.ButtonReject)).Click();
+
+            Thread.Sleep(1000);
+        }
+
+
 
 
         [When(@"Clicked Registered Employees link")]
