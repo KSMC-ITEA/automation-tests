@@ -1,0 +1,170 @@
+﻿using DocumentFormat.OpenXml.Drawing;
+using Malafi.Tests.Pages;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using TechTalk.SpecFlow;
+
+namespace Malafi.Tests.Steps
+{
+    [Binding]
+    public class MalafiHomeFeatureStepDefinitions
+    {
+        private ScenarioContext scenarioContext;
+        private DocumentType documentTypesPage;
+        private EmployeesSearch employeesSearch;
+        private RegisteredEmployees registeredEmployees;
+        private Dashboards dashboards;
+        private MyFiles myfiles;
+        private Inbox inbox;
+        private DocumentsGroup documentsGroupPage;
+        public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
+        {
+            scenarioContext = context;
+
+        }
+        [When(@"Clicked DocumentsTypes link")]
+        public void WhenIClickedDocumentsTypesLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            documentTypesPage = malafiHome.ClickOnDocumentTypeLink();
+            scenarioContext["DocumentTypesPage"] = documentTypesPage;
+            documentTypesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentTypesPage.AddDocumentsTypes));
+        }
+
+        [Then(@"I should be navigated to Document Types Page")]
+        public void ThenIShouldBeNavigatedToDocumentTypesPage()
+        {
+            Assert.AreEqual("Add Document Type", documentTypesPage.AddDocumentsTypes.Text);
+        }
+
+        [When(@"Clicked Employees Search link")]
+        public void WhenClickedEmployeesSearchlink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            Thread.Sleep(1100);
+            employeesSearch = malafiHome.ClickOnEmployeesSearch();
+            employeesSearch.Wait.Until(ExpectedConditions.ElementToBeClickable(employeesSearch.EmployeesSearchVLD));
+        }
+
+        [Then(@"I should be navigated to Employees Search Page")]
+        public void ThenIShouldBeNavigatedToEmployeesSearchPage()
+        {
+            Assert.AreEqual("Name", employeesSearch.EmployeesSearchVLD.Text);
+
+        }
+
+
+
+        [When(@"Clicked Documents Group link")]
+        public void WhenClickedDocumentsGroupLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
+            scenarioContext["DocumentsGroupForm"] = documentsGroupPage;
+            documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));
+        }
+
+        [Then(@"I should be navigated to Documents Group Page")]
+        public void ThenIShouldBeNavigatedToDocumentsGroupPage()
+        {
+            Assert.AreEqual("Add Documents Group", documentsGroupPage.AddDocumentsGroupButton.Text);
+        }
+
+        [When(@"Clicked My files link")]
+        public void WhenClickedInboxLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            myfiles = malafiHome.ClickOnMyFiles();
+            scenarioContext["myfiles"] = myfiles;
+        }
+
+        [Then(@"I should be navigated to My files Page")]
+        public void ThenIShouldBeNavigatedToInboxPage()
+        {
+         Thread.Sleep(1000);
+            Assert.AreEqual("Document Types For Each Job Role", myfiles.MyFilesVLD.Text);
+
+        }
+
+
+
+        [When(@"Click on inbox link")]
+        public void WhenClickOnInboxLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            inbox = malafiHome.ClickOnInbox();
+            scenarioContext["inbox"] = inbox;
+        }
+
+        [Then(@"I should be navigated to My inbox Page")]
+        public void ThenIShouldBeNavigatedToMyInboxPage()
+        {
+            Thread.Sleep(1000);
+            Assert.AreEqual("Documents Needs To Be Reviewd By You", inbox.VLD.Text);
+        }
+
+
+        [Then(@"A I click on Approved inbox")]
+        public void ThenAIClickOnApprovedInbox()
+        {
+            inbox.ClickButtonApprove();
+        }
+
+
+
+
+        [When(@"Clicked Registered Employees link")]
+        public void WhenClickedRegisteredEmployeesLink()
+        {
+
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            scenarioContext["registeredEmployees"] = registeredEmployees;
+
+            registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
+
+        }
+
+        [Then(@"I should be navigated to Registered Employees Page")]
+        public void ThenIShouldBeNavigatedToRegisteredEmployeesPage()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
+
+            Assert.AreEqual("Approved", registeredEmployees.Approved.Text);
+
+
+        }
+
+        [Given(@"I click on Dashboard")]
+        public void GivenIClickOnDashboard()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            dashboards = malafiHome.ClickOnExecutiveDashboard();
+
+        }
+
+        [Then(@"I shoed see Executive Dashboard")]
+        public void ThenIShoedSeeExecutiveDashboard()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            Thread.Sleep(300);
+            int approved = int.Parse(dashboards.ApprovedEmployees.Text);
+            int pending = int.Parse(dashboards.PendingEmployees.Text);
+            int rejected = int.Parse(dashboards.RejectedEmployees.Text);
+            Assert.AreEqual((approved + pending + rejected).ToString(), dashboards.AlRegisteredEmployees.Text);
+
+        }
+
+
+    }
+}
