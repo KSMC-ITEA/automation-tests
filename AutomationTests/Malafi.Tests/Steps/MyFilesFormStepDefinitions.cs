@@ -45,6 +45,22 @@ namespace Malafi.Tests.Steps
             MyFiles.FileVLD.Click(); Thread.Sleep(1000);
         }
 
+
+
+        [Then(@"Check Display file")]
+        public void ThenCheckDisplayFile()
+        {
+            Thread.Sleep(1000);
+
+            Assert.AreEqual("Doc Title", MyFiles.DocTitleVLD.Text);
+
+
+            Assert.AreEqual("Status", MyFiles.StatusVLD.Text);
+
+
+        }
+
+
         [When(@"Click on view documents  My files")]
         public void WhenClickOnViewDocumentsMyFiles()
         {

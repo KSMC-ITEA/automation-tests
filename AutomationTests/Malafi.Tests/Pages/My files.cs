@@ -36,7 +36,7 @@ namespace Malafi.Tests.Pages
         public IWebElement FileVLD { get; private set; }
 
 
-        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > div.OSBlockWidget > div > div > div:nth-child(3) > div > div.section-expandable-content.is--expanded > div > table > tbody > tr:nth-child(4) > td:nth-child(6) > div > button")]
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > div.OSBlockWidget > div > div > div:nth-child(3) > div > div.section-expandable-content.is--expanded > div > table > tbody > tr:nth-child(5) > td:nth-child(6) > div > button")]
         public IWebElement buttonVLD { get; private set; }
 
         [FindsBy(How = How.CssSelector, Using = "input[type=file]")]
@@ -47,6 +47,13 @@ namespace Malafi.Tests.Pages
 
          [FindsBy(How = How.CssSelector, Using = "#b3-Form1 > div:nth-child(6) > button.btn.btn-primary.ThemeGrid_Width2")]
         public IWebElement SaveVLD { get; private set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > div.OSBlockWidget > div > div > div:nth-child(3) > div > div.section-expandable-content.is--expanded > div > table > thead > tr > th:nth-child(1)")]
+        public IWebElement DocTitleVLD { get; private set; }
+
+
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > div.OSBlockWidget > div > div > div:nth-child(3) > div > div.section-expandable-content.is--expanded > div > table > thead > tr > th:nth-child(2)")]
+        public IWebElement StatusVLD { get; private set; }
 
 
 
