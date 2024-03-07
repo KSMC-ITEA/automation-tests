@@ -42,6 +42,9 @@ namespace Malafi.Tests.Pages
         public IWebElement MyFilesLink { get; private set; }
 
 
+        [FindsBy(How = How.LinkText, Using = "Inbox")]
+        public IWebElement InboxLink { get; private set; }
+
         public WebDriverWait Wait => wait;
 
         public DocumentType ClickOnDocumentTypeLink()
@@ -65,6 +68,17 @@ namespace Malafi.Tests.Pages
 
             return new MyFiles(driver);
         }
+
+        public Inbox ClickOnInbox()
+        {
+            Thread.Sleep(900);
+
+            Wait.Until(ExpectedConditions.ElementToBeClickable(InboxLink)).Click();
+
+            return new Inbox(driver);
+        }
+
+
 
         public DocumentsGroup ClickOnDocumentGroupLink()
         {
