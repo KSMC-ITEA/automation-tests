@@ -188,13 +188,25 @@ namespace Malafi.Tests.Steps
         {
             Thread.Sleep(1000);
 
-           inbox.edit.Click();
+            inbox.edit.Click();
         }
 
         [Then(@"The new information must be saved")]
         public void ThenTheNewInformationMustBeSaved()
         {
             inbox.ClickButtonEdit();
+        }
+
+
+
+        [Then(@"Check Display the Documents for Each Request")]
+        public void ThenCheckDisplayTheDocumentsForEachRequest()
+        {
+            Thread.Sleep(700);
+            Assert.AreEqual("Emp User", inbox.EmpUser.Text);
+            Assert.AreEqual("Expiry Date(Hijri)", inbox.ExpiryDate.Text);
+            Assert.AreEqual("Status", inbox.Status.Text);
+
         }
 
 

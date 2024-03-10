@@ -12,3 +12,11 @@ Scenario: Update Document Data
 
 	When Click on Edit
 	Then The new information must be saved
+
+
+
+	
+Scenario: Check Display the Documents for Each Request
+	Then Check Display the Documents for Each Request
+
+

@@ -55,6 +55,19 @@ namespace Malafi.Tests.Pages
 
 
 
+        
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > table > thead > tr > th:nth-child(1) > span")]
+        public IWebElement EmpUser { get; private set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > table > thead > tr > th:nth-child(5) > span")]
+        public IWebElement ExpiryDate{ get; private set; }
+
+
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > table > thead > tr > th:nth-child(3) > span")]
+        public IWebElement Status { get; private set; }
+
+
+
 
 
 
