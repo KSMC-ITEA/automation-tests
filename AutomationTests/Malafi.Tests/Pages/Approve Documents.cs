@@ -43,6 +43,19 @@ namespace Malafi.Tests.Pages
         public IWebElement ButtonReject { get; private set; }
 
 
+        [FindsBy(How = How.CssSelector, Using = "#\\$b4 > table > tbody > tr > td:nth-child(7) > div > div > button.btn.edit-tooltip.ThemeGrid_MarginGutter")]
+        public IWebElement edit { get; private set; }
+
+        [FindsBy(How = How.Id, Using = "b3-TermsAndConditions")]
+        public IWebElement informationVLD{ get; private set; }
+
+
+        [FindsBy(How = How.CssSelector, Using = "#b3-Form1 > div:nth-child(7) > button.btn.btn-primary.ThemeGrid_Width2")]
+        public IWebElement ButtonSave{ get; private set; }
+
+
+
+
 
 
 
@@ -59,7 +72,21 @@ namespace Malafi.Tests.Pages
 
             Wait.Until(ExpectedConditions.ElementToBeClickable(Reject)).Click();
 
-     
         }
+        
+        public void ClickButtonEdit() 
+        {
+
+            Wait.Until(ExpectedConditions.ElementToBeClickable(informationVLD)).Click();
+
+            Thread.Sleep(1000);
+
+            Wait.Until(ExpectedConditions.ElementToBeClickable(ButtonSave)).Click();
+
+        }
+
+
+
+
     }
 }

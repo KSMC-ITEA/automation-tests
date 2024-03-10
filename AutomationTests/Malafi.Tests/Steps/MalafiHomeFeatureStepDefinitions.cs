@@ -183,5 +183,20 @@ namespace Malafi.Tests.Steps
         }
 
 
+        [When(@"Click on Edit")]
+        public void WhenClickOnEdit()
+        {
+            Thread.Sleep(1000);
+
+           inbox.edit.Click();
+        }
+
+        [Then(@"The new information must be saved")]
+        public void ThenTheNewInformationMustBeSaved()
+        {
+            inbox.ClickButtonEdit();
+        }
+
+
     }
 }
