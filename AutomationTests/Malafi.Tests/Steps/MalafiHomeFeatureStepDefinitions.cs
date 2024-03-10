@@ -91,6 +91,12 @@ namespace Malafi.Tests.Steps
 
         }
 
+        [Then(@"I should be navigated to My inbox Page")]
+        public void ThenIShouldBeNavigatedToMyInboxPage()
+        {
+            Thread.Sleep(1000);
+            Assert.AreEqual("Documents Needs To Be Reviewd By You", inbox.VLD.Text);
+        }
 
 
 
