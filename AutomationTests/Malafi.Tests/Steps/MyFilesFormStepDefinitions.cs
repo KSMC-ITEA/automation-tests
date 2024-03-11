@@ -16,7 +16,6 @@ namespace Malafi.Tests.Steps
     {
 
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
         private DocumentsGroup documentsGroupPage;
         private MyFiles MyFiles;
         private MyFilesData testData;
@@ -28,7 +27,6 @@ namespace Malafi.Tests.Steps
         {
             scenarioContext = context;
 
-            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
         }
 
 
@@ -64,9 +62,8 @@ namespace Malafi.Tests.Steps
         [When(@"Click on view documents  My files")]
         public void WhenClickOnViewDocumentsMyFiles()
         {
-            Thread.Sleep(1000);
-            MyFiles.buttonVLD.Click();
-            Thread.Sleep(1000);
+   
+            MyFiles.Wait.Until(ExpectedConditions.ElementToBeClickable(MyFiles.buttonVLD)).Click();
 
         }
 
