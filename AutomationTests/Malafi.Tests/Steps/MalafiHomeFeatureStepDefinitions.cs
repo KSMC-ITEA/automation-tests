@@ -91,6 +91,12 @@ namespace Malafi.Tests.Steps
 
         }
 
+        [Then(@"I should be navigated to My inbox Page")]
+        public void ThenIShouldBeNavigatedToMyInboxPage()
+        {
+            Thread.Sleep(1000);
+            Assert.AreEqual("Documents Needs To Be Reviewd By You", inbox.VLD.Text);
+        }
 
 
 
@@ -116,6 +122,23 @@ namespace Malafi.Tests.Steps
         {
             inbox.ClickButtonApprove();
         }
+
+        [When(@"Click on  Reject the Documents")]
+        public void WhenClickOnRejectTheDocuments()
+        {
+            inbox.ClickButtonReject();
+        }
+
+        [Then(@"Add Rejection Reason")]
+        public void ThenAddRejectionReason()
+        {
+            Thread.Sleep(1000);
+
+            inbox.Wait.Until(ExpectedConditions.ElementToBeClickable(inbox.ButtonReject)).Click();
+
+            Thread.Sleep(1000);
+        }
+
 
 
 
@@ -162,6 +185,33 @@ namespace Malafi.Tests.Steps
             int pending = int.Parse(dashboards.PendingEmployees.Text);
             int rejected = int.Parse(dashboards.RejectedEmployees.Text);
             Assert.AreEqual((approved + pending + rejected).ToString(), dashboards.AlRegisteredEmployees.Text);
+
+        }
+
+
+        [When(@"Click on Edit")]
+        public void WhenClickOnEdit()
+        {
+            Thread.Sleep(1000);
+
+            inbox.edit.Click();
+        }
+
+        [Then(@"The new information must be saved")]
+        public void ThenTheNewInformationMustBeSaved()
+        {
+            inbox.ClickButtonEdit();
+        }
+
+
+
+        [Then(@"Check Display the Documents for Each Request")]
+        public void ThenCheckDisplayTheDocumentsForEachRequest()
+        {
+            Thread.Sleep(700);
+            Assert.AreEqual("Emp User", inbox.EmpUser.Text);
+            Assert.AreEqual("Expiry Date(Hijri)", inbox.ExpiryDate.Text);
+            Assert.AreEqual("Status", inbox.Status.Text);
 
         }
 

@@ -45,9 +45,11 @@ Scenario: Click on MyFiles link
 	Then I should be navigated to My files Page
 
 
+
+	
 Scenario: Click on inbox link
-	When Click on inbox link
-	Then I should be navigated to My inbox Page
+When Click on inbox link
+Then I should be navigated to My inbox Page
 
 
 	
