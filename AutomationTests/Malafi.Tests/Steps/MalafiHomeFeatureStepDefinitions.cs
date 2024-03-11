@@ -111,8 +111,8 @@ namespace Malafi.Tests.Steps
         }
 
 
-        [Then(@"A I click on Approved inbox")]
-        public void ThenAIClickOnApprovedInbox()
+        [Then(@"I have been navigated to the approved inbox")]
+        public void ThenIhavebeennavigatedtotheapprovedinbox()
         {
             inbox.ClickButtonApprove();
         }
