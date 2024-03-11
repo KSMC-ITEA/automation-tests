@@ -61,6 +61,7 @@ namespace Malafi.Tests.Pages
         {
             
             var uploadFile = testData.UploadFile;
+            Thread.Sleep(500);
             this.UploadDocVLD.SendKeys($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\FilesToUpload\\{uploadFile}");
 
             wait.Until(ExpectedConditions.ElementToBeClickable(VLD)).Click();
