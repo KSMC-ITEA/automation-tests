@@ -16,6 +16,7 @@ namespace Malafi.Tests.Steps
         private RegisteredEmployees registeredEmployees;
         private Dashboards dashboards;
         private MyFiles myfiles;
+        private Inbox inbox;
         private DocumentsGroup documentsGroupPage;
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
@@ -85,7 +86,7 @@ namespace Malafi.Tests.Steps
         [Then(@"I should be navigated to My files Page")]
         public void ThenIShouldBeNavigatedToInboxPage()
         {
-         Thread.Sleep(1000);
+            Thread.Sleep(1000);
             Assert.AreEqual("Document Types For Each Job Role", myfiles.MyFilesVLD.Text);
 
         }
@@ -93,8 +94,28 @@ namespace Malafi.Tests.Steps
 
 
 
+        [Then(@"I should be navigated to My inbox Page")]
+        public void ThenIShouldBeNavigatedToMyInboxPage()
+        {
+            Thread.Sleep(1000);
+            Assert.AreEqual("Documents Needs To Be Reviewd By You", inbox.VLD.Text);
+        }
+
+        [When(@"Click on inbox link")]
+        public void WhenClickOnInboxLink()
+        {
+            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
+            Assert.IsNotNull(malafiHome);
+            inbox = malafiHome.ClickOnInbox();
+            scenarioContext["inbox"] = inbox;
+        }
 
 
+        [Then(@"I have been navigated to the approved inbox")]
+        public void ThenIhavebeennavigatedtotheapprovedinbox()
+        {
+            inbox.ClickButtonApprove();
+        }
 
 
 

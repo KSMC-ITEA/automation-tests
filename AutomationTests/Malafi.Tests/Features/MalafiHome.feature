@@ -34,12 +34,20 @@ Scenario: Click on Document Group link
 
 
 
-	Scenario: Check Executive Dashboard
+Scenario: Check Executive Dashboard
 	Given I click on Dashboard
 	Then I shoed see Executive Dashboard
 
 
 
-	Scenario: Click on MyFiles link
+Scenario: Click on MyFiles link
 	When Clicked My files link
 	Then I should be navigated to My files Page
+
+
+Scenario: Click on inbox link
+	When Click on inbox link
+	Then I should be navigated to My inbox Page
+
+
+	
