@@ -134,7 +134,7 @@ this.FeatureBackground();
  testRunner.When("Click on inbox link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("A I click on Approved inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I have been navigated to the approved inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
