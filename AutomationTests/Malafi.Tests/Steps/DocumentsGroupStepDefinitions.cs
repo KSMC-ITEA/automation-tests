@@ -45,7 +45,7 @@ namespace Malafi.Tests.Steps
         [Then(@"I should be navigated to Add Documents group Page")]
         public void ThenIShouldBeNavigatedToAddDocumentsGroupPage()
         {
-            var documentGroupForm = scenarioContext["DocumentGroupForm"] as DocumentsGroupForm;
+            var documentGroupForm = scenarioContext["DocumentsGroupForm"] as DocumentsGroupForm;
             Assert.IsNotNull(documentGroupForm);
 
             documentGroupForm.Wait.Until(ExpectedConditions.ElementToBeClickable(documentGroupForm.ClickOnSaveButton));

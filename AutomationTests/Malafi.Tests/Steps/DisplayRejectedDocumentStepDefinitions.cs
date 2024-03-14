@@ -29,7 +29,7 @@ namespace Malafi.Tests.Steps
             malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.RegisteredEmployeesLink));
             Thread.Sleep(100);
             registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
-            registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.Approved)).Click();
+            registeredEmployees.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployees.ApprovedStatus)).Click();
         }
 
         [When(@"I click on view documents")]

@@ -25,9 +25,10 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.DashboardLink));
-            Thread.Sleep(100);
-            dashboards = malafiHome.ClickOnExecutiveDashboard();
+            Thread.Sleep(300);
 
+            dashboards = malafiHome.ClickOnExecutiveDashboard();
+            Thread.Sleep(300);
             Assert.IsNotNull(dashboards);
 
             var pending = int.Parse(dashboards.PendingEmployees.Text);

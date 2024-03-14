@@ -21,16 +21,17 @@ namespace Malafi.Tests.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             PageFactory.InitElements(driver, this);
-        }
-
             NewStatus = new Dictionary<string, IWebElement>();
             /// key of the dictionay key,value 
             NewStatus.Add("Pending", PendingStatus);
             NewStatus.Add("Approved", ApprovedStatus);
             NewStatus.Add("Rejected", RejectedStatus);
-
-
         }
+
+            
+
+
+  
         public WebDriverWait Wait => wait;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='b3-b1-Title']/h1/span")]
@@ -117,6 +118,10 @@ namespace Malafi.Tests.Pages
 
         [FindsBy(How = How.CssSelector, Using = "#b1-MainContent > div:nth-child(1) > div > div > div.OSBlockWidget > div > div > div:nth-child(2) > div > div.section-expandable-content.is--expanded > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > div > button > img")]
         public IWebElement ViewDocDisplay { get; private set; }
+        
+        [FindsBy(How = How.CssSelector, Using = "#b3-RadioButton2 > label")]
+        public IWebElement Approved { get; private set; }
+
         public ReviewEmployeeRequest ClickOnApprovedReviewButton()
         {
             Thread.Sleep(500);
@@ -128,12 +133,21 @@ namespace Malafi.Tests.Pages
         }
 
         public void GiveTheApprovedEmployees()
-        public void FormRegisteredEmployeesValidation()
         {
 
             ApprovedStatus.Click();
 
-}
+        }
+
+        public void FormRegisteredEmployeesValidation()
+        {
+
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(SaveChanges)).Click();
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(SaveChangesPopup)).Click();
+
+        }
         public AddQualificationGroups ClickOnAddIcon ()
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(SaveChanges)).Click();

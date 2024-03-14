@@ -162,6 +162,7 @@ namespace Malafi.Tests.Steps
 
 
         }
+      
 
         [Given(@"I click on Dashboard")]
         public void GivenIClickOnDashboard()
@@ -212,28 +213,12 @@ namespace Malafi.Tests.Steps
 
         }
 
-        /*   public RegisteredEmployees GetRegisteredEmployeesPage()
-           {
-               return registeredEmployeesPage;
-           }*/
+       
+       
+     
+      
 
-        [When(@"Clickd Registered Employee link")]
-        public void WhenClickedRegisteredEmployeesLink()
-        {
-            var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
-            Assert.IsNotNull(malafiHome);
-            registeredEmployeesPage = malafiHome.ClickOnRegisterdEmployeesLink();
-            scenarioContext["RegisteredEmployees"] = registeredEmployeesPage;
-            registeredEmployeesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployeesPage.RegisteredEmployeesButton));
-
-        }
-
-        [Then(@"I should be navigated to the Registered employees page")]
-        public void ThenIShouldBeNavigatedToRegisteredEmployeesPage()
-        {
-            Assert.AreEqual("Registered Employees", registeredEmployeesPage.RegisteredEmployeesButton.Text);
-        }
-
+    
 
     }
 }

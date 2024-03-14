@@ -6,7 +6,7 @@ Background: Common steps till reach to Documents group listing page
 	And Enterd 'Ksmc@1234' as password
 	When I cilck on login button
 	And Click on Malafi link
-	And Clickd Registered Employee link
+	And Clicked Registered Employees link
 
 Scenario Outline: find the registered employee by select status
 	When I Click on '<Status>' link
