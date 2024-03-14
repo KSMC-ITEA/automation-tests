@@ -1,17 +1,18 @@
 ﻿using Malafi.Tests.Models;
 using Malafi.Tests.Pages;
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V118.Audits;
+
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
+
 using TechTalk.SpecFlow;
-using static System.Net.Mime.MediaTypeNames;
+
+
+
+
+
 
 namespace Malafi.Tests.Steps
 {
@@ -26,7 +27,7 @@ namespace Malafi.Tests.Steps
         private string textEn;
         private string textAr;
         private int rowNumber;
-   
+
         Dictionary<string, QualificationGroupModel> rowsOf2ndTable;
 
 
@@ -80,7 +81,7 @@ namespace Malafi.Tests.Steps
                     var qualificationGroup = new QualificationGroupModel();
                     qualificationGroup.TitleEn = addQualificationGroupsPage.AssignedDocumentGroups.FindElement(By.XPath($"//*[@id='b3-b9-MainContent']/div/table/tbody/tr[{i + 1}]/td[1]/span")).Text;
                     qualificationGroup.TitleAr = addQualificationGroupsPage.AssignedDocumentGroups.FindElement(By.XPath($"//*[@id='b3-b9-MainContent']/div/table/tbody/tr[{i + 1}]/td[2]/span")).Text;
-// we use dic to we test specfic value(retrive)
+                    // we use dic to we test specfic value(retrive)
                     rowsOf2ndTable.Add(qualificationGroup.TitleEn, qualificationGroup);
                 }
                 if (!addQualificationGroupsPage.NextPage.Enabled)
@@ -90,7 +91,7 @@ namespace Malafi.Tests.Steps
 
                 addQualificationGroupsPage.NextPage.Click();
                 Thread.Sleep(300);
-              
+
             }
 
         }
@@ -99,7 +100,7 @@ namespace Malafi.Tests.Steps
         public void ThenIShouldFindTheSelectdDocumentGroupMovedToEmployeeDocumentGroup()
         {
             addQualificationGroupsPage.Wait.Until(ExpectedConditions.ElementToBeClickable(addQualificationGroupsPage.AddingDocumentGroupButton));
-// check if name is added
+            // check if name is added
             Assert.IsTrue(rowsOf2ndTable.ContainsKey(textEn));
             //check if the name is correct
             Assert.AreEqual(textEn, rowsOf2ndTable[textEn].TitleEn);
