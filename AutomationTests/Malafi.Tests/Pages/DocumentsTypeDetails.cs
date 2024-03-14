@@ -52,6 +52,11 @@ namespace Malafi.Tests.Pages
         public IWebElement FeedbackMessage { get; private set; }
 
 
+        [FindsBy(How = How.CssSelector, Using = "#b3-b1-MainContent > div > table")]
+        public IWebElement TableDocumentType { get; private set; }
+
+
+
 
         public void AddNewDocumentType(TestData testData)
         {

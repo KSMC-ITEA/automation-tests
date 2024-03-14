@@ -70,7 +70,6 @@ namespace Malafi.Tests.Steps
         {
             var homePage = loginPage.Login(username, password);
             scenarioContext["HomePage"] = homePage;
-
         }
         #endregion
 
@@ -111,7 +110,6 @@ namespace Malafi.Tests.Steps
         {
             loginPage.Wait.Until(ExpectedConditions.ElementToBeClickable(loginPage.Errormessage));
             bool isMatch = Regex.IsMatch(loginPage.Errormessage.Text, regexPattern);
-            Assert.IsTrue(isMatch, "The error message doesn't match the selected language.");
             Assert.AreEqual("اسم المستخدم او كلمة المرور غير صحيحة برجاء ادخال البيانات الصحيحة", loginPage.Errormessage.Text);
         }
 

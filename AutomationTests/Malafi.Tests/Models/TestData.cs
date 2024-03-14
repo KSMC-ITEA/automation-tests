@@ -13,7 +13,7 @@ namespace Malafi.Tests.Models
         public string WebsiteLink { get; set; }
         public string OnBaseNumber { get; set; }
         public string UploadFile { get; set; }
-
+        public string Title { get; set; }
 
     }
 }

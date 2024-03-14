@@ -8,7 +8,7 @@ namespace Malafi.Tests.Steps
 {
     [Binding]
     public class DocumentsGroupStepDefinitions
- {   
+    {
         private ScenarioContext scenarioContext;
  /// <summary>
        private IWebDriver driver;
@@ -17,9 +17,9 @@ namespace Malafi.Tests.Steps
 
 
 
-            public DocumentsGroupStepDefinitions(ScenarioContext context)
+        public DocumentsGroupStepDefinitions(ScenarioContext context)
 
-       {
+        {
 
             scenarioContext = context;
 
@@ -45,13 +45,13 @@ namespace Malafi.Tests.Steps
         [Then(@"I should be navigated to Add Documents group Page")]
         public void ThenIShouldBeNavigatedToAddDocumentsGroupPage()
         {
-            var documentsGroupForm = scenarioContext["DocumentsGroupForm"]as DocumentsGroupForm;
-            Assert.IsNotNull(documentsGroupForm);
-            documentsGroupForm.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupForm.ClickOnSaveButton));
- 
-            Assert.IsTrue(documentsGroupForm.ClickOnSaveButton.Displayed);
+            var documentGroupForm = scenarioContext["DocumentGroupForm"] as DocumentsGroupForm;
+            Assert.IsNotNull(documentGroupForm);
+
+            documentGroupForm.Wait.Until(ExpectedConditions.ElementToBeClickable(documentGroupForm.ClickOnSaveButton));
+            Assert.IsTrue(documentGroupForm.ClickOnSaveButton.Displayed);
 
         }
 
-    }
+    } 
 }
