@@ -102,7 +102,7 @@ namespace Malafi.Tests.Steps
 
 
 
-       
+
 
         [When(@"Click on inbox link")]
         public void WhenClickOnInboxLink()
@@ -145,10 +145,10 @@ namespace Malafi.Tests.Steps
 
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
-            scenarioContext["registeredEmployees"] = registeredEmployees;
 
             registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
-
+            scenarioContext["RegisteredEmployees"] = registeredEmployees;
+            Thread.Sleep(300);
         }
 
         [Then(@"I should be navigated to Registered Employees Page")]
@@ -162,7 +162,7 @@ namespace Malafi.Tests.Steps
 
 
         }
-      
+
 
         [Given(@"I click on Dashboard")]
         public void GivenIClickOnDashboard()
@@ -213,12 +213,12 @@ namespace Malafi.Tests.Steps
 
         }
 
-       
-       
-     
-      
 
-    
+
+
+
+
+
 
     }
 }

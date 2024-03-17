@@ -45,7 +45,7 @@ namespace Malafi.Tests.Pages
         [FindsBy(How = How.Id, Using = "b3-RadioButton2-input")]
         public IWebElement ApprovedStatus { get; private set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".btn:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "#b3-b1-MainContent > div > table > tbody > tr:nth-child(2) > td:nth-child(4) > div > div.add-tooltip.OSInline > button")]
         public IWebElement SaveChanges { get; private set; }
 
         [FindsBy(How = How.Id, Using = "b3-RadioButton3-input")]
@@ -150,9 +150,10 @@ namespace Malafi.Tests.Pages
         }
         public AddQualificationGroups ClickOnAddIcon ()
         {
+            Thread.Sleep(1000);
             wait.Until(ExpectedConditions.ElementToBeClickable(SaveChanges)).Click();
+            Thread.Sleep(1000);
 
-            Thread.Sleep(500);
             AddButton.Click();
             var addQualificationGroups = new AddQualificationGroups(driver);
             return addQualificationGroups;
