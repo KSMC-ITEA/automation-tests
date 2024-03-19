@@ -8,6 +8,9 @@ using System.Reflection;
 using System.Text;
 using TechTalk.SpecFlow.Tracing;
 using Malafi.Tests.Pages;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Gherkin.Model;
+using AventStack.ExtentReports.Reporter;
 
 namespace Malafi.Tests.Hooks
 {
@@ -17,6 +20,9 @@ namespace Malafi.Tests.Hooks
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
         private ScenarioContext scenarioContext;
         private FeatureContext featureContext;
+        private static ExtentTest featureName;
+        private static ExtentTest scenario;
+        private static ExtentReports extent;
 
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
@@ -24,6 +30,43 @@ namespace Malafi.Tests.Hooks
         {
             scenarioContext = context;
             featureContext = fContext;
+        }
+
+        [AfterStep]
+        public void InsertReportingSteps(ScenarioContext sc)
+        {
+            var stepType = sc.StepContext.StepInfo.StepDefinitionType.ToString();
+            PropertyInfo pInfo = typeof(ScenarioContext).GetProperty("ScenarioExecutionStatus", BindingFlags.Instance | BindingFlags.Public);
+            MethodInfo getter = pInfo.GetGetMethod(nonPublic: true);
+            object TestResult = getter.Invoke(sc, null);
+            if (sc.TestError == null)
+            {
+                if (stepType == "Given")
+                    scenario.CreateNode<Given>(sc.StepContext.StepInfo.Text);
+                else if (stepType == "When")
+                    scenario.CreateNode<When>(sc.StepContext.StepInfo.Text);
+                else if (stepType == "Then")
+                    scenario.CreateNode<Then>(sc.StepContext.StepInfo.Text);
+                else if (stepType == "And")
+                    scenario.CreateNode<And>(sc.StepContext.StepInfo.Text);
+            }
+            if (sc.TestError != null)
+            {
+                if (stepType == "Given")
+                    scenario.CreateNode<Given>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+                if (stepType == "When")
+                    scenario.CreateNode<When>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+                if (stepType == "Then")
+                    scenario.CreateNode<Then>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+                if (stepType == "And")
+                    scenario.CreateNode<And>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+            }
+        }
+
+        [BeforeFeature]
+        public static void BeforeFeature(FeatureContext featurecontext)
+        {
+            featureName = extent.CreateTest(featurecontext.FeatureInfo.Title);
         }
 
         [BeforeScenario]
@@ -87,7 +130,25 @@ namespace Malafi.Tests.Hooks
                 driver.Close();
                 driver.Dispose();
             }
+        }
 
+        [BeforeTestRun]
+        public static void InitializeReport()
+        {
+            var artifactDirectory = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "testresults");
+            if (!Directory.Exists(artifactDirectory))
+                Directory.CreateDirectory(artifactDirectory);
+            string fileNameBase = System.IO.Path.Combine(artifactDirectory, string.Format("report_{0}.html", DateTime.Now.ToString("yyyyMMdd_HHmmss")));
+            var htmlReporter = new ExtentSparkReporter(fileNameBase);
+
+            extent = new ExtentReports();
+            extent.AttachReporter(htmlReporter);
+        }
+
+        [AfterTestRun]
+        public static void TearDownReport()
+        {
+            extent.Flush();
         }
 
         private void TakeScreenshot(IWebDriver driver)
