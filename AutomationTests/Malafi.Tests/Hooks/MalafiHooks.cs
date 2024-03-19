@@ -8,8 +8,6 @@ using System.Reflection;
 using System.Text;
 using TechTalk.SpecFlow.Tracing;
 using Malafi.Tests.Pages;
-using DocumentFormat.OpenXml.Drawing;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
@@ -64,6 +62,7 @@ namespace Malafi.Tests.Hooks
                     scenario.CreateNode<And>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
             }
         }
+
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext featurecontext)
         {
@@ -134,7 +133,6 @@ namespace Malafi.Tests.Hooks
                 driver.Close();
                 driver.Dispose();
             }
-
         }
 
         [BeforeTestRun]
@@ -149,6 +147,7 @@ namespace Malafi.Tests.Hooks
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
         }
+
         [AfterTestRun]
         public static void TearDownReport()
         {
