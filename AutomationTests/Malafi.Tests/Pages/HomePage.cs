@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using SeleniumExtras.WaitHelpers;
 
 namespace Malafi.Tests.Pages
 {
@@ -40,7 +41,7 @@ namespace Malafi.Tests.Pages
 
         public MalafiHome ClickOnMalafi()
         {
-            MalafiLink.Click();
+            Wait.Until(ExpectedConditions.ElementToBeClickable(MalafiLink)).Click();
 
             return new MalafiHome(driver);
         }

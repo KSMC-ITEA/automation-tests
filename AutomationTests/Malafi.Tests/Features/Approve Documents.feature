@@ -8,6 +8,6 @@ Background: Common steps till reach to Add Document Type page
 
 Scenario: Approve Documents
 	When Click on inbox link
-	Then A I click on Approved inbox
+	Then I have been navigated to the approved inbox
 
 

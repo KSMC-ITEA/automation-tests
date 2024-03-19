@@ -49,7 +49,7 @@ namespace Malafi.Tests.Pages
 
         public DocumentType ClickOnDocumentTypeLink()
         {
-            DocumentTypeLink.Click();
+            Wait.Until(ExpectedConditions.ElementToBeClickable(DocumentTypeLink)).Click();
             return new DocumentType(driver);
         }
 
@@ -82,7 +82,7 @@ namespace Malafi.Tests.Pages
 
         public DocumentsGroup ClickOnDocumentGroupLink()
         {
-            DocumentGroupLink.Click();
+            Wait.Until(ExpectedConditions.ElementToBeClickable(DocumentGroupLink)).Click();
             return new DocumentsGroup(driver);
         }
 

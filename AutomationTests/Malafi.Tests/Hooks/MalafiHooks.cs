@@ -72,6 +72,9 @@ namespace Malafi.Tests.Hooks
         [BeforeScenario]
         public void BeforeScenario()
         {
+            var scenarioTitle = scenarioContext.ScenarioInfo.Title
+                + string.Join("_", scenarioContext.ScenarioInfo.Arguments.Values.OfType<string>().ToList());
+            scenario = featureName.CreateNode<Scenario>(scenarioTitle);
             IWebDriver driver; //= new ChromeDriver();
             switch (Properties.Resources.Browser)
             {
@@ -155,27 +158,21 @@ namespace Malafi.Tests.Hooks
         {
             try
             {
-                string fileNameBase = string.Format("error_{0}_{1}_{2}",
-                                                    featureContext.FeatureInfo.Title.ToIdentifier(),
-                                                    scenarioContext.ScenarioInfo.Title.ToIdentifier(),
-                                                    DateTime.Now.ToString("yyyyMMdd_HHmmss"));
-
-                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), "testresults");
-                if (!Directory.Exists(artifactDirectory))
-                    Directory.CreateDirectory(artifactDirectory);
+                string fileNameBase = "error", artifactDirectory;
+                PrepareFile(ref fileNameBase, out artifactDirectory);
 
                 string pageSource = driver.PageSource;
-                string sourceFilePath = Path.Combine(artifactDirectory, fileNameBase + "_source.html");
+                string sourceFilePath = System.IO.Path.Combine(artifactDirectory, fileNameBase + "_source.html");
                 File.WriteAllText(sourceFilePath, pageSource, Encoding.UTF8);
                 Console.WriteLine("Page source: {0}", new Uri(sourceFilePath));
 
-                ITakesScreenshot takesScreenshot = (driver as ITakesScreenshot) ?? throw new NullReferenceException("Driver as screenshot should not be null.") ;
+                ITakesScreenshot takesScreenshot = (driver as ITakesScreenshot) ?? throw new NullReferenceException("Driver as screenshot should not be null.");
 
                 if (takesScreenshot != null)
                 {
                     var screenshot = takesScreenshot.GetScreenshot();
 
-                    string screenshotFilePath = Path.Combine(artifactDirectory, fileNameBase + "_screenshot.png");
+                    string screenshotFilePath = System.IO.Path.Combine(artifactDirectory, fileNameBase + "_screenshot.png");
 
                     screenshot.SaveAsFile(screenshotFilePath);
 
@@ -186,6 +183,17 @@ namespace Malafi.Tests.Hooks
             {
                 Console.WriteLine("Error while taking screenshot: {0}", ex);
             }
+        }
+
+        private void PrepareFile(ref string fileNameBase, out string artifactDirectory)
+        {
+            fileNameBase = string.Format(fileNameBase + "_{0}_{1}_{2}",
+                                                                featureContext.FeatureInfo.Title.ToIdentifier(),
+                                                                scenarioContext.ScenarioInfo.Title.ToIdentifier(),
+                                                                DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            artifactDirectory = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "testresults");
+            if (!Directory.Exists(artifactDirectory))
+                Directory.CreateDirectory(artifactDirectory);
         }
     }
 }
