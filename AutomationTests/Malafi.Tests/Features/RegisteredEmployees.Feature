@@ -30,5 +30,6 @@ Scenario: assign  document group to the employee
 
  Scenario: Clicked on search button should filter the data in the grid 
  Given I write data on the search filed'11' 
+ And I click on Approved status
  When I prepare the employee data
  Then  data in the grid should be filterd with row contain the search key '11' 

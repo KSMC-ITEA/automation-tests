@@ -84,13 +84,21 @@ namespace Malafi.Tests.Steps
                     // we use dic to we test specfic value(retrive)
                     rowsOf2ndTable.Add(qualificationGroup.TitleEn, qualificationGroup);
                 }
-                if (!addQualificationGroupsPage.NextPage.Enabled)
+                try
+                {
+                    if (!addQualificationGroupsPage.NextPage.Enabled)
+                    {
+                        break;
+                    }
+
+                    addQualificationGroupsPage.NextPage.Click();
+                    Thread.Sleep(300);
+                }
+                catch (Exception)
                 {
                     break;
                 }
-
-                addQualificationGroupsPage.NextPage.Click();
-                Thread.Sleep(300);
+               
 
             }
 
