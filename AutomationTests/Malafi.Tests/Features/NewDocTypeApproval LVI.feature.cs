@@ -48,7 +48,7 @@ namespace Malafi.Tests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "NewDocTypeApprovalLVI", "Enter data into the form and submit", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "New Doc Type Approval LVI", "Enter data into the form and submit", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -63,7 +63,7 @@ namespace Malafi.Tests.Features
         public void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "NewDocTypeApprovalLVI")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "New Doc Type Approval LVI")))
             {
                 global::Malafi.Tests.Features.NewDocTypeApprovalLVIFeature.FeatureSetup(null);
             }
@@ -120,7 +120,7 @@ testRunner.Given("Entered \'blue2\'as a username", ((string)(null)), ((TechTalk.
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add new document LVI should succeed")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewDocTypeApprovalLVI")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "New Doc Type Approval LVI")]
         public void AddNewDocumentLVIShouldSucceed()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -154,7 +154,7 @@ this.FeatureBackground();
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("DocTypeApproval LVI Validation")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "NewDocTypeApprovalLVI")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "New Doc Type Approval LVI")]
         public void DocTypeApprovalLVIValidation()
         {
             string[] tagsOfScenario = ((string[])(null));

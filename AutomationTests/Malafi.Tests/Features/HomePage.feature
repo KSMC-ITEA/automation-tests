@@ -1,4 +1,4 @@
-﻿Feature: HomePage
+﻿Feature: Home Page
 
  Internal Portal Home Page Scenarios
 
