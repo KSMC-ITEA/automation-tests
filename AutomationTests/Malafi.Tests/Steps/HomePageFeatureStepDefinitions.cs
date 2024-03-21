@@ -9,12 +9,10 @@ namespace Malafi.Tests.Steps
     public class HomePageFeatureStepDefinitions
     {
         private ScenarioContext scenarioContext;
-        private IWebDriver driver;
         private MalafiHome malafiHome;
         public HomePageFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
-            driver = scenarioContext["WebDriver"] as IWebDriver ?? throw new NullReferenceException("Web Driver");
 
         }
         [When(@"Click on Malafi link")]
@@ -23,10 +21,10 @@ namespace Malafi.Tests.Steps
             var homePage = scenarioContext["HomePage"] as HomePage;
             Assert.IsNotNull(homePage);
             homePage.Wait.Until(ExpectedConditions.ElementToBeClickable(homePage.MalafiLink));
-            Assert.IsNotNull(homePage);
-            malafiHome = homePage.ClickOnMalafi();
+
+
+            var malafiHome = homePage.ClickOnMalafi();
             scenarioContext["MalafiHome"] = malafiHome;
-            malafiHome.Wait.Until(ExpectedConditions.ElementToBeClickable(malafiHome.DocumentTypeLink));
         }
 
         [Then(@"I should be navigated to Malafi Home Page")]
@@ -34,10 +32,11 @@ namespace Malafi.Tests.Steps
         {
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
+            Thread.Sleep(500);
             Assert.AreEqual("Documents Types", malafiHome.DocumentTypeLink.Text);
         }
 
-       
+
 
 
     }

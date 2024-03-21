@@ -74,5 +74,9 @@ namespace Malafi.Tests.Steps
             Assert.AreEqual("Can't Save document Types because some fields have errors", documentTypeDetails.FeedbackMessage.Text);
         }
 
+
+      
+
     }
 }
+

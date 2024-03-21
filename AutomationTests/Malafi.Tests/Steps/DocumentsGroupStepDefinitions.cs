@@ -8,7 +8,7 @@ namespace Malafi.Tests.Steps
 {
     [Binding]
     public class DocumentsGroupStepDefinitions
- {   
+    {
         private ScenarioContext scenarioContext;
  /// <summary>
        private IWebDriver driver;
@@ -17,9 +17,9 @@ namespace Malafi.Tests.Steps
 
 
 
-            public DocumentsGroupStepDefinitions(ScenarioContext context)
+        public DocumentsGroupStepDefinitions(ScenarioContext context)
 
-       {
+        {
 
             scenarioContext = context;
 
@@ -53,5 +53,5 @@ namespace Malafi.Tests.Steps
 
         }
 
-    }
+    } 
 }

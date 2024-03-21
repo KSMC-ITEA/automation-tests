@@ -33,6 +33,7 @@ namespace Malafi.Tests.Steps
         {
             var registeredEmployeesPage = scenarioContext["RegisteredEmployees"] as RegisteredEmployees;
             Assert.IsNotNull(registeredEmployeesPage);
+     Thread.Sleep(300);
             registeredEmployeesPage.GiveTheSelectedStatus(empStatus);
             scenarioContext["EmpStatus"] = empStatus;
         }
@@ -43,7 +44,7 @@ namespace Malafi.Tests.Steps
 
             var registeredEmployeesPage = scenarioContext["RegisteredEmployees"] as RegisteredEmployees;
             Assert.IsNotNull(registeredEmployeesPage);
-
+          
             if (scenarioContext["EmpStatus"].ToString().Equals("Approved"))
             {
                 registeredEmployeesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployeesPage.ApprovedReviewButton));
@@ -100,6 +101,7 @@ namespace Malafi.Tests.Steps
             this.search = search;
             registeredEmployeesPage = scenarioContext["RegisteredEmployees"] as RegisteredEmployees;
             Assert.IsNotNull(registeredEmployeesPage);
+            registeredEmployeesPage.Wait.Until(ExpectedConditions.ElementToBeClickable(registeredEmployeesPage.SearchField));
             registeredEmployeesPage.SearchField.SendKeys(search);
 
 

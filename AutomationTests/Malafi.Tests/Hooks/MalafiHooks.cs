@@ -8,6 +8,9 @@ using System.Reflection;
 using System.Text;
 using TechTalk.SpecFlow.Tracing;
 using Malafi.Tests.Pages;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Gherkin.Model;
+using AventStack.ExtentReports.Reporter;
 
 namespace Malafi.Tests.Hooks
 {
@@ -17,6 +20,9 @@ namespace Malafi.Tests.Hooks
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
         private ScenarioContext scenarioContext;
         private FeatureContext featureContext;
+        private static ExtentTest featureName;
+        private static ExtentTest scenario;
+        private static ExtentReports extent;
 
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
@@ -26,9 +32,49 @@ namespace Malafi.Tests.Hooks
             featureContext = fContext;
         }
 
+        [AfterStep]
+        public void InsertReportingSteps(ScenarioContext sc)
+        {
+            var stepType = sc.StepContext.StepInfo.StepDefinitionType.ToString();
+            PropertyInfo pInfo = typeof(ScenarioContext).GetProperty("ScenarioExecutionStatus", BindingFlags.Instance | BindingFlags.Public);
+            MethodInfo getter = pInfo.GetGetMethod(nonPublic: true);
+            object TestResult = getter.Invoke(sc, null);
+            if (sc.TestError == null)
+            {
+                if (stepType == "Given")
+                    scenario.CreateNode<Given>(sc.StepContext.StepInfo.Text);
+                else if (stepType == "When")
+                    scenario.CreateNode<When>(sc.StepContext.StepInfo.Text);
+                else if (stepType == "Then")
+                    scenario.CreateNode<Then>(sc.StepContext.StepInfo.Text);
+                else if (stepType == "And")
+                    scenario.CreateNode<And>(sc.StepContext.StepInfo.Text);
+            }
+            if (sc.TestError != null)
+            {
+                if (stepType == "Given")
+                    scenario.CreateNode<Given>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+                if (stepType == "When")
+                    scenario.CreateNode<When>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+                if (stepType == "Then")
+                    scenario.CreateNode<Then>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+                if (stepType == "And")
+                    scenario.CreateNode<And>(sc.StepContext.StepInfo.Text).Fail(sc.TestError);
+            }
+        }
+
+        [BeforeFeature]
+        public static void BeforeFeature(FeatureContext featurecontext)
+        {
+            featureName = extent.CreateTest(featurecontext.FeatureInfo.Title);
+        }
+
         [BeforeScenario]
         public void BeforeScenario()
         {
+            var scenarioTitle = scenarioContext.ScenarioInfo.Title
+                + string.Join("_", scenarioContext.ScenarioInfo.Arguments.Values.OfType<string>().ToList());
+            scenario = featureName.CreateNode<Scenario>(scenarioTitle);
             IWebDriver driver; //= new ChromeDriver();
             switch (Properties.Resources.Browser)
             {
@@ -87,34 +133,46 @@ namespace Malafi.Tests.Hooks
                 driver.Close();
                 driver.Dispose();
             }
+        }
 
+        [BeforeTestRun]
+        public static void InitializeReport()
+        {
+            var artifactDirectory = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "testresults");
+            if (!Directory.Exists(artifactDirectory))
+                Directory.CreateDirectory(artifactDirectory);
+            string fileNameBase = System.IO.Path.Combine(artifactDirectory, string.Format("report_{0}.html", DateTime.Now.ToString("yyyyMMdd_HHmmss")));
+            var htmlReporter = new ExtentSparkReporter(fileNameBase);
+
+            extent = new ExtentReports();
+            extent.AttachReporter(htmlReporter);
+        }
+
+        [AfterTestRun]
+        public static void TearDownReport()
+        {
+            extent.Flush();
         }
 
         private void TakeScreenshot(IWebDriver driver)
         {
             try
             {
-                string fileNameBase = string.Format("error_{0}_{1}_{2}",
-                                                    featureContext.FeatureInfo.Title.ToIdentifier(),
-                                                    scenarioContext.ScenarioInfo.Title.ToIdentifier(),
-                                                    DateTime.Now.ToString("yyyyMMdd_HHmmss"));
-
-                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), "testresults");
-                if (!Directory.Exists(artifactDirectory))
-                    Directory.CreateDirectory(artifactDirectory);
+                string fileNameBase = "error", artifactDirectory;
+                PrepareFile(ref fileNameBase, out artifactDirectory);
 
                 string pageSource = driver.PageSource;
-                string sourceFilePath = Path.Combine(artifactDirectory, fileNameBase + "_source.html");
+                string sourceFilePath = System.IO.Path.Combine(artifactDirectory, fileNameBase + "_source.html");
                 File.WriteAllText(sourceFilePath, pageSource, Encoding.UTF8);
                 Console.WriteLine("Page source: {0}", new Uri(sourceFilePath));
 
-                ITakesScreenshot takesScreenshot = (driver as ITakesScreenshot) ?? throw new NullReferenceException("Driver as screenshot should not be null.") ;
+                ITakesScreenshot takesScreenshot = (driver as ITakesScreenshot) ?? throw new NullReferenceException("Driver as screenshot should not be null.");
 
                 if (takesScreenshot != null)
                 {
                     var screenshot = takesScreenshot.GetScreenshot();
 
-                    string screenshotFilePath = Path.Combine(artifactDirectory, fileNameBase + "_screenshot.png");
+                    string screenshotFilePath = System.IO.Path.Combine(artifactDirectory, fileNameBase + "_screenshot.png");
 
                     screenshot.SaveAsFile(screenshotFilePath);
 
@@ -125,6 +183,17 @@ namespace Malafi.Tests.Hooks
             {
                 Console.WriteLine("Error while taking screenshot: {0}", ex);
             }
+        }
+
+        private void PrepareFile(ref string fileNameBase, out string artifactDirectory)
+        {
+            fileNameBase = string.Format(fileNameBase + "_{0}_{1}_{2}",
+                                                                featureContext.FeatureInfo.Title.ToIdentifier(),
+                                                                scenarioContext.ScenarioInfo.Title.ToIdentifier(),
+                                                                DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            artifactDirectory = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "testresults");
+            if (!Directory.Exists(artifactDirectory))
+                Directory.CreateDirectory(artifactDirectory);
         }
     }
 }
