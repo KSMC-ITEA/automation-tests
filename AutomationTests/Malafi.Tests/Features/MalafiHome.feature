@@ -53,3 +53,8 @@ Then I should be navigated to My inbox Page
 
 
 	
+
+
+Scenario:Click on Registered Employees link
+  When Clicked Registered Employees link
+  Then I should be navigated to Registered Employees Page

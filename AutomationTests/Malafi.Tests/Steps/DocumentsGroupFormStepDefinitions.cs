@@ -1,3 +1,4 @@
+using Malafi.Tests.Models;
 using Malafi.Tests.Pages;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -21,7 +22,7 @@ namespace Malafi.Tests.Steps
 
             this.context = context;
             // retreive the value that map this key of the class(casting,unboxing)
-            documentGroupForm = context["DocumentGroupForm"] as DocumentsGroupForm ?? throw new NullReferenceException();
+            documentGroupForm = context["DocumentsGroupForm"] as DocumentsGroupForm ?? throw new NullReferenceException();
         }
 
         [Given(@"I completed the form New Document Group")]
