@@ -48,7 +48,7 @@ namespace Malafi.Tests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "DocumentsGroup", "This feature file has all the scenarios related to the document Group page(s)", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Documents Group", "This feature file has all the scenarios related to the document Group page(s)", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -63,7 +63,7 @@ namespace Malafi.Tests.Features
         public void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "DocumentsGroup")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "Documents Group")))
             {
                 global::Malafi.Tests.Features.DocumentsGroupFeature.FeatureSetup(null);
             }
@@ -114,7 +114,7 @@ testRunner.Given("Entered \'blue2\'as a username", ((string)(null)), ((TechTalk.
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Click on Add Document group button then go to add document group page")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DocumentsGroup")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Documents Group")]
         public void ClickOnAddDocumentGroupButtonThenGoToAddDocumentGroupPage()
         {
             string[] tagsOfScenario = ((string[])(null));

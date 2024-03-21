@@ -7,6 +7,6 @@ Background: Common steps till reach to Add Document Type page
 	And Click on Malafi link
 	When Click on inbox link
 
-Scenario: [scenario name]
+Scenario: Add Rejection Reason Should Succeed
 	When Click on  Reject the Documents
 	Then Add Rejection Reason

@@ -1,5 +1,5 @@
 ﻿
-Feature: DocumentsGroup
+Feature: Documents Group
 
 This feature file has all the scenarios related to the document Group page(s)
 

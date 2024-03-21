@@ -1,4 +1,4 @@
-﻿Feature: EmployeesSearch
+﻿Feature: Employees Search
 
 A short summary of the feature
 Background: Common steps till reach to Add Document Type page

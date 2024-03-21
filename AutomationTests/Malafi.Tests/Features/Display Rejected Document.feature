@@ -1,4 +1,4 @@
-﻿Feature: Display Rejected Document(
+﻿Feature: Display Rejected Document
 
 A short summary of the feature
 Background: Login to Internal Portal and click on Malafi Link

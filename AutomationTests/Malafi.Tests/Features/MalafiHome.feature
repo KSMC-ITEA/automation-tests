@@ -1,4 +1,4 @@
-﻿Feature: MalafiHome
+﻿Feature: Malafi Home
 
 Move to a page DocumentsTypes
 
