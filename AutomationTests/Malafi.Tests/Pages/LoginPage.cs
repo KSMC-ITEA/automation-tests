@@ -72,7 +72,7 @@ namespace Malafi.Tests.Pages
         /// <summary>
         /// Login with valid userName and password
         /// </summary>
-        /// <param name="userName"></param>
+        ///<param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
         public HomePage Login(string userName, string password)
