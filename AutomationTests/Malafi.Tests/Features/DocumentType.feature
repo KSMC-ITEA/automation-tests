@@ -1,4 +1,4 @@
-﻿Feature: DocumentType
+﻿Feature: Document Type
 
 This feature file has all the scenarios related to the document type page(s)
 

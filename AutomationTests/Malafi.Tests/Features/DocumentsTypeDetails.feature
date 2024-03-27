@@ -1,4 +1,4 @@
-﻿Feature: DocumentsTypeDetails
+﻿Feature: Documents Type Details
 
 Enter data into the form and submit
 

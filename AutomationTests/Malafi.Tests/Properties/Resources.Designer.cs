@@ -61,7 +61,7 @@ namespace Malafi.Tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chrome.
+        ///   Looks up a localized string similar to Edge.
         /// </summary>
         internal static string Browser {
             get {

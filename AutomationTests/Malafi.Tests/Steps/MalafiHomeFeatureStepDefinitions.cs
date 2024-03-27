@@ -18,6 +18,7 @@ namespace Malafi.Tests.Steps
         private MyFiles myfiles;
         private Inbox inbox;
         private DocumentsGroup documentsGroupPage;
+        private RegisteredEmployees registeredEmployeesPage;
         public MalafiHomeFeatureStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
@@ -64,6 +65,7 @@ namespace Malafi.Tests.Steps
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
             documentsGroupPage = malafiHome.ClickOnDocumentGroupLink();
+            // this step give key dictionary for the page calss (key hashing)
             scenarioContext["DocumentsGroupForm"] = documentsGroupPage;
             documentsGroupPage.Wait.Until(ExpectedConditions.ElementToBeClickable(documentsGroupPage.AddDocumentsGroupButton));
         }
@@ -143,9 +145,8 @@ namespace Malafi.Tests.Steps
 
             var malafiHome = scenarioContext["MalafiHome"] as MalafiHome;
             Assert.IsNotNull(malafiHome);
-            scenarioContext["registeredEmployees"] = registeredEmployees;
-
             registeredEmployees = malafiHome.ClickOnRegisteredEmployees();
+            scenarioContext["RegisteredEmployees"] = registeredEmployees;
 
         }
 

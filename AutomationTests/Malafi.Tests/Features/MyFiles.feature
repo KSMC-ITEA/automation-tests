@@ -1,4 +1,4 @@
-﻿Feature: MyFiles
+﻿Feature: My Files
 
 Background: Login to Internal Portal and click on Malafi Link
 	Given Entered 'blue2'as a username

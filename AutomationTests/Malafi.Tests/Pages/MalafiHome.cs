@@ -21,13 +21,13 @@ namespace Malafi.Tests.Pages
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How = How.CssSelector, Using = ".ThemeGrid_MarginGutter > .OSFillParent")]
+        [FindsBy(How = How.LinkText, Using = "Documents Types")]
         public IWebElement DocumentTypeLink { get; private set; }
 
         [FindsBy(How = How.XPath, Using = "//div[@id='b2-PageLinks']/div[2]/a[5]/i")]
         public IWebElement EmployeesSearchLink { get; private set; }
 
-        [FindsBy(How = How.LinkText, Using = "Documents Group")]
+        [FindsBy(How = How.CssSelector, Using = "#b2-PageLinks > div.hr-item-menu > a:nth-child(3)")]
         public IWebElement DocumentGroupLink { get; private set; }
 
         [FindsBy(How = How.XPath, Using = "//span[contains(.,'Registered Employees')]")]
@@ -38,7 +38,7 @@ namespace Malafi.Tests.Pages
         public IWebElement DashboardLink { get; private set; }
 
 
-        [FindsBy(How = How.LinkText, Using = "My Files")]
+        [FindsBy(How = How.CssSelector, Using ="#b2-PageLinks > div.hr-item-menu > a:nth-child(6)")]
         public IWebElement MyFilesLink { get; private set; }
 
 
@@ -64,8 +64,8 @@ namespace Malafi.Tests.Pages
         {
             Thread.Sleep(900);
 
-            Wait.Until(ExpectedConditions.ElementToBeClickable(MyFilesLink)).Click();
-
+            //////   Wait.Until(ExpectedConditions.ElementToBeClickable(MyFilesLink)).Click();
+            MyFilesLink.Click();
             return new MyFiles(driver);
         }
 
@@ -102,11 +102,17 @@ namespace Malafi.Tests.Pages
         }
 
 
+        public RegisteredEmployees ClickOnRegisterdEmployeesLink()
+        {
+            RegisteredEmployeesLink.Click();
+            return new RegisteredEmployees(driver);
+
+    }
+
     }
 
 
-
-
-
-
 }
+
+
+

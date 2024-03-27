@@ -1,4 +1,4 @@
-﻿Feature: NewDocTypeApprovalLVI
+﻿Feature: New Doc Type Approval LVI
 
 Enter data into the form and submit
 

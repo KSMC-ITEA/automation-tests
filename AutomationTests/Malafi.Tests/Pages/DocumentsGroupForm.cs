@@ -2,8 +2,8 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using SeleniumExtras.WaitHelpers;
-using Malafi.Tests.Steps;
 using System.Reflection;
+using Malafi.Tests.Models;
 
 
 namespace Malafi.Tests.Pages
